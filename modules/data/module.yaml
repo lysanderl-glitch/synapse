@@ -1,0 +1,17 @@
+# Data Module - Data Analysis & Intelligence
+module:
+  name: data
+  display_name: "Data & Analytics"
+  description: "Data analysis, business intelligence, reporting, and data engineering"
+  version: "1.0.0"
+
+  agents:
+    - data_analyst
+    - bi_engineer
+    - data_engineer
+
+  skills: []
+
+  team_routing:
+    keywords: ["data", "analytics", "BI", "dashboard", "metrics", "report"]
+    description: "Data analysis / BI / Reporting / Data engineering"

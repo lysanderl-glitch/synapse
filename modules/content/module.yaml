@@ -1,0 +1,19 @@
+# Content Module - Content Creation & Management
+module:
+  name: content
+  display_name: "Content & Creative"
+  description: "Content strategy, copywriting, blog management, knowledge base"
+  version: "1.0.0"
+
+  agents:
+    - content_strategist
+    - copywriter
+    - knowledge_engineer
+
+  skills:
+    - daily-blog
+    - knowledge
+
+  team_routing:
+    keywords: ["content", "blog", "copy", "article", "knowledge", "documentation"]
+    description: "Content creation / Copywriting / Knowledge management"

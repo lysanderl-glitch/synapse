@@ -1,0 +1,17 @@
+# Operations Module - Operations Management
+module:
+  name: operations
+  display_name: "Operations"
+  description: "Project management, process optimization, delivery coordination"
+  version: "1.0.0"
+
+  agents:
+    - project_manager
+    - process_optimizer
+    - delivery_coordinator
+
+  skills: []
+
+  team_routing:
+    keywords: ["operations", "project", "delivery", "process", "PMO", "IoT"]
+    description: "Project management / Process optimization / Delivery"

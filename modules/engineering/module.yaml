@@ -1,0 +1,23 @@
+# Engineering Module - R&D Team
+module:
+  name: engineering
+  display_name: "Engineering & R&D"
+  description: "Software development, architecture, testing, and DevOps"
+  version: "1.0.0"
+
+  agents:
+    - tech_lead
+    - senior_developer
+    - qa_engineer
+    - devops_engineer
+    - security_engineer
+
+  skills:
+    - dev-plan
+    - dev-review
+    - dev-qa
+    - dev-ship
+
+  team_routing:
+    keywords: ["code", "development", "architecture", "testing", "deploy", "bug"]
+    description: "Software development / Architecture / QA / DevOps"

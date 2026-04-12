@@ -1,0 +1,17 @@
+# Product Module - Product Design & Management
+module:
+  name: product
+  display_name: "Product & Design"
+  description: "Product strategy, UX design, feature planning, and user research"
+  version: "1.0.0"
+
+  agents:
+    - product_manager
+    - ux_designer
+    - user_researcher
+
+  skills: []
+
+  team_routing:
+    keywords: ["product", "design", "UX", "feature", "user research", "wireframe"]
+    description: "Product design / Feature planning / User research"

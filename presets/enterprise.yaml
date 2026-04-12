@@ -1,0 +1,21 @@
+# Enterprise Preset - Full-featured team
+preset:
+  name: enterprise
+  display_name: "Enterprise (Full)"
+  description: "All modules enabled for comprehensive organizational coverage"
+
+  modules:
+    - strategy
+    - engineering
+    - product
+    - marketing
+    - finance
+    - operations
+    - customer_success
+    - legal
+    - data
+    - content
+
+  features:
+    spe: true
+    automation: true

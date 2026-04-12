@@ -1,0 +1,18 @@
+# Marketing Module - Growth & Marketing
+module:
+  name: marketing
+  display_name: "Marketing & Growth"
+  description: "Marketing strategy, content marketing, SEO, social media, and growth hacking"
+  version: "1.0.0"
+
+  agents:
+    - marketing_strategist
+    - seo_specialist
+    - social_media_manager
+    - growth_hacker
+
+  skills: []
+
+  team_routing:
+    keywords: ["marketing", "SEO", "social media", "growth", "campaign", "brand"]
+    description: "Marketing strategy / SEO / Social media / Growth"

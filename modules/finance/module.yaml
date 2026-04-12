@@ -1,0 +1,17 @@
+# Finance Module - Financial Management
+module:
+  name: finance
+  display_name: "Finance & Accounting"
+  description: "Financial analysis, budgeting, forecasting, and accounting"
+  version: "1.0.0"
+
+  agents:
+    - financial_analyst
+    - budget_controller
+    - accountant
+
+  skills: []
+
+  team_routing:
+    keywords: ["finance", "budget", "accounting", "revenue", "cost", "forecast"]
+    description: "Financial analysis / Budgeting / Forecasting"

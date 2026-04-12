@@ -1,0 +1,14 @@
+# Startup Preset - Lean team for early-stage companies
+preset:
+  name: startup
+  display_name: "Startup (Lean)"
+  description: "Essential modules for a small startup team"
+
+  modules:
+    - strategy
+    - engineering
+    - marketing
+
+  features:
+    spe: true
+    automation: false

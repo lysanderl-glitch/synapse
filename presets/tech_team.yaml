@@ -1,0 +1,15 @@
+# Tech Team Preset - Engineering-focused team
+preset:
+  name: tech_team
+  display_name: "Tech Team"
+  description: "Engineering-heavy configuration for technical teams"
+
+  modules:
+    - strategy
+    - engineering
+    - product
+    - data
+
+  features:
+    spe: true
+    automation: true

@@ -1,0 +1,17 @@
+# Customer Success Module - Customer Service & Support
+module:
+  name: customer_success
+  display_name: "Customer Success"
+  description: "Customer support, success management, feedback analysis"
+  version: "1.0.0"
+
+  agents:
+    - customer_success_manager
+    - support_specialist
+    - feedback_analyst
+
+  skills: []
+
+  team_routing:
+    keywords: ["customer", "support", "service", "feedback", "satisfaction", "onboarding"]
+    description: "Customer support / Success management / Feedback analysis"

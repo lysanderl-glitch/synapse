@@ -1,0 +1,14 @@
+# Content Creator Preset - Content-focused team
+preset:
+  name: content_creator
+  display_name: "Content Creator"
+  description: "Optimized for content creation, marketing, and audience growth"
+
+  modules:
+    - strategy
+    - marketing
+    - content
+
+  features:
+    spe: true
+    automation: true

@@ -1,0 +1,17 @@
+# SMB Preset - Balanced team for small-medium businesses
+preset:
+  name: smb
+  display_name: "Small-Medium Business"
+  description: "Balanced modules covering core business functions"
+
+  modules:
+    - strategy
+    - engineering
+    - product
+    - marketing
+    - operations
+    - customer_success
+
+  features:
+    spe: true
+    automation: false

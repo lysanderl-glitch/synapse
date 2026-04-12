@@ -1,0 +1,27 @@
+# Synapse Configuration
+# Edit this file to customize your AI team setup
+
+organization:
+  ceo_name: "Lysander"          # Your AI CEO's name
+  president_name: "YourName"     # Your name (the human operator)
+  org_name: "YourOrg"           # Your company/team name
+
+# Select which modules to enable
+# Available: strategy, engineering, product, marketing, finance,
+#            operations, customer_success, legal, data, content
+modules:
+  - strategy          # Think tank & advisory
+  - engineering       # R&D team
+
+# Optional features
+features:
+  spe: false          # Synapse Personal Engine (personal task management)
+  automation: false   # Automated scheduling (requires external triggers)
+
+# Preset override (if set, overrides modules list above)
+# preset: startup     # Options: startup, smb, tech_team, content_creator, enterprise
+
+# Advanced settings
+settings:
+  upgrade_url: "https://lysander.bond/synapse/version.json"
+  team_count: auto    # "auto" = calculated from enabled modules

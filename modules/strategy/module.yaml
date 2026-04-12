@@ -1,0 +1,19 @@
+# Strategy Module - Think Tank & Advisory
+module:
+  name: strategy
+  display_name: "Strategy & Advisory"
+  description: "Think tank for strategic analysis, decision support, and risk assessment"
+  version: "1.0.0"
+
+  agents:
+    - decision_advisor
+    - risk_analyst
+    - market_strategist
+    - execution_auditor
+
+  skills:
+    - graphify
+
+  team_routing:
+    keywords: ["strategy", "analysis", "decision", "risk", "evaluation"]
+    description: "Strategic analysis / Decision support / Risk assessment"

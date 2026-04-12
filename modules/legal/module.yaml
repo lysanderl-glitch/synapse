@@ -1,0 +1,17 @@
+# Legal Module - Legal & Compliance
+module:
+  name: legal
+  display_name: "Legal & Compliance"
+  description: "Contract review, regulatory compliance, IP protection"
+  version: "1.0.0"
+
+  agents:
+    - legal_counsel
+    - compliance_officer
+    - contract_specialist
+
+  skills: []
+
+  team_routing:
+    keywords: ["legal", "contract", "compliance", "regulation", "IP", "trademark"]
+    description: "Legal counsel / Compliance / Contract review"

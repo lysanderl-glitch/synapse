@@ -1,0 +1,150 @@
+# Synapse Module Schema v1.0
+# All department modules must conform to this schema.
+# Validated by tools/validator.py before assembly.
+
+schema_version: "1.0"
+
+# === Field Definitions ===
+# Each field specifies: type, required, constraints, description
+
+fields:
+  module:
+    type: object
+    required: true
+    description: "Top-level module definition container"
+    children:
+
+      # --- Identity ---
+      id:
+        type: string
+        required: true
+        pattern: "^[a-z][a-z0-9_]{1,30}$"
+        description: "Globally unique module identifier, lowercase + underscores (e.g. 'engineering')"
+
+      name:
+        type: string
+        required: true
+        max_length: 50
+        description: "Chinese display name (e.g. '研发技术部')"
+
+      name_en:
+        type: string
+        required: true
+        max_length: 50
+        description: "English display name (e.g. 'Engineering')"
+
+      version:
+        type: string
+        required: true
+        pattern: "^\\d+\\.\\d+\\.\\d+$"
+        description: "Semantic version (e.g. '1.0.0')"
+
+      category:
+        type: enum
+        required: true
+        values: ["core", "business", "support", "extension"]
+        description: "Module category: core (required), business (dept), support (infra), extension (optional)"
+
+      description:
+        type: string
+        required: true
+        max_length: 200
+        description: "One-sentence module purpose description"
+
+      # --- Dependencies ---
+      dependencies:
+        type: object
+        required: false
+        description: "Module dependency declarations"
+        children:
+          required:
+            type: list
+            items_type: string
+            required: false
+            description: "Module IDs that MUST be enabled when this module is active"
+          recommended:
+            type: list
+            items_type: string
+            required: false
+            description: "Module IDs recommended for full functionality"
+
+      # --- Agent Roster ---
+      agents:
+        type: list
+        required: true
+        min_items: 1
+        description: "List of agents provided by this module"
+        item_fields:
+          specialist_id:
+            type: string
+            required: true
+            pattern: "^[a-z][a-z0-9_]{1,40}$"
+            description: "Globally unique agent identifier"
+          role:
+            type: string
+            required: true
+            description: "Chinese role name"
+          role_en:
+            type: string
+            required: true
+            description: "English role name"
+          card_path:
+            type: string
+            required: true
+            description: "Relative path to agent card file within module (e.g. 'agents/tech_lead.md')"
+          required:
+            type: boolean
+            required: true
+            description: "Whether this agent is mandatory when the module is enabled"
+          description:
+            type: string
+            required: true
+            max_length: 100
+            description: "One-sentence role summary"
+
+      # --- Routing Keywords ---
+      routing_keywords:
+        type: object
+        required: true
+        description: "Keyword-to-agent routing map. Keys are keywords, values are specialist_id lists."
+        # Example:
+        #   代码: [tech_lead, backend_engineer]
+        #   部署: [devops_engineer]
+
+      # --- Skills ---
+      skills:
+        type: list
+        required: false
+        description: "Slash command skills provided by this module"
+        item_fields:
+          id:
+            type: string
+            required: true
+            description: "Skill ID matching the slash command name (e.g. 'dev-plan')"
+          path:
+            type: string
+            required: true
+            description: "Relative path to skill definition file within module"
+
+      # --- Harness Fragment ---
+      harness_fragment:
+        type: string
+        required: false
+        description: "Relative path to CLAUDE.md injection fragment (max 300 tokens)"
+
+# === Validation Rules (enforced by validator.py) ===
+validation_rules:
+  - rule: "unique_agent_ids"
+    description: "All specialist_id values must be globally unique across all modules"
+  - rule: "card_files_exist"
+    description: "Every card_path must point to an existing .md file"
+  - rule: "skill_files_exist"
+    description: "Every skill path must point to an existing file"
+  - rule: "fragment_token_limit"
+    description: "harness_fragment file must be <= 300 tokens"
+  - rule: "dependency_exists"
+    description: "All module IDs in dependencies.required must be valid module IDs"
+  - rule: "no_routing_conflicts"
+    description: "No keyword may route to agents in different modules without explicit cross-module declaration"
+  - rule: "capability_quality"
+    description: "Agent card capabilities must meet B-level minimum (specific frameworks/methodologies, not generic activities)"
