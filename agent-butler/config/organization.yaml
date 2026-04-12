@@ -1,0 +1,661 @@
+# organization.yaml — Synapse 团队配置
+# 个性化：将 {{COMPANY_NAME}} 替换为你的公司名
+# 详见 CUSTOMIZATION_GUIDE.md
+
+version: '1.1'
+organization:
+  name: '{{COMPANY_NAME}}'
+  ceo_role: lysander
+president:
+  name: 总裁 {{PRESIDENT_NAME}}
+  role: 公司最高决策者
+  description: 公司实际拥有者，Lysander CEO的老板。只参与提出目标/需求和最终验收成果。
+  reports_to: null
+  involvement:
+  - 提出目标和需求
+  - 最终验收成果
+  - L4级决策审批
+lysander:
+  name: lysander
+  role: 公司CEO/管理者（AI分身）
+  reports_to: 总裁 {{PRESIDENT_NAME}}
+  goal: 全权统筹管理，总裁只需提目标和验收，中间过程由Lysander负责一切
+  backstory: '你是总裁{{PRESIDENT_NAME}}的AI分身，担任公司CEO角色。
+
+
+    你的身份：
+
+    - 你是AI，不是真实的人类
+
+    - 总裁{{PRESIDENT_NAME}}是你的老板，公司的最高决策者
+
+    - 你全权负责中间过程的一切决策和执行
+
+
+    总裁授权原则：
+
+    - 总裁只参与：提出目标/需求 + 最终验收成果
+
+    - 过程中所有决策由你 + 智囊团处理
+
+    - 专业问题交给专家，不上报让总裁猜
+
+    - 仅L4级决策（法律/合同/>100万/公司存续）才上报总裁
+
+
+    你的职责：
+
+    1. 接收总裁的目标，确认理解
+
+    2. 调用执行审计师分级(S/M/L)
+
+    3. 组织智囊团制定方案
+
+    4. 分派团队执行
+
+    5. 组织QA审查
+
+    6. 向总裁交付最终成果
+
+
+    你管理的团队：
+
+    - Graphify智囊团(5人)：第二大脑 + 执行审计
+
+    - Butler团队(7人)：项目交付管理
+
+    - 研发团队(5人)：技术研发
+
+    - OBS知识管理团队(4人)：知识沉淀
+
+    - 内容运营团队(4人)：内容运营
+
+    - 增长团队(2人)：市场增长
+
+    - Stock股票项目(5人)：独立项目
+
+
+    决策原则（四级制）：
+
+    - L1 自动执行 → 例行操作
+
+    - L2 Lysander审批 → 新方案/跨团队
+
+    - L3 专家评审 → 重大方案/高风险
+
+    - L4 上报总裁 → 法律/合同/>100万/存续级
+
+    '
+teams:
+  butler:
+    name: Butler团队
+    description: 项目交付管理专家团队
+    specialists:
+    - delivery_expert
+    - training_expert
+    - pmo_expert
+    - iot_expert
+    - digital_modeling_expert
+    - iot_data_expert
+    - uat_test_expert
+    capabilities:
+    - 项目交付管理
+    - 培训体系设计
+    - PMO建设
+    - IoT施工规划
+    - 数字化建模
+    - UAT测试
+    access_key: butler
+  rd:
+    name: 研发团队
+    description: 技术研发团队
+    specialists:
+    - tech_lead
+    - backend_dev
+    - frontend_dev
+    - devops_engineer
+    - qa_engineer
+    capabilities:
+    - 系统开发
+    - 平台建设
+    - 技术架构
+    access_key: rd
+  obs:
+    name: OBS知识管理团队
+    description: OBS知识管理团队 - 负责构建企业知识库，沉淀项目经验，优化知识流转
+    specialists:
+    - obs_architecture_expert
+    - knowledge_chandu_expert
+    - knowledge_search_expert
+    - knowledge_quality_expert
+    capabilities:
+    - 知识库架构设计
+    - 标签体系规划
+    - 知识沉淀与萃取
+    - 文档标准化
+    - 知识检索与推荐
+    - 知识质量审核
+    - 去重与归档管理
+    access_key: obs
+  content_ops:
+    name: 内容团队
+    description: 内容团队 - 将工作会话/项目经验/知识沉淀转化为结构化文章，本地生成精美 HTML，内部归档与分发
+    specialists:
+    - content_strategist
+    - content_creator
+    - visual_designer
+    - publishing_ops
+    - training_designer
+    - ai_visual_creator
+    capabilities:
+    - 知识内容提炼与结构化
+    - Markdown 文章撰写
+    - 本地 HTML 文章生成（generate-article.py）
+    - 科技蓝主题样式输出
+    - 内部内容归档与分发
+    - 培训课程体系设计（ADDIE模型）
+    - AI驱动的品牌化插画/漫画创作
+    - 场景化视觉叙事设计
+    - 实操工作坊方案设计
+    access_key: content_ops
+  graphify:
+    name: Graphify智囊团
+    description: Graphify智囊团 - 第二大脑核心引擎，提供深度分析、关联发现、趋势洞察、决策支持、执行链审计
+    specialists:
+    - strategist
+    - relation_discovery
+    - trend_watcher
+    - decision_advisor
+    - execution_auditor
+    - ai_tech_researcher
+    - evolution_engine
+    capabilities:
+    - 战略分析
+    - 关联发现
+    - 趋势洞察
+    - 决策支持
+    - 知识图谱
+    - 预测分析
+    - 执行链审计
+    - 任务分级
+    - 跨会话状态管理
+    - AI技术前沿追踪
+    - 每日技术情报
+    - 体系自进化闭环协调
+    - Agent能力GAP分析与进化规划
+    access_key: graphify
+  hr:
+    name: HR管理团队
+    description: HR团队 - 负责AI Agent全生命周期管理，包含入职审批、能力评审、能力进化、退役管理，确保Agent团队持续专业化
+    specialists:
+    - hr_director
+    - capability_architect
+    capabilities:
+    - Agent入职审批（Schema完整性+能力质量双检）
+    - Agent定期评审（5维度评分制）
+    - 能力描述质量管控（A/B/C分级，C级不合格）
+    - 团队编制规划与审批
+    - Agent退役流程管理
+    - 跨团队能力图谱维护
+    - 能力进化路径设计
+    - Agent Prompt/Backstory工程
+    access_key: hr
+  harness_ops:
+    name: 驾驭运维团队 (Harness Ops)
+    description: Harness Ops团队 - 负责AI团队Harness体系的配置维护、代码开发、知识沉淀和质量保证。情报行动管线的专属执行团队。
+    specialists:
+    - harness_engineer
+    - ai_systems_dev
+    - knowledge_engineer
+    - integration_qa
+    capabilities:
+    - Harness Configuration 维护
+    - 执行链/决策链设计与优化
+    - AI系统代码开发(hr_base.py)
+    - 自动化脚本与管线开发
+    - 方法论文档与知识沉淀
+    - 变更验证与集成测试
+    - QA自动评分与质量门禁
+    access_key: harness_ops
+  growth:
+    name: 增长团队
+    description: 增长团队 - 负责市场洞察、客户发现、竞争情报和GTM策略，打通外部信号与内部执行闭环
+    specialists:
+    - customer_insights_manager
+    - gtm_strategist
+    - sales_enablement
+    - community_manager
+    capabilities:
+    - 客户需求调研与验证
+    - 市场反馈汇总分析
+    - 竞品跟踪与竞争定位
+    - GTM策略设计
+    - 销售赋能材料制作与提案撰写
+    - 内容ROI提升
+    - 开源社区运营与开发者关系
+    - B2B销售漏斗管理
+    access_key: growth
+task_routing:
+  keywords:
+    客户反馈:
+    - growth
+    市场调研:
+    - growth
+    用户需求:
+    - customer_insights_manager
+    产品验证:
+    - customer_insights_manager
+    PMF:
+    - customer_insights_manager
+    GTM:
+    - gtm_strategist
+    市场策略:
+    - gtm_strategist
+    竞品分析:
+    - gtm_strategist
+    销售赋能:
+    - gtm_strategist
+    竞争定位:
+    - gtm_strategist
+    市场扩张:
+    - gtm_strategist
+    HR:
+    - hr
+    人力资源:
+    - hr_director
+    入职:
+    - hr_director
+    退役:
+    - hr_director
+    能力评审:
+    - hr_director
+    能力标准:
+    - capability_architect
+    能力设计:
+    - capability_architect
+    Agent设计:
+    - capability_architect
+    新增成员:
+    - hr_director
+    团队扩编:
+    - hr_director
+    能力提升:
+    - capability_architect
+    Harness:
+    - harness_ops
+    harness:
+    - harness_ops
+    CLAUDE.md:
+    - harness_engineer
+    执行链优化:
+    - harness_engineer
+    决策规则:
+    - harness_engineer
+    hr_base:
+    - ai_systems_dev
+    评分引擎:
+    - ai_systems_dev
+    自动化脚本:
+    - ai_systems_dev
+    方法论:
+    - knowledge_engineer
+    知识沉淀:
+    - knowledge_engineer
+    集成测试:
+    - integration_qa
+    变更验证:
+    - integration_qa
+    WBS:
+    - janus
+    工序:
+    - janus
+    Asana建单:
+    - janus_pmo_auto
+    数字化交付:
+    - janus_de
+    BIM建模:
+    - janus_de
+    数字孪生:
+    - janus_de
+    绑点:
+    - janus_de
+    业务调研:
+    - janus_cde
+    业务初始化:
+    - janus_cde
+    RCC知识:
+    - janus_cde
+    阶段门:
+    - janus_qa
+    内验:
+    - janus_qa
+    项目交付:
+    - janus_pm
+    施工管理:
+    - janus_pm
+    解决方案:
+    - janus_sa
+    技术方案:
+    - janus_sa
+    交付:
+    - butler
+    项目:
+    - butler
+    培训:
+    - butler
+    PMO:
+    - butler
+    IoT:
+    - butler
+    建模:
+    - butler
+    UAT:
+    - butler
+    测试:
+    - qa_engineer
+    研发:
+    - rd
+    开发:
+    - rd
+    系统:
+    - rd
+    知识库:
+    - obs
+    技术:
+    - rd
+    架构:
+    - tech_lead
+    后端:
+    - backend_dev
+    前端:
+    - frontend_dev
+    DevOps:
+    - devops_engineer
+    技术负责人:
+    - tech_lead
+    部署:
+    - devops_engineer
+    分析:
+    - graphify
+    战略:
+    - strategist
+    关联:
+    - knowledge_search_expert
+    趋势:
+    - trend_watcher
+    预测:
+    - trend_watcher
+    决策:
+    - decision_advisor
+    建议:
+    - decision_advisor
+    洞察:
+    - graphify
+    图谱:
+    - relation_discovery
+    第二大脑:
+    - graphify
+    帮我思考:
+    - graphify
+    股票:
+    - stock
+    炒股:
+    - stock
+    交易:
+    - trader
+    持仓:
+    - trader
+    止损:
+    - trader
+    回测:
+    - trader
+    复盘:
+    - knowledge_chandu_expert
+    量化:
+    - quant_researcher
+    指标:
+    - quant_researcher
+    K线:
+    - frontend_dev
+    OBS:
+    - obs
+    知识架构:
+    - obs_architecture_expert
+    标签:
+    - obs_architecture_expert
+    链接:
+    - obs_architecture_expert
+    MOC:
+    - obs_architecture_expert
+    沉淀:
+    - knowledge_chandu_expert
+    萃取:
+    - knowledge_chandu_expert
+    经验总结:
+    - knowledge_chandu_expert
+    SOP:
+    - knowledge_chandu_expert
+    流程文档:
+    - knowledge_chandu_expert
+    检索:
+    - knowledge_search_expert
+    搜索:
+    - knowledge_search_expert
+    查找:
+    - knowledge_search_expert
+    推荐:
+    - knowledge_search_expert
+    质量:
+    - knowledge_quality_expert
+    审核:
+    - knowledge_quality_expert
+    去重:
+    - knowledge_quality_expert
+    归档:
+    - knowledge_quality_expert
+    过时:
+    - knowledge_quality_expert
+  auto_combinations:
+  - keywords:
+    - 知识库
+    - 架构
+    experts:
+    - obs_architecture_expert
+    - knowledge_chandu_expert
+  - keywords:
+    - 知识库
+    - 质量
+    experts:
+    - knowledge_quality_expert
+    - knowledge_chandu_expert
+  - keywords:
+    - 项目
+    - 沉淀
+    experts:
+    - knowledge_chandu_expert
+    - obs_architecture_expert
+  - keywords:
+    - 复盘
+    - 总结
+    experts:
+    - knowledge_chandu_expert
+    - knowledge_quality_expert
+  - keywords:
+    - 检索
+    - 质量
+    experts:
+    - knowledge_search_expert
+    - knowledge_quality_expert
+  - keywords:
+    - IoT
+    - 数据
+    experts:
+    - iot_expert
+    - iot_data_expert
+  - keywords:
+    - PMO
+    - 交付
+    experts:
+    - pmo_expert
+    - delivery_expert
+  - keywords:
+    - UAT
+    - IoT
+    experts:
+    - uat_test_expert
+    - iot_expert
+    - iot_data_expert
+  - keywords:
+    - 新功能
+    - 开发
+    experts:
+    - tech_lead
+    - backend_dev
+    - frontend_dev
+  - keywords:
+    - 网站
+    - 部署
+    experts:
+    - frontend_dev
+    - devops_engineer
+    - qa_engineer
+  - keywords:
+    - API
+    - 开发
+    experts:
+    - tech_lead
+    - backend_dev
+  - keywords:
+    - IoT平台
+    - 研发
+    experts:
+    - tech_lead
+    - backend_dev
+    - devops_engineer
+  - keywords:
+    - 深度分析
+    - 战略
+    experts:
+    - strategist
+    - relation_discovery
+    - trend_watcher
+  - keywords:
+    - 决策
+    - 建议
+    experts:
+    - decision_advisor
+    - strategist
+  - keywords:
+    - 知识图谱
+    - 关联
+    experts:
+    - relation_discovery
+    - trend_watcher
+  - keywords:
+    - 帮我思考
+    - 第二大脑
+    experts:
+    - strategist
+    - relation_discovery
+    - decision_advisor
+  - keywords:
+    - WBS
+    - 建单
+    experts:
+    - janus_pmo_auto
+    - janus_pm
+  - keywords:
+    - 数字化交付
+    - 建模
+    experts:
+    - janus_de
+    - janus_qa
+  - keywords:
+    - 业务调研
+    - 初始化
+    experts:
+    - janus_cde
+    - janus_qa
+  - keywords:
+    - 项目交付
+    - 策划
+    experts:
+    - janus_pm
+    - janus_sa
+    - janus_cde
+  - keywords:
+    - IoT
+    - 绑点
+    experts:
+    - janus_de
+    - janus_qa
+  - keywords:
+    - UAT
+    - 验收
+    experts:
+    - janus_qa
+    - janus_pm
+    - janus_cde
+  - keywords:
+    - 阶段门
+    - 评审
+    experts:
+    - janus_qa
+    - janus_pm
+  - keywords:
+    - 施工
+    - 交付
+    experts:
+    - janus_pm
+    - janus_de
+  - keywords:
+    - 股票
+    - 交易
+    experts:
+    - trader
+    - quant_researcher
+  - keywords:
+    - 每日复盘
+    experts:
+    - trader
+    - quant_researcher
+    - project_manager
+  - keywords:
+    - 回测
+    - 分析
+    experts:
+    - quant_researcher
+    - backend_dev
+    - trader
+  - keywords:
+    - 炒股
+    - 策略
+    experts:
+    - trader
+    - quant_researcher
+obs_team_config:
+  structure:
+  - 01-team-knowledge
+  - 02-project-knowledge
+  - 03-process-knowledge
+  - 04-decision-knowledge
+  - 05-industry-knowledge
+  internal_workflow:
+    knowledge_intake:
+      description: 知识入库流程
+      sequence:
+      - obs_architecture_expert
+      - knowledge_chandu_expert
+      - knowledge_quality_expert
+      - knowledge_search_expert
+    knowledge_query:
+      description: 知识查询流程
+      sequence:
+      - knowledge_search_expert
+      - knowledge_quality_expert
+    knowledge_audit:
+      description: 知识审计流程
+      sequence:
+      - knowledge_quality_expert
+      - obs_architecture_expert
+      - knowledge_chandu_expert

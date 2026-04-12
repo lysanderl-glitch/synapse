@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+hr_watcher.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Evaluation / third-party source (isolated review only)
+_eval/
+
+# 加密凭证库 — 绝不上传 GitHub
+credentials.enc.md
+obs/credentials.md
+obs/credentials.mdenc
+
+# Synapse 构建输出 — 本地生成，不进原始仓库
+dist/
+
+# CEO Guard 审计日志（本地执行记录，不上传）
+logs/*.log
+logs/ceo-guard-audit.log

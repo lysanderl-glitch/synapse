@@ -1,0 +1,42 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"SessionStart\", \"additionalContext\": \"[CEO-GUARD] Lysander CEO 执行禁区已激活。Lysander 主对话中禁止直接调用 Bash/Edit/Write 工具。所有执行操作必须通过 Agent/Skill 工具派单给团队成员。违规模式（直接执行/贴标签冒充/先斩后奏/伪派单）将被记录到审计日志。\"}}'",
+            "timeout": 5,
+            "statusMessage": "CEO Guard 初始化..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/ceo-guard-pre.js 2>/dev/null || echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"additionalContext\": \"[CEO-GUARD] 审计脚本异常，但提醒仍然有效：Lysander CEO 主对话禁止直接调用 Bash/Edit/Write。\"}}'",
+            "timeout": 10,
+            "statusMessage": "CEO Guard 审计..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/ceo-guard-post.js 2>/dev/null || true",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
