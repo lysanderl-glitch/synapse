@@ -1,0 +1,80 @@
+# Synapse Core Module v1.0.0
+# This module is ALWAYS enabled. It provides the executive layer,
+# quality gates, and governance infrastructure.
+
+module:
+  id: "core"
+  name: "核心治理层"
+  name_en: "Core Governance"
+  version: "1.0.0"
+  category: core
+  description: "CEO executive layer, decision framework, quality gates, and HR governance — required for all Synapse deployments"
+
+  dependencies:
+    required: []        # Core has no dependencies (it IS the dependency)
+    recommended: []
+
+  agents:
+    - specialist_id: "ceo"
+      role: "首席执行官"
+      role_en: "CEO"
+      card_path: "agents/ceo.md"
+      required: true
+      description: "AI CEO {{CEO_NAME}}，负责目标分解、团队派单、决策审批、结果交付"
+
+    - specialist_id: "execution_auditor"
+      role: "执行审计师"
+      role_en: "Execution Auditor"
+      card_path: "agents/execution_auditor.md"
+      required: true
+      description: "执行链完整性审计、任务分级（S/M/L）、质量门禁评分"
+
+    - specialist_id: "decision_advisor"
+      role: "决策顾问"
+      role_en: "Decision Advisor"
+      card_path: "agents/decision_advisor.md"
+      required: true
+      description: "多维决策分析、风险评估、专家意见综合、决策材料准备"
+
+    - specialist_id: "integration_qa"
+      role: "集成QA工程师"
+      role_en: "Integration QA Engineer"
+      card_path: "agents/integration_qa.md"
+      required: true
+      description: "跨模块集成测试、配置校验、YAML/Markdown语法验证、回归检测"
+
+    - specialist_id: "hr_director"
+      role: "HR总监"
+      role_en: "HR Director"
+      card_path: "agents/hr_director.md"
+      required: true
+      description: "Agent入职审批、能力评审、卡片Schema合规检查、团队编制管理"
+
+  routing_keywords:
+    审计: ["execution_auditor"]
+    分级: ["execution_auditor"]
+    QA: ["integration_qa"]
+    质量: ["integration_qa"]
+    检查: ["execution_auditor", "integration_qa"]
+    评分: ["execution_auditor", "integration_qa"]
+    决策: ["decision_advisor"]
+    风险: ["decision_advisor"]
+    评估: ["decision_advisor"]
+    分析: ["decision_advisor"]
+    HR: ["hr_director"]
+    入职: ["hr_director"]
+    评审: ["hr_director", "decision_advisor"]
+    团队: ["hr_director"]
+    派单: ["ceo"]
+    目标: ["ceo"]
+    协调: ["ceo"]
+
+  skills:
+    - id: "dispatch"
+      path: "skills/dispatch.md"
+    - id: "synapse"
+      path: "skills/synapse.md"
+    - id: "qa-gate"
+      path: "skills/qa-gate.md"
+
+  harness_fragment: "harness/fragment.md"

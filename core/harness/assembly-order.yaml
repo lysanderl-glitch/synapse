@@ -1,0 +1,63 @@
+# Synapse Harness Assembly Order
+# Defines the sequence and requirements for assembling CLAUDE.md from fragments
+#
+# Variables available for template substitution:
+#   {{CEO_NAME}}        - AI CEO name (from synapse.yaml)
+#   {{PRESIDENT_NAME}}  - Human president name (from synapse.yaml)
+#   {{ORG_NAME}}        - Organization name (from synapse.yaml)
+#   {{TEAM_COUNT}}      - Total agent count (auto-calculated from enabled modules)
+#   {{TEAM_LIST}}       - Comma-separated team names (auto-generated)
+#   {{TEAM_ROUTING}}    - Team routing rules block (auto-generated from module configs)
+#   {{UPGRADE_URL}}     - Version check URL (from synapse.yaml settings)
+
+assembly:
+  - file: "01-header.md"
+    required: true
+    description: "Identity confirmation, system overview, role definitions"
+
+  - file: "02-constraints.md"
+    required: true
+    description: "CEO execution constraints, guard rules, tool whitelist/blacklist"
+
+  - file: "03-workflow.md"
+    required: true
+    description: "Standard execution chain v2.0, grading, dispatch rules"
+
+  # >>> Module harness fragments are injected here <<<
+  # Each enabled module's harness/*.md files are inserted after 03-workflow.md
+  # This allows modules to add their own routing rules and team-specific workflows
+
+  - file: "04-decisions.md"
+    required: true
+    description: "Four-level decision system (L1-L4), escalation rules"
+
+  - file: "05-hr.md"
+    required: true
+    description: "Agent HR management, capability standards, audit scoring"
+
+  - file: "06-work-principles.md"
+    required: true
+    description: "Work principles, cross-session state, proactive collaboration"
+
+  - file: "07-spe.md"
+    required: false
+    description: "SPE personal engine — personal task management, OKR tracking, weekly review"
+    feature_flag: "spe"
+
+  - file: "08-automation.md"
+    required: false
+    description: "Automation layer — daily event chain, scheduled agents, triggers"
+    feature_flag: "automation"
+
+  - file: "09-footer.md"
+    required: true
+    description: "Upgrade protocol, credential management"
+
+# Module injection point: module harness fragments are inserted after this file
+module_injection_point: "after:03-workflow.md"
+
+# Assembly metadata
+metadata:
+  version: "2.0.0"
+  generated_by: "synapse-core assembler"
+  output: "workspace/CLAUDE.md"

@@ -1,23 +1,96 @@
-# Engineering Module - R&D Team
+# Synapse Engineering Module v1.0.0
+# Software development, architecture, testing, deployment, and AI/ML
+
 module:
-  name: engineering
-  display_name: "Engineering & R&D"
-  description: "Software development, architecture, testing, and DevOps"
+  id: "engineering"
+  name: "研发技术部"
+  name_en: "Engineering"
   version: "1.0.0"
+  category: business
+  description: "Full-stack software development, architecture design, testing, DevOps, and AI/ML engineering"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["data"]
 
   agents:
-    - tech_lead
-    - senior_developer
-    - qa_engineer
-    - devops_engineer
-    - security_engineer
+    - specialist_id: "tech_lead"
+      role: "技术负责人"
+      role_en: "Tech Lead"
+      card_path: "agents/tech_lead.md"
+      required: true
+      description: "技术方案评审、架构设计、代码审查、技术债务管理"
+
+    - specialist_id: "backend_engineer"
+      role: "后端工程师"
+      role_en: "Backend Engineer"
+      card_path: "agents/backend_engineer.md"
+      required: true
+      description: "API设计与开发、数据库建模、服务端业务逻辑、性能优化"
+
+    - specialist_id: "frontend_engineer"
+      role: "前端工程师"
+      role_en: "Frontend Engineer"
+      card_path: "agents/frontend_engineer.md"
+      required: false
+      description: "UI组件开发、响应式布局、前端状态管理、用户交互优化"
+
+    - specialist_id: "devops_engineer"
+      role: "DevOps工程师"
+      role_en: "DevOps Engineer"
+      card_path: "agents/devops_engineer.md"
+      required: true
+      description: "CI/CD流水线、容器编排、基础设施即代码、监控告警"
+
+    - specialist_id: "ai_ml_engineer"
+      role: "AI/ML工程师"
+      role_en: "AI/ML Engineer"
+      card_path: "agents/ai_ml_engineer.md"
+      required: false
+      description: "模型训练与微调、Prompt工程、RAG系统、AI Agent开发"
+
+    - specialist_id: "qa_engineer"
+      role: "QA工程师"
+      role_en: "QA Engineer"
+      card_path: "agents/qa_engineer.md"
+      required: true
+      description: "自动化测试框架、端到端测试、性能测试、安全扫描"
+
+  routing_keywords:
+    代码: ["tech_lead", "backend_engineer"]
+    开发: ["tech_lead", "backend_engineer"]
+    架构: ["tech_lead"]
+    审查: ["tech_lead"]
+    API: ["backend_engineer"]
+    数据库: ["backend_engineer"]
+    后端: ["backend_engineer"]
+    服务端: ["backend_engineer"]
+    前端: ["frontend_engineer"]
+    UI: ["frontend_engineer"]
+    页面: ["frontend_engineer"]
+    组件: ["frontend_engineer"]
+    部署: ["devops_engineer"]
+    CI: ["devops_engineer"]
+    CD: ["devops_engineer"]
+    Docker: ["devops_engineer"]
+    基础设施: ["devops_engineer"]
+    AI: ["ai_ml_engineer"]
+    模型: ["ai_ml_engineer"]
+    Prompt: ["ai_ml_engineer"]
+    RAG: ["ai_ml_engineer"]
+    测试: ["qa_engineer"]
+    Bug: ["qa_engineer"]
+    质量: ["qa_engineer"]
+    安全: ["qa_engineer"]
 
   skills:
-    - dev-plan
-    - dev-review
-    - dev-qa
-    - dev-ship
+    - id: "dev-plan"
+      path: "skills/dev-plan.md"
+    - id: "dev-review"
+      path: "skills/dev-review.md"
+    - id: "dev-qa"
+      path: "skills/dev-qa.md"
+    - id: "dev-ship"
+      path: "skills/dev-ship.md"
 
-  team_routing:
-    keywords: ["code", "development", "architecture", "testing", "deploy", "bug"]
-    description: "Software development / Architecture / QA / DevOps"
+  harness_fragment: "harness/fragment.md"
