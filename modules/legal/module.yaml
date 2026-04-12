@@ -1,17 +1,48 @@
-# Legal Module - Legal & Compliance
+# Synapse Legal Module v1.0.0
+# Contract review, regulatory compliance, data protection, and IP management
+
 module:
-  name: legal
-  display_name: "Legal & Compliance"
-  description: "Contract review, regulatory compliance, IP protection"
+  id: "legal"
+  name: "法务合规部"
+  name_en: "Legal & Compliance"
   version: "1.0.0"
+  category: support
+  description: "Contract review, regulatory compliance, data protection, open-source license management, and IP rights protection"
+
+  dependencies:
+    required: ["core"]
 
   agents:
-    - legal_counsel
-    - compliance_officer
-    - contract_specialist
+    - specialist_id: "legal_counsel"
+      role: "法律顾问"
+      role_en: "Legal Counsel"
+      card_path: "agents/legal_counsel.md"
+      required: true
+      description: "合同条款风险分析、数据保护合规框架、开源许可证兼容性审查"
+
+    - specialist_id: "compliance_officer"
+      role: "合规官"
+      role_en: "Compliance Officer"
+      card_path: "agents/compliance_officer.md"
+      required: true
+      description: "信息安全合规评估、合规检查清单与审计、数据处理活动记录"
+
+  routing_keywords:
+    合同: ["legal_counsel"]
+    条款: ["legal_counsel"]
+    法律: ["legal_counsel"]
+    知识产权: ["legal_counsel"]
+    IP: ["legal_counsel"]
+    许可证: ["legal_counsel"]
+    License: ["legal_counsel"]
+    GDPR: ["legal_counsel", "compliance_officer"]
+    隐私: ["legal_counsel", "compliance_officer"]
+    合规: ["compliance_officer"]
+    审计: ["compliance_officer"]
+    ISO: ["compliance_officer"]
+    SOC: ["compliance_officer"]
+    数据保护: ["compliance_officer", "legal_counsel"]
 
   skills: []
 
-  team_routing:
-    keywords: ["legal", "contract", "compliance", "regulation", "IP", "trademark"]
-    description: "Legal counsel / Compliance / Contract review"
+  harness_fragment: "harness/fragment.md"

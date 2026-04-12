@@ -1,14 +1,27 @@
-# Content Creator Preset - Content-focused team
+# Content Creator Preset — Content-focused team
+# Full content production + distribution + growth capabilities
+
 preset:
-  name: content_creator
-  display_name: "Content Creator"
-  description: "Optimized for content creation, marketing, and audience growth"
+  name: "内容创业套餐"
+  name_en: "Content Creator"
+  description: "全方位内容产出 + 分发增长，适合内容创业者"
+  target_audience: "自媒体人、内容创业者、KOL、知识付费创作者"
 
   modules:
-    - strategy
-    - marketing
-    - content
+    - core          # 必选：CEO + 治理层
+    - content       # 全部：完整内容创作能力
+    - marketing     # 全部：市场营销+社媒分发
+    - data          # 精简：数据分析验证效果
 
   features:
     spe: true
-    automation: true
+    automation: false
+
+  # 各模块中可选Agent的选择（required=true的Agent不需要列出，自动包含）
+  agent_selection:
+    content:
+      optional_agents: ["technical_writer", "multimedia_producer"]  # 全部可选Agent
+    marketing:
+      optional_agents: ["brand_strategist"]  # 选品牌策略师，内容需要品牌定位
+    data:
+      optional_agents: []  # 不选BI专家，聚焦内容数据

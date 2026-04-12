@@ -1,15 +1,28 @@
-# Tech Team Preset - Engineering-focused team
+# Tech Team Preset — Engineering-focused team
+# Maximum engineering depth with supporting product and data capabilities
+
 preset:
-  name: tech_team
-  display_name: "Tech Team"
-  description: "Engineering-heavy configuration for technical teams"
+  name: "技术团队套餐"
+  name_en: "Tech Team"
+  description: "工程深度最大化，适合技术驱动型团队"
+  target_audience: "技术团队、CTO、工程经理、开发团队负责人"
 
   modules:
-    - strategy
-    - engineering
-    - product
-    - data
+    - core          # 必选：CEO + 治理层
+    - engineering   # 全部：完整研发（含前端+AI/ML）
+    - product       # 精简：产品管理
+    - data          # 全部：数据分析+工程
+    - content       # 仅technical_writer
 
   features:
     spe: true
-    automation: true
+    automation: false
+
+  # 各模块中可选Agent的选择（required=true的Agent不需要列出，自动包含）
+  agent_selection:
+    engineering:
+      optional_agents: ["frontend_engineer", "ai_ml_engineer"]  # 全部可选Agent
+    data:
+      optional_agents: ["bi_specialist"]  # 选BI专家，数据驱动
+    content:
+      optional_agents: ["technical_writer"]  # 仅技术文档工程师

@@ -1,17 +1,34 @@
-# SMB Preset - Balanced team for small-medium businesses
+# SMB Preset — Balanced team for small-medium businesses
+# Covers core business functions with operational depth
+
 preset:
-  name: smb
-  display_name: "Small-Medium Business"
-  description: "Balanced modules covering core business functions"
+  name: "中小企业套餐"
+  name_en: "Small-Medium Business"
+  description: "覆盖企业运营主要职能的均衡团队配置"
+  target_audience: "中小企业主、部门负责人、成长期公司"
 
   modules:
-    - strategy
-    - engineering
-    - product
-    - marketing
-    - operations
-    - customer_success
+    - core              # 必选：CEO + 治理层
+    - strategy          # 精简：战略规划
+    - engineering       # 全部：完整研发能力
+    - product           # 全部：产品设计
+    - marketing         # 全部：市场营销
+    - finance           # 精简：财务管理
+    - operations        # 精简：运营管理
+    - customer_success  # 全部：客户服务
+    - content           # 精简：内容创作
 
   features:
     spe: true
-    automation: false
+    automation: true
+
+  # 各模块中可选Agent的选择（required=true的Agent不需要列出，自动包含）
+  agent_selection:
+    engineering:
+      optional_agents: ["frontend_engineer"]  # 选前端，不选AI/ML
+    marketing:
+      optional_agents: ["brand_strategist"]   # 选品牌策略师
+    content:
+      optional_agents: []  # 不选技术文档和多媒体
+    data:
+      optional_agents: []  # 未启用data模块

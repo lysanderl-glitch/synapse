@@ -1,18 +1,73 @@
-# Marketing Module - Growth & Marketing
+# Synapse Marketing Module v1.0.0
+# Growth strategy, digital marketing, brand management, and social media
+
 module:
-  name: marketing
-  display_name: "Marketing & Growth"
-  description: "Marketing strategy, content marketing, SEO, social media, and growth hacking"
+  id: "marketing"
+  name: "市场营销部"
+  name_en: "Marketing"
   version: "1.0.0"
+  category: business
+  description: "Growth strategy, digital advertising, SEO, brand management, and social media operations"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["content", "data"]
 
   agents:
-    - marketing_strategist
-    - seo_specialist
-    - social_media_manager
-    - growth_hacker
+    - specialist_id: "growth_lead"
+      role: "增长负责人"
+      role_en: "Growth Lead"
+      card_path: "agents/growth_lead.md"
+      required: true
+      description: "AARRR漏斗诊断、增长实验设计、Product-Led Growth策略"
+
+    - specialist_id: "digital_marketer"
+      role: "数字营销专家"
+      role_en: "Digital Marketer"
+      card_path: "agents/digital_marketer.md"
+      required: true
+      description: "Google/Meta广告投放、SEO技术与内容优化、营销归因模型"
+
+    - specialist_id: "brand_strategist"
+      role: "品牌策略师"
+      role_en: "Brand Strategist"
+      card_path: "agents/brand_strategist.md"
+      required: false
+      description: "品牌定位、品牌识别系统、StoryBrand品牌叙事"
+
+    - specialist_id: "social_media_manager"
+      role: "社交媒体经理"
+      role_en: "Social Media Manager"
+      card_path: "agents/social_media_manager.md"
+      required: true
+      description: "多平台内容分发、Content Calendar规划、社交聆听与舆情管理"
+
+  routing_keywords:
+    增长: ["growth_lead"]
+    AARRR: ["growth_lead"]
+    漏斗: ["growth_lead"]
+    实验: ["growth_lead"]
+    PLG: ["growth_lead"]
+    获客: ["growth_lead"]
+    广告: ["digital_marketer"]
+    投放: ["digital_marketer"]
+    Google Ads: ["digital_marketer"]
+    SEO: ["digital_marketer"]
+    SEM: ["digital_marketer"]
+    归因: ["digital_marketer"]
+    品牌: ["brand_strategist"]
+    定位: ["brand_strategist"]
+    VI: ["brand_strategist"]
+    叙事: ["brand_strategist"]
+    社交媒体: ["social_media_manager"]
+    微信: ["social_media_manager"]
+    小红书: ["social_media_manager"]
+    抖音: ["social_media_manager"]
+    Twitter: ["social_media_manager"]
+    LinkedIn: ["social_media_manager"]
+    内容日历: ["social_media_manager"]
+    舆情: ["social_media_manager"]
 
   skills: []
 
-  team_routing:
-    keywords: ["marketing", "SEO", "social media", "growth", "campaign", "brand"]
-    description: "Marketing strategy / SEO / Social media / Growth"
+  harness_fragment: "harness/fragment.md"

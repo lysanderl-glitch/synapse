@@ -1,21 +1,36 @@
-# Enterprise Preset - Full-featured team
+# Enterprise Preset — Full-featured team with all modules
+# Complete organizational coverage with all agents enabled
+
 preset:
-  name: enterprise
-  display_name: "Enterprise (Full)"
-  description: "All modules enabled for comprehensive organizational coverage"
+  name: "全功能套餐"
+  name_en: "Enterprise (Full)"
+  description: "完整企业级配置，所有模块全选，覆盖组织全部职能"
+  target_audience: "企业管理者、COO、组织全面数字化转型团队"
 
   modules:
-    - strategy
-    - engineering
-    - product
-    - marketing
-    - finance
-    - operations
-    - customer_success
-    - legal
-    - data
-    - content
+    - core              # 必选：CEO + 治理层
+    - strategy          # 战略管理
+    - engineering       # 研发技术
+    - product           # 产品设计
+    - marketing         # 市场营销
+    - finance           # 财务管理
+    - operations        # 运营管理
+    - customer_success  # 客户服务
+    - legal             # 法务合规
+    - data              # 数据分析
+    - content           # 内容创作
 
   features:
     spe: true
     automation: true
+
+  # 各模块中可选Agent的选择（required=true的Agent不需要列出，自动包含）
+  agent_selection:
+    engineering:
+      optional_agents: ["frontend_engineer", "ai_ml_engineer"]
+    marketing:
+      optional_agents: ["brand_strategist"]
+    data:
+      optional_agents: ["bi_specialist"]
+    content:
+      optional_agents: ["technical_writer", "multimedia_producer"]

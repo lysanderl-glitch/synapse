@@ -1,17 +1,57 @@
-# Operations Module - Operations Management
+# Synapse Operations Module v1.0.0
+# Process optimization, workflow automation, and knowledge management
+
 module:
-  name: operations
-  display_name: "Operations"
-  description: "Project management, process optimization, delivery coordination"
+  id: "operations"
+  name: "运营管理部"
+  name_en: "Operations"
   version: "1.0.0"
+  category: business
+  description: "End-to-end process optimization, workflow automation, task scheduling, and knowledge management"
+
+  dependencies:
+    required: ["core"]
 
   agents:
-    - project_manager
-    - process_optimizer
-    - delivery_coordinator
+    - specialist_id: "ops_manager"
+      role: "运营经理"
+      role_en: "Operations Manager"
+      card_path: "agents/ops_manager.md"
+      required: true
+      description: "端到端流程梳理、流程瓶颈识别与精益改善、SLA/SLO/SLI度量体系"
+
+    - specialist_id: "automation_engineer"
+      role: "自动化工程师"
+      role_en: "Automation Engineer"
+      card_path: "agents/automation_engineer.md"
+      required: true
+      description: "跨系统工作流自动化编排、定时/实时任务调度、RPA脚本开发"
+
+    - specialist_id: "knowledge_engineer"
+      role: "知识工程师"
+      role_en: "Knowledge Engineer"
+      card_path: "agents/knowledge_engineer.md"
+      required: true
+      description: "知识库架构设计、知识图谱构建、SOP模板设计与版本管理"
+
+  routing_keywords:
+    流程: ["ops_manager"]
+    运营: ["ops_manager"]
+    SLA: ["ops_manager"]
+    精益: ["ops_manager"]
+    瓶颈: ["ops_manager"]
+    自动化: ["automation_engineer"]
+    工作流: ["automation_engineer"]
+    n8n: ["automation_engineer"]
+    Zapier: ["automation_engineer"]
+    Cron: ["automation_engineer"]
+    RPA: ["automation_engineer"]
+    知识库: ["knowledge_engineer"]
+    SOP: ["knowledge_engineer"]
+    Obsidian: ["knowledge_engineer"]
+    文档: ["knowledge_engineer"]
+    知识图谱: ["knowledge_engineer"]
 
   skills: []
 
-  team_routing:
-    keywords: ["operations", "project", "delivery", "process", "PMO", "IoT"]
-    description: "Project management / Process optimization / Delivery"
+  harness_fragment: "harness/fragment.md"

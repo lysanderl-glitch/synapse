@@ -1,17 +1,49 @@
-# Customer Success Module - Customer Service & Support
+# Synapse Customer Success Module v1.0.0
+# Customer lifecycle management, health scoring, support, and retention
+
 module:
-  name: customer_success
-  display_name: "Customer Success"
-  description: "Customer support, success management, feedback analysis"
+  id: "customer_success"
+  name: "客户服务部"
+  name_en: "Customer Success"
   version: "1.0.0"
+  category: business
+  description: "Customer health scoring, journey mapping, churn prevention, tiered support, and service quality management"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["data"]
 
   agents:
-    - customer_success_manager
-    - support_specialist
-    - feedback_analyst
+    - specialist_id: "cs_manager"
+      role: "客户成功经理"
+      role_en: "Customer Success Manager"
+      card_path: "agents/cs_manager.md"
+      required: true
+      description: "客户健康度评分与分层管理、客户旅程地图设计、Churn预警与干预"
+
+    - specialist_id: "support_specialist"
+      role: "客户支持专家"
+      role_en: "Support Specialist"
+      card_path: "agents/support_specialist.md"
+      required: true
+      description: "分层工单分类与响应策略、自助服务体系设计、服务质量度量与改善"
+
+  routing_keywords:
+    客户: ["cs_manager", "support_specialist"]
+    客户成功: ["cs_manager"]
+    健康度: ["cs_manager"]
+    流失: ["cs_manager"]
+    Churn: ["cs_manager"]
+    续约: ["cs_manager"]
+    旅程: ["cs_manager"]
+    NPS: ["cs_manager"]
+    工单: ["support_specialist"]
+    支持: ["support_specialist"]
+    FAQ: ["support_specialist"]
+    CSAT: ["support_specialist"]
+    帮助: ["support_specialist"]
+    投诉: ["support_specialist"]
 
   skills: []
 
-  team_routing:
-    keywords: ["customer", "support", "service", "feedback", "satisfaction", "onboarding"]
-    description: "Customer support / Success management / Feedback analysis"
+  harness_fragment: "harness/fragment.md"

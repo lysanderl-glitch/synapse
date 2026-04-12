@@ -1,19 +1,69 @@
-# Content Module - Content Creation & Management
+# Synapse Content Module v1.0.0
+# Content strategy, writing, technical documentation, and multimedia production
+
 module:
-  name: content
-  display_name: "Content & Creative"
-  description: "Content strategy, copywriting, blog management, knowledge base"
+  id: "content"
+  name: "内容创作部"
+  name_en: "Content & Creative"
   version: "1.0.0"
+  category: business
+  description: "Content strategy and editorial planning, SEO-optimized writing, technical documentation engineering, and multimedia production"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["marketing"]
 
   agents:
-    - content_strategist
-    - copywriter
-    - knowledge_engineer
+    - specialist_id: "content_strategist"
+      role: "内容策略师"
+      role_en: "Content Strategist"
+      card_path: "agents/content_strategist.md"
+      required: true
+      description: "内容矩阵规划、AIDA/PAS框架选型、Editorial Calendar编排"
+
+    - specialist_id: "content_writer"
+      role: "内容撰写师"
+      role_en: "Content Writer"
+      card_path: "agents/content_writer.md"
+      required: true
+      description: "SEO长文创作、可读性优化、多格式内容适配"
+
+    - specialist_id: "technical_writer"
+      role: "技术文档工程师"
+      role_en: "Technical Writer"
+      card_path: "agents/technical_writer.md"
+      required: false
+      description: "Diataxis文档体系设计、OpenAPI规范文档、Docs-as-Code工作流"
+
+    - specialist_id: "multimedia_producer"
+      role: "多媒体制作人"
+      role_en: "Multimedia Producer"
+      card_path: "agents/multimedia_producer.md"
+      required: false
+      description: "视频剪辑后期、数据可视化动画、Podcast全流程制作"
+
+  routing_keywords:
+    内容: ["content_strategist", "content_writer"]
+    文章: ["content_writer"]
+    博客: ["content_writer"]
+    写作: ["content_writer"]
+    SEO: ["content_writer"]
+    策略: ["content_strategist"]
+    编辑日历: ["content_strategist"]
+    内容规划: ["content_strategist"]
+    文档: ["technical_writer"]
+    API文档: ["technical_writer"]
+    技术文档: ["technical_writer"]
+    Docs: ["technical_writer"]
+    视频: ["multimedia_producer"]
+    Podcast: ["multimedia_producer"]
+    动画: ["multimedia_producer"]
+    多媒体: ["multimedia_producer"]
+    Newsletter: ["content_writer"]
+    文案: ["content_writer"]
 
   skills:
-    - daily-blog
-    - knowledge
+    - id: "daily-blog"
+      path: "skills/daily-blog.md"
 
-  team_routing:
-    keywords: ["content", "blog", "copy", "article", "knowledge", "documentation"]
-    description: "Content creation / Copywriting / Knowledge management"
+  harness_fragment: "harness/fragment.md"

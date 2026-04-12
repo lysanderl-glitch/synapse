@@ -1,17 +1,57 @@
-# Finance Module - Financial Management
+# Synapse Finance Module v1.0.0
+# Financial management, accounting, budgeting, and valuation
+
 module:
-  name: finance
-  display_name: "Finance & Accounting"
-  description: "Financial analysis, budgeting, forecasting, and accounting"
+  id: "finance"
+  name: "财务管理部"
+  name_en: "Finance"
   version: "1.0.0"
+  category: business
+  description: "Financial analysis, budgeting, accounting, valuation modeling, and tax planning"
+
+  dependencies:
+    required: ["core"]
 
   agents:
-    - financial_analyst
-    - budget_controller
-    - accountant
+    - specialist_id: "cfo"
+      role: "首席财务官"
+      role_en: "Chief Financial Officer"
+      card_path: "agents/cfo.md"
+      required: true
+      description: "三大报表分析、企业估值建模、预算编制与偏差分析"
+
+    - specialist_id: "financial_analyst"
+      role: "财务分析师"
+      role_en: "Financial Analyst"
+      card_path: "agents/financial_analyst.md"
+      required: true
+      description: "财务模型搭建、关键指标仪表盘、风险量化与敏感性分析"
+
+    - specialist_id: "accounting_specialist"
+      role: "会计专员"
+      role_en: "Accounting Specialist"
+      card_path: "agents/accounting_specialist.md"
+      required: true
+      description: "复式记账账务处理、税务申报与筹划、应收应付管理"
+
+  routing_keywords:
+    财务: ["cfo", "financial_analyst"]
+    预算: ["cfo"]
+    估值: ["cfo", "financial_analyst"]
+    报表: ["cfo", "financial_analyst"]
+    利润: ["cfo", "financial_analyst"]
+    现金流: ["cfo", "financial_analyst"]
+    模型: ["financial_analyst"]
+    指标: ["financial_analyst"]
+    仪表盘: ["financial_analyst"]
+    风险: ["financial_analyst"]
+    会计: ["accounting_specialist"]
+    记账: ["accounting_specialist"]
+    税务: ["accounting_specialist"]
+    发票: ["accounting_specialist"]
+    应收: ["accounting_specialist"]
+    应付: ["accounting_specialist"]
 
   skills: []
 
-  team_routing:
-    keywords: ["finance", "budget", "accounting", "revenue", "cost", "forecast"]
-    description: "Financial analysis / Budgeting / Forecasting"
+  harness_fragment: "harness/fragment.md"

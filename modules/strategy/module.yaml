@@ -1,19 +1,61 @@
-# Strategy Module - Think Tank & Advisory
+# Synapse Strategy Module v1.0.0
+# Strategic planning, competitive intelligence, business model analysis
+
 module:
-  name: strategy
-  display_name: "Strategy & Advisory"
-  description: "Think tank for strategic analysis, decision support, and risk assessment"
+  id: "strategy"
+  name: "战略管理部"
+  name_en: "Strategy"
   version: "1.0.0"
+  category: business
+  description: "Strategic planning, competitive analysis, business model design, and OKR alignment"
+
+  dependencies:
+    required: ["core"]
 
   agents:
-    - decision_advisor
-    - risk_analyst
-    - market_strategist
-    - execution_auditor
+    - specialist_id: "chief_strategist"
+      role: "首席战略官"
+      role_en: "Chief Strategist"
+      card_path: "agents/chief_strategist.md"
+      required: true
+      description: "宏观环境分析、竞争评估、蓝海战略、OKR体系搭建、战略路线图规划"
 
-  skills:
-    - graphify
+    - specialist_id: "business_model_analyst"
+      role: "商业模式分析师"
+      role_en: "Business Model Analyst"
+      card_path: "agents/business_model_analyst.md"
+      required: true
+      description: "商业画布设计、精益验证、单位经济建模、市场规模测算"
 
-  team_routing:
-    keywords: ["strategy", "analysis", "decision", "risk", "evaluation"]
-    description: "Strategic analysis / Decision support / Risk assessment"
+    - specialist_id: "competitive_intelligence"
+      role: "竞争情报分析师"
+      role_en: "Competitive Intelligence Analyst"
+      card_path: "agents/competitive_intelligence.md"
+      required: true
+      description: "竞争对手画像、竞品功能矩阵、情报源管理、市场趋势预测"
+
+  routing_keywords:
+    战略: ["chief_strategist"]
+    规划: ["chief_strategist"]
+    OKR: ["chief_strategist"]
+    路线图: ["chief_strategist"]
+    PESTEL: ["chief_strategist"]
+    蓝海: ["chief_strategist"]
+    商业模式: ["business_model_analyst"]
+    画布: ["business_model_analyst"]
+    BMC: ["business_model_analyst"]
+    单位经济: ["business_model_analyst"]
+    CAC: ["business_model_analyst"]
+    LTV: ["business_model_analyst"]
+    TAM: ["business_model_analyst"]
+    市场规模: ["business_model_analyst"]
+    竞品: ["competitive_intelligence"]
+    竞争: ["competitive_intelligence"]
+    情报: ["competitive_intelligence"]
+    SWOT: ["competitive_intelligence"]
+    趋势: ["competitive_intelligence"]
+    对手: ["competitive_intelligence"]
+
+  skills: []
+
+  harness_fragment: "harness/fragment.md"

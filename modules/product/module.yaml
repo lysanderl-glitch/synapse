@@ -1,17 +1,62 @@
-# Product Module - Product Design & Management
+# Synapse Product Module v1.0.0
+# Product management, design, and user research
+
 module:
-  name: product
-  display_name: "Product & Design"
-  description: "Product strategy, UX design, feature planning, and user research"
+  id: "product"
+  name: "产品设计部"
+  name_en: "Product"
   version: "1.0.0"
+  category: business
+  description: "Product management, UX/UI design, user research, and feature planning"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["engineering", "data"]
 
   agents:
-    - product_manager
-    - ux_designer
-    - user_researcher
+    - specialist_id: "product_manager"
+      role: "产品经理"
+      role_en: "Product Manager"
+      card_path: "agents/product_manager.md"
+      required: true
+      description: "需求优先级排序、User Story Mapping、PRD编写、产品路线图规划"
+
+    - specialist_id: "product_designer"
+      role: "产品设计师"
+      role_en: "Product Designer"
+      card_path: "agents/product_designer.md"
+      required: true
+      description: "Wireframe到Hi-Fi全链路设计、设计系统搭建、可用性评估、响应式设计"
+
+    - specialist_id: "user_researcher"
+      role: "用户研究员"
+      role_en: "User Researcher"
+      card_path: "agents/user_researcher.md"
+      required: true
+      description: "JTBD用户洞察、用户访谈与分析、可用性测试、Persona与旅程地图"
+
+  routing_keywords:
+    产品: ["product_manager"]
+    需求: ["product_manager"]
+    PRD: ["product_manager"]
+    优先级: ["product_manager"]
+    路线图: ["product_manager"]
+    功能: ["product_manager"]
+    RICE: ["product_manager"]
+    设计: ["product_designer"]
+    UI: ["product_designer"]
+    UX: ["product_designer"]
+    Wireframe: ["product_designer"]
+    原型: ["product_designer"]
+    Figma: ["product_designer"]
+    组件库: ["product_designer"]
+    用户研究: ["user_researcher"]
+    访谈: ["user_researcher"]
+    可用性: ["user_researcher"]
+    Persona: ["user_researcher"]
+    旅程: ["user_researcher"]
+    JTBD: ["user_researcher"]
 
   skills: []
 
-  team_routing:
-    keywords: ["product", "design", "UX", "feature", "user research", "wireframe"]
-    description: "Product design / Feature planning / User research"
+  harness_fragment: "harness/fragment.md"

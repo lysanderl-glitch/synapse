@@ -1,14 +1,31 @@
-# Startup Preset - Lean team for early-stage companies
+# Startup Preset — Lean team for early-stage companies
+# Covers the product → acquisition → data validation loop
+
 preset:
-  name: startup
-  display_name: "Startup (Lean)"
-  description: "Essential modules for a small startup team"
+  name: "创业者套餐"
+  name_en: "Startup (Lean)"
+  description: "覆盖做产品→获客→数据验证闭环的精简创业团队"
+  target_audience: "早期创业者、独立开发者、小型创业团队"
 
   modules:
-    - strategy
-    - engineering
-    - marketing
+    - core          # 必选：CEO + 治理层
+    - engineering   # 精简：核心研发
+    - product       # 精简：产品管理
+    - marketing     # 精简：增长获客
+    - content       # 精简：内容营销
+    - data          # 精简：数据验证
 
   features:
     spe: true
     automation: false
+
+  # 各模块中可选Agent的选择（required=true的Agent不需要列出，自动包含）
+  agent_selection:
+    engineering:
+      optional_agents: []  # 不选前端和AI/ML，保持精简
+    marketing:
+      optional_agents: []  # 不选品牌策略师，早期不需要
+    content:
+      optional_agents: []  # 不选技术文档和多媒体，聚焦核心内容
+    data:
+      optional_agents: []  # 不选BI专家，早期用数据分析师即可

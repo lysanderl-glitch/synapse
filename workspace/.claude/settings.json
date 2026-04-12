@@ -1,4 +1,42 @@
 {
-  "permissions": {},
-  "hooks": {}
+  "permissions": {
+    "allow": [
+      "Bash(read:*)",
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)"
+    ],
+    "deny": []
+  },
+  "synapse": {
+    "version": "2.0.0",
+    "ceo_name": "Lysander",
+    "modules_enabled": [
+      "core",
+      "content",
+      "customer_success",
+      "data",
+      "engineering",
+      "finance",
+      "legal",
+      "marketing",
+      "operations",
+      "product",
+      "strategy"
+    ],
+    "skills_registered": [
+      "dispatch",
+      "synapse",
+      "qa-gate",
+      "daily-blog",
+      "dev-plan",
+      "dev-review",
+      "dev-qa",
+      "dev-ship"
+    ],
+    "features": {
+      "spe": false,
+      "automation": false
+    }
+  }
 }

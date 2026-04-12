@@ -1,17 +1,59 @@
-# Data Module - Data Analysis & Intelligence
+# Synapse Data Module v1.0.0
+# Data analysis, business intelligence, data engineering, and reporting
+
 module:
-  name: data
-  display_name: "Data & Analytics"
-  description: "Data analysis, business intelligence, reporting, and data engineering"
+  id: "data"
+  name: "数据分析部"
+  name_en: "Data & Analytics"
   version: "1.0.0"
+  category: support
+  description: "Data analysis, EDA, metric system design, BI platform management, data warehouse engineering, and data quality governance"
+
+  dependencies:
+    required: ["core"]
 
   agents:
-    - data_analyst
-    - bi_engineer
-    - data_engineer
+    - specialist_id: "data_analyst"
+      role: "数据分析师"
+      role_en: "Data Analyst"
+      card_path: "agents/data_analyst.md"
+      required: true
+      description: "数据清洗与EDA、北极星指标体系搭建、数据可视化"
+
+    - specialist_id: "data_engineer"
+      role: "数据工程师"
+      role_en: "Data Engineer"
+      card_path: "agents/data_engineer.md"
+      required: true
+      description: "ETL/ELT管线搭建、维度建模、数据质量框架"
+
+    - specialist_id: "bi_specialist"
+      role: "BI专家"
+      role_en: "BI Specialist"
+      card_path: "agents/bi_specialist.md"
+      required: false
+      description: "自助式BI平台搭建、全链路报表交付、用户行为深度分析"
+
+  routing_keywords:
+    数据: ["data_analyst", "data_engineer"]
+    分析: ["data_analyst"]
+    指标: ["data_analyst"]
+    可视化: ["data_analyst"]
+    EDA: ["data_analyst"]
+    ETL: ["data_engineer"]
+    数据仓库: ["data_engineer"]
+    管线: ["data_engineer"]
+    数据质量: ["data_engineer"]
+    dbt: ["data_engineer"]
+    BI: ["bi_specialist"]
+    仪表盘: ["bi_specialist"]
+    Dashboard: ["bi_specialist"]
+    报表: ["bi_specialist"]
+    Cohort: ["bi_specialist"]
+    漏斗: ["bi_specialist"]
+    留存: ["bi_specialist"]
+    Metabase: ["bi_specialist"]
 
   skills: []
 
-  team_routing:
-    keywords: ["data", "analytics", "BI", "dashboard", "metrics", "report"]
-    description: "Data analysis / BI / Reporting / Data engineering"
+  harness_fragment: "harness/fragment.md"
