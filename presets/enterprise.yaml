@@ -19,6 +19,8 @@ preset:
     - legal             # 法务合规
     - data              # 数据分析
     - content           # 内容创作
+    - harness_ops       # Harness 运维
+    - compliance        # 合规管理
 
   features:
     spe: true

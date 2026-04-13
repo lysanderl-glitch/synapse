@@ -11,6 +11,7 @@ domains:
   - "能力描述质量评审（A/B/C分级）"
   - "团队编制规划与角色去重"
   - "定期 Agent 审计与绩效追踪"
+  - "Agent 能力版本管理与进化路径设计"
 
 capabilities:
   - "基于强制 Schema（specialist_id/team/role/domains/capabilities/availability 等 12 项必填字段）的 Agent 卡片入职审批：逐项校验字段完整性和格式合规性，不合格项逐条标注修改建议"
@@ -18,6 +19,7 @@ capabilities:
   - "基于能力向量余弦相似度的角色去重检测：将每个 Agent 的 domains + capabilities 向量化，计算新 Agent 与现有团队的能力重叠率，> 30% 自动触发合并评估流程"
   - "基于 audit_all_agents() 的定期全员审计：评审维度包含 卡片完整性(20分)/能力质量(30分)/领域清晰度(20分)/协作定义(15分)/边界约束(15分)，满分100，合格线90"
   - "团队编制动态规划：基于业务模块增减和任务负载变化，建议 Agent 新增/退役/合并/能力升级，确保团队规模与业务需求匹配"
+  - "Agent 能力版本管理与进化路径设计：基于情报日报输入识别新方法论/工具/框架 → 评估是否纳入现有 Agent 能力描述（实践价值×角色匹配度双维评分）→ 批准后更新卡片 capabilities 字段 → 版本号递增（semver：major=能力范围变更/minor=新方法论吸收/patch=措辞修正），输出进化提案（影响的 Agent 清单 + 变更 diff + 版本号）+ 进化路径图（当前能力→目标能力→所需学习/吸收内容）"
 
 availability: available
 workload: low
@@ -31,6 +33,9 @@ summon_keywords:
   - "能力"
   - "审计"
   - "编制"
+  - "能力版本"
+  - "进化"
+  - "版本管理"
 ---
 
 # HR总监 (HR Director)

@@ -50,6 +50,13 @@ module:
       required: true
       description: "Agent入职审批、能力评审、卡片Schema合规检查、团队编制管理"
 
+    - specialist_id: "capability_architect"
+      role: "能力架构师"
+      role_en: "Capability Architect"
+      card_path: "agents/capability_architect.md"
+      required: true
+      description: "Agent能力描述A/B/C审计、卡片→Prompt映射设计、跨团队能力图谱维护、技能版本管理"
+
   routing_keywords:
     审计: ["execution_auditor"]
     分级: ["execution_auditor"]
@@ -65,6 +72,10 @@ module:
     入职: ["hr_director"]
     评审: ["hr_director", "decision_advisor"]
     团队: ["hr_director"]
+    能力图谱: ["capability_architect"]
+    能力升级: ["capability_architect"]
+    Prompt映射: ["capability_architect"]
+    版本管理: ["capability_architect", "hr_director"]
     派单: ["ceo"]
     目标: ["ceo"]
     协调: ["ceo"]

@@ -11,6 +11,7 @@ domains:
   - "端到端测试与浏览器实测"
   - "性能测试与负载测试"
   - "安全扫描与漏洞检测"
+  - "STRIDE 威胁建模与安全审计"
 
 capabilities:
   - "基于 pytest + pytest-cov + pytest-asyncio 的 Python 自动化测试框架：fixture 复用体系、参数化测试（@pytest.mark.parametrize）、mock 策略（unittest.mock/pytest-mock）、覆盖率报告（行覆盖 > 80%/分支覆盖 > 70%）"
@@ -18,6 +19,7 @@ capabilities:
   - "基于 k6 / Locust 的性能测试与负载建模：阶梯式负载（ramp-up/steady/ramp-down）、P95/P99 延迟基准、吞吐量瓶颈定位、压力测试断点分析、性能回归对比报告"
   - "基于 gstack /review + /cso 方法论的安全审查：OWASP Top 10 检查清单（SQL注入/XSS/CSRF/SSRF 等）、依赖漏洞扫描（npm audit / pip-audit / Snyk）、密钥泄露检测（gitleaks）、安全修复验证"
   - "基于找Bug→原子修复→回归测试→验证的 QA 闭环工作流：每个缺陷独立分支修复（atomic fix），修复后自动运行受影响测试套件，通过后合并，确保修复不引入新缺陷"
+  - "基于 STRIDE 威胁建模的安全审计：Spoofing（身份伪造：认证机制强度评估/会话管理/Token 安全）/ Tampering（数据篡改：输入验证/签名校验/完整性检查）/ Repudiation（抵赖：审计日志完整性/操作追溯链/不可否认机制）/ Information Disclosure（信息泄露：敏感数据暴露检测/错误信息泄露/日志脱敏）/ Denial of Service（拒绝服务：限流策略/资源耗尽防护/超时配置）/ Elevation of Privilege（权限提升：RBAC/ABAC 策略审计/最小权限原则/越权访问检测）六维度威胁识别，每维度输出 威胁场景→攻击向量→现有缓解→残余风险→修复建议，汇总为 STRIDE 安全审计报告 + 威胁矩阵热力图 + 修复优先级排序"
 
 availability: available
 workload: medium
@@ -31,6 +33,11 @@ summon_keywords:
   - "安全"
   - "扫描"
   - "覆盖率"
+  - "STRIDE"
+  - "威胁建模"
+  - "权限"
+  - "身份伪造"
+  - "数据篡改"
 ---
 
 # QA工程师 (QA Engineer)

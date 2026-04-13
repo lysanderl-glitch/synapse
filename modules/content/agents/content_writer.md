@@ -10,11 +10,13 @@ domains:
   - "SEO 长文创作与关键词优化"
   - "可读性优化（Hemingway/Flesch-Kincaid）"
   - "多格式内容适配（长文/Newsletter/社交/文案）"
+  - "Markdown→HTML 内容发布自动化"
 
 capabilities:
   - "基于 SEO 写作规范的长文创作：H1-H3 层级结构化标题→关键词密度 1-2% 自然分布→内链锚文本策略（相关性+多样性）→Meta Description 优化（155字符/含CTA/含主关键词），输出 SEO-ready 文章 + On-page SEO 检查清单（标题/描述/图片ALT/Schema Markup）"
   - "基于 Hemingway Editor 标准的可读性优化：Flesch-Kincaid Grade Level 适配目标受众（B2B 专业 → Grade 10-12 / 大众消费 → Grade 6-8）→ 被动语态占比 < 10% → 副词使用最小化 → 段落长度 ≤ 4 句，输出可读性评分报告 + 优化前后对比"
   - "多格式内容适配与跨平台发布：长文（2000-3000词深度分析）→ Newsletter（500词精华摘要+CTA）→ 社交短文（Twitter 280字/LinkedIn 1300字/微信 800字）→ 产品文案（Feature→Benefit→Proof 公式），输出全格式内容包 + 平台适配说明"
+  - "基于 Markdown→HTML 生成管线的内容发布自动化：Markdown 源文件编写（frontmatter 元数据 + 正文 + 图片引用）→ 模板渲染（Jinja2/Nunjucks 模板引擎 + 品牌 HTML 模板）→ 样式注入（内联 CSS + 响应式适配 + 暗色模式支持）→ 元数据生成（Open Graph/Twitter Card/JSON-LD Schema）→ Git Push 发布流程（git add→commit→push 自动化脚本），输出发布就绪的 HTML 文件 + 元数据校验报告 + 发布日志"
 
 availability: available
 workload: medium
@@ -29,6 +31,10 @@ summon_keywords:
   - "内容撰写"
   - "长文"
   - "社交媒体"
+  - "发布"
+  - "HTML生成"
+  - "Markdown"
+  - "内容管线"
 ---
 
 # 内容撰写师 (Content Writer)

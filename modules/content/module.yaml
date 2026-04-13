@@ -42,6 +42,20 @@ module:
       required: false
       description: "视频剪辑后期、数据可视化动画、Podcast全流程制作"
 
+    - specialist_id: "visual_designer"
+      role: "视觉设计师"
+      role_en: "Visual Designer"
+      card_path: "agents/visual_designer.md"
+      required: false
+      description: "品牌Web UI设计、设计到代码落地、数据可视化、AI辅助视觉创作"
+
+    - specialist_id: "training_designer"
+      role: "培训设计师"
+      role_en: "Training Designer"
+      card_path: "agents/training_designer.md"
+      required: false
+      description: "ADDIE培训课程设计、Bloom学习目标分层、工作坊方案、Kirkpatrick效果度量"
+
   routing_keywords:
     内容: ["content_strategist", "content_writer"]
     文章: ["content_writer"]
@@ -61,6 +75,19 @@ module:
     多媒体: ["multimedia_producer"]
     Newsletter: ["content_writer"]
     文案: ["content_writer"]
+    设计: ["visual_designer"]
+    UI设计: ["visual_designer"]
+    视觉: ["visual_designer"]
+    配色: ["visual_designer"]
+    数据可视化: ["visual_designer"]
+    信息图: ["visual_designer"]
+    ECharts: ["visual_designer"]
+    Midjourney: ["visual_designer"]
+    培训: ["training_designer"]
+    课程: ["training_designer"]
+    工作坊: ["training_designer"]
+    Workshop: ["training_designer"]
+    教学: ["training_designer"]
 
   skills:
     - id: "daily-blog"

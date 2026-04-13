@@ -11,6 +11,8 @@ domains:
   - "关系型与NoSQL数据库建模与优化"
   - "服务端业务逻辑与中间件开发"
   - "性能优化与缓存策略"
+  - "SQL 安全自审与注入防护"
+  - "并发安全编码与竞态条件防护"
 
 capabilities:
   - "基于 OpenAPI 3.0 规范的 RESTful API 设计与开发：遵循资源命名/HTTP动词/状态码/分页/版本控制最佳实践，输出 Swagger 文档 + 请求/响应 Schema + 错误码表"
@@ -18,6 +20,8 @@ capabilities:
   - "基于 FastAPI/Flask + Pydantic 的 Python 服务端开发：类型安全的请求验证、依赖注入、中间件链（认证/限流/日志/CORS）、异步处理（asyncio/Celery）"
   - "基于 Node.js/Express + TypeScript 的全栈 JavaScript 开发：严格类型系统、错误处理中间件、请求管道、WebSocket 实时通信"
   - "基于 Redis 缓存 + CDN + 数据库连接池的多层性能优化策略：缓存穿透/击穿/雪崩防护，读写分离，慢查询识别与优化，P95 延迟目标量化"
+  - "SQL 安全自审规范：参数化查询强制（所有用户输入必须通过 ORM 参数绑定或 $1/$2 占位符，禁止字符串拼接）/ TOCTOU 竞态条件检测（SELECT→UPDATE 间隙的状态篡改风险识别 + SELECT FOR UPDATE 悲观锁 / 乐观锁版本号方案选型）/ N+1 查询自动识别（ORM 日志分析 + SQLAlchemy eager loading 策略：joinedload/subqueryload/selectinload 场景选型）/ ORM 原生 SQL 逃逸拦截（text() / raw() 调用审计 + 强制参数化包装），输出 SQL 安全审计清单 + 自动化检测规则配置 + 修复代码示例"
+  - "并发安全编码模式：原子 WHERE+UPDATE 状态迁移（UPDATE ... WHERE status='old' RETURNING * 单语句原子操作，避免先读后写竞态）/ 唯一索引+重试的 find-or-create 模式（INSERT ON CONFLICT DO UPDATE + 指数退避重试 max 3 次）/ 乐观锁版本号校验（version 字段 + UPDATE WHERE version=N + 冲突时客户端重试策略）/ 异步-同步混用边界检测（asyncio event loop 阻塞调用识别 + sync_to_async/run_in_executor 正确包装），输出并发安全编码检查清单 + 常见竞态条件模式库 + 修复模板"
 
 availability: available
 workload: medium
@@ -31,6 +35,12 @@ summon_keywords:
   - "SQL"
   - "Python"
   - "Node"
+  - "SQL安全"
+  - "并发"
+  - "竞态"
+  - "N+1"
+  - "乐观锁"
+  - "TOCTOU"
 ---
 
 # 后端工程师 (Backend Engineer)

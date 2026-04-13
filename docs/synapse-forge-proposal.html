@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synapse Forge — 产品化方案 | Janus Digital</title>
+<style>
+/* ══════════════════════════════════════════════════════════
+   Synapse Forge Proposal — Brand Design System
+   Colors: Gold #FCAD2A | Cyan #028CDC | Blue #013A7D
+   Background: #0A1628 → #0d1f3c
+   Font: Inter
+   ══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #FCAD2A;
+  --cyan: #028CDC;
+  --blue: #013A7D;
+  --dark: #0A1628;
+  --dark2: #0d1f3c;
+  --dark3: #132444;
+  --card-bg: rgba(13, 31, 60, 0.7);
+  --card-border: rgba(252, 173, 42, 0.15);
+  --text-primary: #f0f4f8;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+::selection { background: var(--gold); color: var(--dark); }
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5 { font-weight: 700; line-height: 1.3; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); color: var(--gold); margin-bottom: 1.5rem; }
+h3 { font-size: 1.25rem; color: var(--text-primary); margin-bottom: 1rem; }
+p { margin-bottom: 1rem; color: var(--text-secondary); }
+a { color: var(--cyan); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.8; }
+strong { color: var(--text-primary); }
+
+/* ── Layout ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* ── Glow Divider ── */
+.glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--gold), transparent);
+  opacity: 0.3;
+  margin: 0;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(2, 140, 220, 0.12);
+}
+.card-gold { border-top: 3px solid var(--gold); }
+.card-cyan { border-top: 3px solid var(--cyan); }
+.card-blue { border-top: 3px solid var(--blue); }
+
+/* ── Grid ── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+
+/* ── Pills / Badges ── */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 14px; border-radius: 99px;
+  font-weight: 700; font-size: 0.75rem;
+  font-family: 'Inter', monospace;
+}
+.pill-gold { background: rgba(252,173,42,0.12); color: var(--gold); border: 1px solid rgba(252,173,42,0.25); }
+.pill-cyan { background: rgba(2,140,220,0.12); color: var(--cyan); border: 1px solid rgba(2,140,220,0.25); }
+.pill-blue { background: rgba(1,58,125,0.2); color: #5b9bd5; border: 1px solid rgba(1,58,125,0.35); }
+.pill-green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th {
+  background: rgba(252, 173, 42, 0.1);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(252, 173, 42, 0.2);
+}
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+}
+tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+tr:hover td { background: rgba(2, 140, 220, 0.05); }
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(252,173,42,0.3); }
+  50% { box-shadow: 0 0 40px rgba(252,173,42,0.6); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate { animation: fadeInUp 0.6s ease both; }
+
+/* ════════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  padding: 6rem 0 4rem;
+  overflow: hidden;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(252,173,42,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(2,140,220,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero .grid-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Synapse Logo SVG */
+.synapse-logo {
+  width: 80px; height: 80px;
+  margin: 0 auto 2rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero h1 { margin-bottom: 0.5rem; }
+.hero h1 span { color: var(--gold); }
+.hero .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.hero .meta {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ── Section Header ── */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-header p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.section-number {
+  display: inline-block;
+  width: 36px; height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(252, 173, 42, 0.15);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ── USP Pillars ── */
+.pillar-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.pillar-icon.gold { background: rgba(252,173,42,0.15); }
+.pillar-icon.cyan { background: rgba(2,140,220,0.15); }
+.pillar-icon.blue { background: rgba(1,58,125,0.2); }
+
+/* ── Competitive Map ── */
+.comp-map {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 2rem auto;
+  border-left: 2px solid rgba(255,255,255,0.15);
+  border-bottom: 2px solid rgba(255,255,255,0.15);
+}
+.comp-map .axis-label {
+  position: absolute;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.comp-map .axis-y { left: -10px; top: 5px; transform: rotate(0deg); writing-mode: vertical-rl; letter-spacing: 2px; }
+.comp-map .axis-x { right: 5px; bottom: -24px; letter-spacing: 2px; }
+.comp-dot {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.comp-dot::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 18px; top: -4px;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.comp-dot.synapse {
+  background: var(--gold);
+  box-shadow: 0 0 16px rgba(252,173,42,0.5);
+  width: 16px; height: 16px;
+  animation: pulseGlow 3s ease infinite;
+}
+.comp-dot.synapse::after { color: var(--gold); font-weight: 700; }
+
+/* ── Architecture Layers ── */
+.arch-layer {
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid;
+  background: var(--card-bg);
+}
+.arch-layer.core { border-color: var(--gold); }
+.arch-layer.business { border-color: var(--cyan); }
+.arch-layer.support { border-color: var(--blue); }
+.arch-layer.ext { border-color: #22c55e; }
+.arch-layer .layer-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.arch-layer .layer-title.gold { color: var(--gold); }
+.arch-layer .layer-title.cyan { color: var(--cyan); }
+.arch-layer .layer-title.blue { color: #5b9bd5; }
+.arch-layer .layer-title.green { color: #22c55e; }
+.arch-layer .layer-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ── Repo Diagram ── */
+.repo-diagram {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+.repo-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 240px;
+  text-align: center;
+  position: relative;
+}
+.repo-box h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+.repo-box p { font-size: 0.8rem; margin-bottom: 0; }
+.repo-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--gold);
+  font-size: 1.5rem;
+  padding-top: 1rem;
+}
+
+/* ── Timeline ── */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--cyan), var(--blue));
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 3px solid;
+  background: var(--dark);
+}
+.tl-dot.gold { border-color: var(--gold); }
+.tl-dot.cyan { border-color: var(--cyan); }
+.tl-dot.blue { border-color: var(--blue); }
+.tl-dot.green { border-color: #22c55e; }
+.tl-content h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+.tl-content p {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ── Pricing ── */
+.pricing-card {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card.featured {
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(252, 173, 42, 0.1);
+}
+.pricing-card.featured::before {
+  content: 'RECOMMENDED';
+  position: absolute;
+  top: 12px; right: -30px;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 36px;
+  transform: rotate(45deg);
+  letter-spacing: 1px;
+}
+.price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin: 1rem 0 0.25rem;
+}
+.price-unit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+.feature-list {
+  list-style: none;
+  text-align: left;
+  margin: 1.5rem 0;
+}
+.feature-list li {
+  padding: 0.4rem 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.feature-list li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+/* ── Comparison Table ── */
+.compare-highlight { color: var(--gold); font-weight: 600; }
+
+/* ── Key Numbers ── */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+.stat-card { text-align: center; padding: 2rem 1.5rem; }
+
+/* ── Quote Block ── */
+.quote-block {
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem 2rem;
+  background: rgba(252, 173, 42, 0.05);
+  border-radius: 0 12px 12px 0;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer .brand {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ── TOC ── */
+.toc {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+.toc h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1rem; }
+.toc ol {
+  list-style: none;
+  counter-reset: toc-counter;
+}
+.toc li {
+  counter-increment: toc-counter;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+}
+.toc li::before {
+  content: counter(toc-counter, decimal-leading-zero);
+  color: var(--gold);
+  font-weight: 700;
+  margin-right: 0.75rem;
+  font-size: 0.8rem;
+}
+.toc a { color: var(--text-secondary); }
+.toc a:hover { color: var(--gold); }
+
+/* ── Data Flow ── */
+.flow-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+.flow-step {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.flow-step.highlight { border-color: var(--gold); color: var(--gold); }
+.flow-arrow { color: var(--gold); font-size: 1.2rem; font-weight: 700; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero { padding: 4rem 0 3rem; }
+  section { padding: 3rem 0; }
+  .card { padding: 1.5rem; }
+  .comp-map { height: 300px; }
+  .repo-diagram { flex-direction: column; align-items: center; }
+  .repo-arrow { transform: rotate(90deg); }
+  .grid-3 { grid-template-columns: 1fr; }
+  .stat-number { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .hero .meta { flex-direction: column; align-items: center; }
+}
+
+/* ── Print ── */
+@media print {
+  body { background: #fff; color: #1a1a1a; }
+  .card { border: 1px solid #ddd; background: #f9f9f9; box-shadow: none; }
+  h2 { color: #013A7D; }
+  .hero { padding: 2rem 0; }
+  .hero::before, .grid-dots { display: none; }
+  .synapse-logo { animation: none; }
+  .glow-line { background: #ddd; opacity: 1; }
+  section { padding: 2rem 0; break-inside: avoid; }
+  .stat-number, .price { color: #013A7D; }
+  th { background: #f0f0f0; color: #013A7D; }
+  td { color: #333; }
+  .pill-gold { background: #fef3cd; color: #856404; border-color: #ffc107; }
+  .pill-cyan { background: #d1ecf1; color: #0c5460; border-color: #17a2b8; }
+  .comp-map { border-color: #999; }
+  .comp-dot.synapse { box-shadow: none; animation: none; }
+  p, td, .feature-list li { color: #444; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="grid-dots"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <!-- Synapse Logo: Stylized synapse / neural node -->
+    <svg class="synapse-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Central node -->
+      <circle cx="50" cy="50" r="12" fill="#FCAD2A" opacity="0.9"/>
+      <circle cx="50" cy="50" r="18" fill="none" stroke="#FCAD2A" stroke-width="1.5" opacity="0.3"/>
+      <!-- Dendrites -->
+      <line x1="50" y1="50" x2="18" y2="22" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+      <circle cx="18" cy="22" r="5" fill="#028CDC" opacity="0.8"/>
+      <line x1="50" y1="50" x2="82" y2="18" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+      <circle cx="82" cy="18" r="5" fill="#028CDC" opacity="0.8"/>
+      <line x1="50" y1="50" x2="88" y2="58" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+      <circle cx="88" cy="58" r="5" fill="#028CDC" opacity="0.8"/>
+      <line x1="50" y1="50" x2="15" y2="72" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+      <circle cx="15" cy="72" r="5" fill="#028CDC" opacity="0.8"/>
+      <line x1="50" y1="50" x2="55" y2="90" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+      <circle cx="55" cy="90" r="5" fill="#028CDC" opacity="0.8"/>
+      <!-- Synaptic vesicles -->
+      <circle cx="34" cy="36" r="2.5" fill="#FCAD2A" opacity="0.5"/>
+      <circle cx="66" cy="34" r="2.5" fill="#FCAD2A" opacity="0.5"/>
+      <circle cx="69" cy="54" r="2.5" fill="#FCAD2A" opacity="0.5"/>
+      <circle cx="32" cy="61" r="2.5" fill="#FCAD2A" opacity="0.5"/>
+      <circle cx="52" cy="70" r="2.5" fill="#FCAD2A" opacity="0.5"/>
+    </svg>
+
+    <h1>Synapse Forge <span>— 产品化方案</span></h1>
+    <p class="subtitle">"锻造你的 AI 团队"</p>
+
+    <div class="meta">
+      <span class="pill pill-gold">2026-04-12</span>
+      <span class="pill pill-green">CEO 评审通过</span>
+      <span class="pill pill-cyan">待总裁批准</span>
+    </div>
+  </div>
+</header>
+
+<div class="glow-line"></div>
+
+<!-- TOC -->
+<section style="padding: 2rem 0;">
+  <div class="container">
+    <nav class="toc">
+      <h3>目录 Table of Contents</h3>
+      <ol>
+        <li><a href="#positioning">产品定位 — Product Positioning</a></li>
+        <li><a href="#architecture">体系架构 — System Architecture</a></li>
+        <li><a href="#technical">技术方案 — Technical Blueprint</a></li>
+        <li><a href="#roadmap">产品路线图 — Roadmap</a></li>
+        <li><a href="#pricing">商业模式 — Business Model</a></li>
+        <li><a href="#migration">并行运行策略 — Migration Strategy</a></li>
+        <li><a href="#numbers">关键数字摘要 — Key Metrics</a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     1. 产品定位
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="positioning">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>产品定位</h2>
+      <p>Synapse Forge 是从 Janus Digital 内部 AI 运营体系中提炼而来的开源产品，将经过实战验证的 Multi-Agent 管理方法论，锻造成任何团队都能使用的标准化工具。</p>
+    </div>
+
+    <!-- Naming -->
+    <div class="card card-gold" style="margin-bottom: 2rem;">
+      <h3>命名与定位</h3>
+      <p><strong>Synapse</strong>（突触）— 神经元之间传递信号的关键节点。知识 &harr; 决策 &harr; 执行，信息流转的核心枢纽。</p>
+      <p><strong>Forge</strong>（锻造）— 将原始金属锻造成精密工具的过程。Synapse Forge 将 AI Agent 的原始能力，锻造成结构化、可管理、可扩展的 AI 团队。</p>
+      <p style="margin-bottom:0;"><strong>一句话定位：</strong>从内部工具到开源产品，让每个团队都能"锻造"自己的 AI 团队。</p>
+    </div>
+
+    <!-- USP Quote -->
+    <div class="quote-block">
+      "Synapse 不是又一个 Agent 框架 — 它是第一个 <strong>AI 团队管理操作系统</strong>"
+    </div>
+
+    <!-- USP 三支柱 -->
+    <h3 style="text-align:center; margin: 2.5rem 0 1.5rem;">USP 三支柱</h3>
+    <div class="grid-3">
+      <div class="card card-gold">
+        <div class="pillar-icon gold">&#9881;</div>
+        <h3>Harness Engineering</h3>
+        <p style="font-size:0.9rem;">Agent = Model + Harness。通过 Guides（前馈控制）、Workflow（结构化流程）、Constraints（约束系统）三层治理，让 AI Agent 在框架内高效运转。</p>
+        <p style="font-size:0.85rem; color: var(--text-muted); margin-bottom:0;">区别于传统 prompt engineering 的碎片化方式。</p>
+      </div>
+      <div class="card card-cyan">
+        <div class="pillar-icon cyan">&#9733;</div>
+        <h3>管理层，非技术层</h3>
+        <p style="font-size:0.9rem;">CEO &rarr; 智囊团 &rarr; 执行团队的三层管理体系。四级决策制度（L1自动 &rarr; L4总裁）。让 AI 像真正的团队一样运作。</p>
+        <p style="font-size:0.85rem; color: var(--text-muted); margin-bottom:0;">面向业务管理者，而非开发者。</p>
+      </div>
+      <div class="card card-blue">
+        <div class="pillar-icon blue">&#9889;</div>
+        <h3>零代码到可运行</h3>
+        <p style="font-size:0.9rem;">synapse init 一键生成完整配置。预设模板覆盖常见团队场景。无需理解底层原理，选择模板即可启动。</p>
+        <p style="font-size:0.85rem; color: var(--text-muted); margin-bottom:0;">5分钟内从零到拥有 AI 团队。</p>
+      </div>
+    </div>
+
+    <!-- 竞品定位图 -->
+    <h3 style="text-align:center; margin: 3rem 0 1rem;">竞品定位图</h3>
+    <p style="text-align:center; font-size:0.85rem; color: var(--text-muted);">管理成熟度 vs 开箱即用程度</p>
+    <div class="comp-map">
+      <span class="axis-label axis-y">管理成熟度 &uarr;</span>
+      <span class="axis-label axis-x">开箱即用 &rarr;</span>
+      <!-- Competitors -->
+      <div class="comp-dot" data-label="CrewAI" style="left: 55%; bottom: 35%; background: var(--text-muted);"></div>
+      <div class="comp-dot" data-label="AutoGen" style="left: 40%; bottom: 45%; background: var(--text-muted);"></div>
+      <div class="comp-dot" data-label="LangGraph" style="left: 30%; bottom: 55%; background: var(--text-muted);"></div>
+      <div class="comp-dot" data-label="MetaGPT" style="left: 50%; bottom: 50%; background: var(--text-muted);"></div>
+      <div class="comp-dot" data-label="ChatDev" style="left: 60%; bottom: 25%; background: var(--text-muted);"></div>
+      <div class="comp-dot" data-label="OpenAI Swarm" style="left: 25%; bottom: 30%; background: var(--text-muted);"></div>
+      <!-- Synapse -->
+      <div class="comp-dot synapse" data-label="Synapse Forge" style="left: 80%; bottom: 82%;"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     2. 体系架构
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="architecture">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>体系架构</h2>
+      <p>四层模块化架构，从核心引擎到扩展生态，每一层独立可用、逐层增值。</p>
+    </div>
+
+    <!-- 4 Layer Architecture -->
+    <div style="max-width: 700px; margin: 0 auto 3rem;">
+      <div class="arch-layer core">
+        <div class="layer-title gold">Core Layer — 核心层（必装）</div>
+        <div class="layer-desc">Harness Engine + Agent HR + 决策体系 + 执行链</div>
+      </div>
+      <div class="arch-layer business">
+        <div class="layer-title cyan">Business Layer — 业务层（按需选装）</div>
+        <div class="layer-desc">情报管线 + 内容运营 + 研发工程 + 增长引擎</div>
+      </div>
+      <div class="arch-layer support">
+        <div class="layer-title blue">Support Layer — 支撑层（推荐）</div>
+        <div class="layer-desc">知识管理 OBS + Butler 管家 + 自动化编排</div>
+      </div>
+      <div class="arch-layer ext">
+        <div class="layer-title green">Extension Layer — 扩展层（可选）</div>
+        <div class="layer-desc">SPE 个人引擎 + 自定义模块 + 社区插件</div>
+      </div>
+    </div>
+
+    <!-- Module Summary Table -->
+    <h3 style="margin-bottom:1rem;">11 模块 + 38 Agent 汇总</h3>
+    <div class="card" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>层级</th>
+            <th>模块名</th>
+            <th>Agent 数量</th>
+            <th>核心能力</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill pill-gold" style="font-size:0.7rem;">Core</span></td>
+            <td><strong>Harness Engine</strong></td>
+            <td>4</td>
+            <td>执行链、约束系统、任务分级、质量门禁</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-gold" style="font-size:0.7rem;">Core</span></td>
+            <td><strong>Agent HR</strong></td>
+            <td>3</td>
+            <td>人员卡片、能力审计、入职/退役流程</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-gold" style="font-size:0.7rem;">Core</span></td>
+            <td><strong>Decision Engine</strong></td>
+            <td>3</td>
+            <td>四级决策、专家评审、决策日志</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-cyan" style="font-size:0.7rem;">Biz</span></td>
+            <td><strong>Intel Pipeline</strong></td>
+            <td>4</td>
+            <td>情报收集、评估、行动闭环</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-cyan" style="font-size:0.7rem;">Biz</span></td>
+            <td><strong>Content Ops</strong></td>
+            <td>4</td>
+            <td>内容生成、审校、发布管线</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-cyan" style="font-size:0.7rem;">Biz</span></td>
+            <td><strong>RD Engineering</strong></td>
+            <td>5</td>
+            <td>方案评审、代码审查、QA、发布流水线</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-cyan" style="font-size:0.7rem;">Biz</span></td>
+            <td><strong>Growth Engine</strong></td>
+            <td>3</td>
+            <td>增长策略、用户分析、A/B测试</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-blue" style="font-size:0.7rem;">Support</span></td>
+            <td><strong>Knowledge (OBS)</strong></td>
+            <td>3</td>
+            <td>Obsidian 知识库管理、知识沉淀、审计</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-blue" style="font-size:0.7rem;">Support</span></td>
+            <td><strong>Butler</strong></td>
+            <td>4</td>
+            <td>任务管家、日历管理、状态恢复</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-blue" style="font-size:0.7rem;">Support</span></td>
+            <td><strong>Automation</strong></td>
+            <td>2</td>
+            <td>n8n 编排、webhook、定时任务</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-green" style="font-size:0.7rem;">Ext</span></td>
+            <td><strong>SPE Personal</strong></td>
+            <td>3</td>
+            <td>个人任务、每日规划、周回顾</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" style="font-weight:700; color:var(--gold);">Total</td>
+            <td style="font-weight:700; color:var(--gold);">38</td>
+            <td style="color:var(--text-muted);">跨 11 个功能模块</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- 5 Presets -->
+    <h3 style="margin: 2.5rem 0 1rem;">5 套预设模板</h3>
+    <div class="grid-3" style="margin-bottom:0;">
+      <div class="card card-gold" style="padding:1.25rem 1.5rem;">
+        <h4 style="font-size:0.95rem;">&#128640; Startup</h4>
+        <p style="font-size:0.82rem; margin-bottom:0;">小型创业团队。CEO + 3 核心 Agent。快速启动，按需扩展。</p>
+      </div>
+      <div class="card card-gold" style="padding:1.25rem 1.5rem;">
+        <h4 style="font-size:0.95rem;">&#128187; Dev Studio</h4>
+        <p style="font-size:0.82rem; margin-bottom:0;">研发导向。RD团队 + QA + DevOps。代码审查、测试、发布全覆盖。</p>
+      </div>
+      <div class="card card-cyan" style="padding:1.25rem 1.5rem;">
+        <h4 style="font-size:0.95rem;">&#128240; Content Agency</h4>
+        <p style="font-size:0.82rem; margin-bottom:0;">内容运营导向。Content Ops + Growth + Intel。生产、分发、增长闭环。</p>
+      </div>
+      <div class="card card-cyan" style="padding:1.25rem 1.5rem;">
+        <h4 style="font-size:0.95rem;">&#127970; Enterprise</h4>
+        <p style="font-size:0.82rem; margin-bottom:0;">全模块。11 模块全部启用，适合大规模 AI 协作运营。</p>
+      </div>
+      <div class="card card-blue" style="padding:1.25rem 1.5rem;">
+        <h4 style="font-size:0.95rem;">&#128218; Solo Researcher</h4>
+        <p style="font-size:0.82rem; margin-bottom:0;">个人研究者。SPE + Intel + OBS。聚焦知识管理和情报收集。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     3. 技术方案
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="technical">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>技术方案</h2>
+      <p>三仓库协作架构，实现产品代码、品牌官网、运营实例的清晰分离。</p>
+    </div>
+
+    <!-- Repo Architecture Diagram -->
+    <h3 style="text-align:center; margin-bottom:1.5rem;">仓库架构</h3>
+    <div class="repo-diagram">
+      <div class="repo-box card-gold" style="border-top: 3px solid var(--gold);">
+        <h4 style="color: var(--gold);">synapse-core</h4>
+        <p>产品核心仓库<br>模块 / Agent / Skills / CLI</p>
+        <span class="pill pill-gold" style="margin-top:0.5rem;">GitHub Public</span>
+      </div>
+      <div class="repo-arrow">&harr;</div>
+      <div class="repo-box card-cyan" style="border-top: 3px solid var(--cyan);">
+        <h4 style="color: var(--cyan);">lysander-bond</h4>
+        <p>品牌官网仓库<br>lysander.bond/synapse/</p>
+        <span class="pill pill-cyan" style="margin-top:0.5rem;">Vercel Deploy</span>
+      </div>
+      <div class="repo-arrow">&harr;</div>
+      <div class="repo-box card-blue" style="border-top: 3px solid var(--blue);">
+        <h4 style="color: #5b9bd5;">ai-team-system</h4>
+        <p>运营实例仓库<br>Janus Digital 实际运营</p>
+        <span class="pill pill-blue" style="margin-top:0.5rem;">Private</span>
+      </div>
+    </div>
+
+    <!-- Website Structure -->
+    <h3 style="margin: 2.5rem 0 1rem;">网站页面结构</h3>
+    <div class="grid-2">
+      <div class="card" style="padding:1.5rem;">
+        <h4 style="font-size:0.9rem; color:var(--gold); margin-bottom:0.75rem;">lysander.bond/synapse/</h4>
+        <table style="font-size:0.82rem;">
+          <tr><td style="color:var(--gold); font-weight:600;">/ </td><td>产品首页 — Hero + 特性 + CTA</td></tr>
+          <tr><td style="color:var(--gold); font-weight:600;">/docs</td><td>文档中心 — 快速开始 + API</td></tr>
+          <tr><td style="color:var(--gold); font-weight:600;">/catalog</td><td>模块市场 — 浏览 + 安装</td></tr>
+          <tr><td style="color:var(--gold); font-weight:600;">/templates</td><td>模板库 — 5套预设</td></tr>
+          <tr><td style="color:var(--gold); font-weight:600;">/blog</td><td>博客 — 最佳实践 + 案例</td></tr>
+        </table>
+      </div>
+      <div class="card" style="padding:1.5rem;">
+        <h4 style="font-size:0.9rem; color:var(--cyan); margin-bottom:0.75rem;">数据流架构</h4>
+        <div class="flow-steps" style="flex-direction:column; align-items:stretch;">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div class="flow-step highlight" style="flex:1;">synapse-core</div>
+            <span class="flow-arrow">&rarr;</span>
+            <div class="flow-step" style="flex:1;">catalog.json</div>
+          </div>
+          <div style="text-align:center;"><span class="flow-arrow">&darr;</span></div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div class="flow-step" style="flex:1;">repository_dispatch</div>
+            <span class="flow-arrow">&rarr;</span>
+            <div class="flow-step highlight" style="flex:1;">lysander-bond</div>
+          </div>
+          <div style="text-align:center;"><span class="flow-arrow">&darr;</span></div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <div class="flow-step" style="flex:1;">Vercel Build</div>
+            <span class="flow-arrow">&rarr;</span>
+            <div class="flow-step highlight" style="flex:1;">Production</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deployment Pipeline -->
+    <h3 style="margin: 2.5rem 0 1rem;">部署流水线</h3>
+    <div class="card">
+      <div class="flow-steps">
+        <div class="flow-step highlight">git push</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-step">GitHub Actions</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-step">Lint + Test</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-step">Build catalog.json</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-step">repository_dispatch</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-step highlight">Vercel Deploy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     4. 产品路线图
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="roadmap">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>产品路线图</h2>
+      <p>四阶段推进，从内核提取到生态繁荣。</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Timeline -->
+      <div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot gold"></div>
+            <div class="tl-content">
+              <h4 style="color: var(--gold);">Phase 1 — 内核提取</h4>
+              <span class="pill pill-gold" style="font-size:0.7rem; margin-bottom:0.5rem;">MVP</span>
+              <p>从 ai-team-system 提取可复用内核</p>
+              <p>CLAUDE.md 模块化拆分（25K &rarr; 9.4K tokens）</p>
+              <p>synapse init CLI 工具</p>
+              <p>5 套预设模板</p>
+              <p style="color:var(--text-muted);">交付物：可安装的 synapse-core 包</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot cyan"></div>
+            <div class="tl-content">
+              <h4 style="color: var(--cyan);">Phase 2 — 产品打磨</h4>
+              <p>lysander.bond/synapse/ 产品页上线</p>
+              <p>模块市场 catalog + 在线浏览</p>
+              <p>文档中心完善</p>
+              <p>种子用户内测（目标 50 人）</p>
+              <p style="color:var(--text-muted);">交付物：公开可访问的产品站</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot blue"></div>
+            <div class="tl-content">
+              <h4 style="color: #5b9bd5;">Phase 3 — 社区生长</h4>
+              <p>开放社区模块贡献机制</p>
+              <p>Discord / GitHub Discussions 社区</p>
+              <p>模块商店 v2（用户上传 + 评分）</p>
+              <p>AI 教练功能（引导式配置）</p>
+              <p style="color:var(--text-muted);">交付物：活跃的社区生态</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot green"></div>
+            <div class="tl-content">
+              <h4 style="color: #22c55e;">Phase 4 — 生态繁荣</h4>
+              <p>Enterprise 级别功能（SSO/审计/合规）</p>
+              <p>多 LLM 后端适配</p>
+              <p>Marketplace 收入分成</p>
+              <p>SaaS 托管版本</p>
+              <p style="color:var(--text-muted);">交付物：可持续的商业模式</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MVP + 种子用户 -->
+      <div>
+        <div class="card card-gold" style="margin-bottom:1.5rem;">
+          <h3>MVP 定义</h3>
+          <p style="font-size:0.9rem;">Phase 1 交付即为 MVP，需满足以下最小标准：</p>
+          <ul style="list-style:none; padding:0;">
+            <li style="padding:0.3rem 0; font-size:0.88rem; color:var(--text-secondary);">
+              <span style="color:var(--gold); margin-right:0.5rem;">&#10003;</span>
+              synapse init 可生成完整 CLAUDE.md
+            </li>
+            <li style="padding:0.3rem 0; font-size:0.88rem; color:var(--text-secondary);">
+              <span style="color:var(--gold); margin-right:0.5rem;">&#10003;</span>
+              至少 3 个核心模块可独立工作
+            </li>
+            <li style="padding:0.3rem 0; font-size:0.88rem; color:var(--text-secondary);">
+              <span style="color:var(--gold); margin-right:0.5rem;">&#10003;</span>
+              5 套预设模板全部可用
+            </li>
+            <li style="padding:0.3rem 0; font-size:0.88rem; color:var(--text-secondary);">
+              <span style="color:var(--gold); margin-right:0.5rem;">&#10003;</span>
+              快速开始文档 &le; 10 分钟上手
+            </li>
+            <li style="padding:0.3rem 0; font-size:0.88rem; color:var(--text-secondary);">
+              <span style="color:var(--gold); margin-right:0.5rem;">&#10003;</span>
+              GitHub README + 产品单页
+            </li>
+          </ul>
+        </div>
+
+        <div class="card card-cyan">
+          <h3>种子用户获客策略</h3>
+          <table style="font-size:0.85rem;">
+            <tr>
+              <td style="color:var(--cyan); font-weight:600; width:30%;">渠道</td>
+              <td style="color:var(--cyan); font-weight:600;">策略</td>
+            </tr>
+            <tr>
+              <td>AI 社区</td>
+              <td>Twitter/X + Reddit r/ClaudeAI 分享实战案例</td>
+            </tr>
+            <tr>
+              <td>GitHub</td>
+              <td>开源 + Awesome Lists 收录 + Star 增长</td>
+            </tr>
+            <tr>
+              <td>内容营销</td>
+              <td>lysander.bond/blog 每周发布最佳实践</td>
+            </tr>
+            <tr>
+              <td>KOL 合作</td>
+              <td>邀请 AI 博主试用并输出评测</td>
+            </tr>
+            <tr>
+              <td>Product Hunt</td>
+              <td>Phase 2 结束时发起 Launch</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     5. 商业模式
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2>商业模式</h2>
+      <p>Open Core 模式 — 核心永久免费，高级功能按需付费。</p>
+    </div>
+
+    <div class="grid-3">
+      <!-- Free -->
+      <div class="card pricing-card card-blue">
+        <h3 style="color: #5b9bd5;">Free</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted);">开源核心</p>
+        <div class="price" style="color: #5b9bd5;">$0</div>
+        <div class="price-unit">永久免费</div>
+        <ul class="feature-list">
+          <li>Core Layer 全部模块</li>
+          <li>5 套预设模板</li>
+          <li>synapse init CLI</li>
+          <li>社区支持（GitHub Issues）</li>
+          <li>最多 10 个 Agent</li>
+          <li>基础文档</li>
+        </ul>
+      </div>
+      <!-- Evolution -->
+      <div class="card pricing-card featured card-gold">
+        <h3 style="color: var(--gold);">Evolution</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted);">成长团队</p>
+        <div class="price">$29</div>
+        <div class="price-unit">/月/团队</div>
+        <ul class="feature-list">
+          <li>Free 全部功能</li>
+          <li>Business Layer 全部模块</li>
+          <li>Support Layer 全部模块</li>
+          <li>无限 Agent 数量</li>
+          <li>高级模板 + 自定义模板</li>
+          <li>优先 Discord 支持</li>
+          <li>AI 教练引导配置</li>
+          <li>自动化编排引擎</li>
+        </ul>
+      </div>
+      <!-- Enterprise -->
+      <div class="card pricing-card card-cyan">
+        <h3 style="color: var(--cyan);">Enterprise</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted);">大型组织</p>
+        <div class="price" style="color: var(--cyan);">定制</div>
+        <div class="price-unit">按需报价</div>
+        <ul class="feature-list">
+          <li>Evolution 全部功能</li>
+          <li>SSO / SAML 集成</li>
+          <li>审计日志 + 合规报告</li>
+          <li>私有部署支持</li>
+          <li>自定义模块开发</li>
+          <li>专属客户成功经理</li>
+          <li>SLA 保障</li>
+          <li>多 LLM 后端支持</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     6. 并行运行策略
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="migration">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2>并行运行策略</h2>
+      <p>ai-team-system（内部实例）与 synapse-core（产品）并行运行，逐步迁移。</p>
+    </div>
+
+    <div class="card" style="overflow-x:auto; margin-bottom: 2rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>ai-team-system（现状）</th>
+            <th>synapse-core（目标）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">定位</td>
+            <td>Janus Digital 内部运营实例</td>
+            <td>通用产品，任何团队可用</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">CLAUDE.md</td>
+            <td>~25,000 tokens（单体配置）</td>
+            <td>~9,400 tokens（模块化组装）</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Agent 管理</td>
+            <td>44 人固定编制</td>
+            <td>模块化按需选配</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">配置方式</td>
+            <td>手动编辑 YAML/MD</td>
+            <td>synapse init 交互式生成</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">扩展性</td>
+            <td>Janus Digital 专用</td>
+            <td>模块市场 + 社区贡献</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">仓库</td>
+            <td>Private（ai-team-system）</td>
+            <td>Public（synapse-core）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card-gold">
+      <h3>切换决策点</h3>
+      <div class="grid-2" style="gap:1rem;">
+        <div>
+          <h4 style="font-size:0.9rem; color:var(--gold); margin-bottom:0.5rem;">继续并行的条件</h4>
+          <ul style="list-style:none; padding:0;">
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:var(--cyan); margin-right:0.5rem;">&#9679;</span>
+              synapse-core 功能未完全覆盖 ai-team-system
+            </li>
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:var(--cyan); margin-right:0.5rem;">&#9679;</span>
+              迁移风险未充分评估
+            </li>
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:var(--cyan); margin-right:0.5rem;">&#9679;</span>
+              内部实例有特殊定制需求
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size:0.9rem; color:var(--gold); margin-bottom:0.5rem;">完全切换的条件</h4>
+          <ul style="list-style:none; padding:0;">
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:#22c55e; margin-right:0.5rem;">&#10003;</span>
+              synapse-core 功能 &ge; ai-team-system
+            </li>
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:#22c55e; margin-right:0.5rem;">&#10003;</span>
+              迁移脚本经过充分测试
+            </li>
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:#22c55e; margin-right:0.5rem;">&#10003;</span>
+              种子用户反馈正面（满意度 &ge; 4.0/5）
+            </li>
+            <li style="padding:0.25rem 0; font-size:0.85rem; color:var(--text-secondary);">
+              <span style="color:#22c55e; margin-right:0.5rem;">&#10003;</span>
+              所有自动化管线已适配新架构
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     7. 关键数字摘要
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<section id="numbers">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2>关键数字摘要</h2>
+      <p>一目了然的核心指标。</p>
+    </div>
+
+    <div class="grid-4">
+      <div class="card stat-card card-gold">
+        <div class="stat-number">11</div>
+        <div class="stat-label">功能模块</div>
+      </div>
+      <div class="card stat-card card-gold">
+        <div class="stat-number">38</div>
+        <div class="stat-label">AI Agent</div>
+      </div>
+      <div class="card stat-card card-cyan">
+        <div class="stat-number">5</div>
+        <div class="stat-label">预设模板</div>
+      </div>
+      <div class="card stat-card card-cyan">
+        <div class="stat-number">188</div>
+        <div class="stat-label">路由关键词</div>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:1.5rem;">
+      <div class="card stat-card card-blue">
+        <div class="stat-number" style="font-size:1.8rem;">~9,400</div>
+        <div class="stat-label">CLAUDE.md Tokens</div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; margin-bottom:0;">原版 25K 缩减 <strong style="color:#22c55e;">62%</strong></p>
+      </div>
+      <div class="card stat-card card-blue">
+        <div class="stat-number" style="font-size:1.8rem;">97</div>
+        <div class="stat-label">源文件数</div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; margin-bottom:0;">YAML + MD + Python + Skills</p>
+      </div>
+      <div class="card stat-card card-blue">
+        <div class="stat-number" style="font-size:1.8rem;">4</div>
+        <div class="stat-label">架构层级</div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem; margin-bottom:0;">Core / Business / Support / Extension</p>
+      </div>
+    </div>
+
+    <!-- Summary Card -->
+    <div class="card card-gold" style="margin-top: 2.5rem;">
+      <div style="display:flex; align-items:center; gap:1rem; flex-wrap: wrap;">
+        <svg width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="12" fill="#FCAD2A" opacity="0.9"/>
+          <line x1="50" y1="50" x2="20" y2="25" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+          <circle cx="20" cy="25" r="4" fill="#028CDC" opacity="0.8"/>
+          <line x1="50" y1="50" x2="80" y2="20" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+          <circle cx="80" cy="20" r="4" fill="#028CDC" opacity="0.8"/>
+          <line x1="50" y1="50" x2="85" y2="60" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+          <circle cx="85" cy="60" r="4" fill="#028CDC" opacity="0.8"/>
+          <line x1="50" y1="50" x2="18" y2="70" stroke="#028CDC" stroke-width="2" opacity="0.7"/>
+          <circle cx="18" cy="70" r="4" fill="#028CDC" opacity="0.8"/>
+        </svg>
+        <div style="flex:1;">
+          <h3 style="margin-bottom:0.5rem;">Synapse Forge — Ready for Review</h3>
+          <p style="margin-bottom:0; font-size:0.95rem;">
+            从 Janus Digital 44人 AI 团队的实战经验中提炼而来。
+            11 个模块、38 个 Agent、5 套模板、188 条路由规则 — 这不是理论框架，这是<strong style="color:var(--gold);">经过日常实战验证的 AI 团队管理操作系统</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════ -->
+<div class="glow-line"></div>
+<footer class="footer">
+  <div class="container">
+    <p style="margin-bottom:0.5rem;">
+      <span class="brand">Synapse Forge</span> &nbsp;|&nbsp; Janus Digital &nbsp;|&nbsp; 2026
+    </p>
+    <p style="font-size:0.75rem; color: var(--text-muted); margin-bottom:0;">
+      本方案为内部评审文档 &mdash; Confidential
+    </p>
+  </div>
+</footer>
+
+<!-- Smooth scroll for TOC -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>

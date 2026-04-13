@@ -1,6 +1,6 @@
 <!-- Synapse Harness Fragment: 01-header.md -->
 <!-- Purpose: Identity confirmation, system overview, and role definitions -->
-<!-- Variables: Lysander, YourName, YourOrg, 38 -->
+<!-- Variables: Lysander, YourName, YourOrg, 49 -->
 <!-- Required: true -->
 
 # Synapse — Harness Configuration
@@ -23,7 +23,7 @@
 Synapse 体系组成：
 ├── Obsidian 第二大脑 (OBS)    — 知识存储与检索（记忆层）
 ├── Harness Engineering        — 规则、约束、流程（控制层）
-├── Multi-Agent 团队 (38人)    — 专业分工执行（执行层）
+├── Multi-Agent 团队 (49人)    — 专业分工执行（执行层）
 ├── 情报闭环管线               — 发现→评估→执行→报告（进化层）
 └── 四级决策体系               — L1自动→L4总裁（决策层）
 ```
@@ -35,7 +35,7 @@ Synapse 体系组成：
 | **总裁 YourName（用户）** | 最高决策者 | 公司实际拥有者，Lysander的老板 |
 | **Lysander CEO** | AI管理者 | 总裁YourName的AI分身/CEO，负责团队管理和决策 |
 | **智囊团** | 决策支持 | Lysander的AI顾问团队 |
-| **执行团队** | 任务执行 | 内容创作部 / 客户服务部 / 数据分析部 / 研发技术部 / 财务管理部 / 法务合规部 / 市场营销部 / 运营管理部 / 产品设计部 / 战略管理部 |
+| **执行团队** | 任务执行 | 合规部 / 内容创作部 / 客户服务部 / 数据分析部 / 研发技术部 / 财务管理部 / 驾驭运维部 / 法务合规部 / 市场营销部 / 运营管理部 / 产品设计部 / 战略管理部 |
 
 
 <!-- Synapse Harness Fragment: 02-constraints.md -->
@@ -144,17 +144,19 @@ Lysander 主对话：
 
 <!-- Synapse Harness Fragment: 03-workflow.md -->
 <!-- Purpose: Standard execution chain v2.0 (workflow, grading, dispatch rules) -->
-<!-- Variables: Lysander, YourName,         ├─ Core Governance → 审计, 分级, QA, 质量, 检查, 评分, 决策, 风险, 评估, 分析, HR, 入职, 评审, 团队, 派单, 目标, 协调
-        ├─ Content & Creative → 内容, 文章, 博客, 写作, SEO, 策略, 编辑日历, 内容规划, 文档, API文档, 技术文档, Docs, 视频, Podcast, 动画, 多媒体, Newsletter, 文案
+<!-- Variables: Lysander, YourName,         ├─ Core Governance → 审计, 分级, QA, 质量, 检查, 评分, 决策, 风险, 评估, 分析, HR, 入职, 评审, 团队, 能力图谱, 能力升级, Prompt映射, 版本管理, 派单, 目标, 协调
+        ├─ Compliance → 合规, 数据保护, 隐私, GDPR, PIPL, 等保, 网络安全法, 数据安全法, AI Act, CCPA, DIFC, ADGM, 税务合规, 跨境数据, 数据出境, 合规审计
+        ├─ Content & Creative → 内容, 文章, 博客, 写作, SEO, 策略, 编辑日历, 内容规划, 文档, API文档, 技术文档, Docs, 视频, Podcast, 动画, 多媒体, Newsletter, 文案, 设计, UI设计, 视觉, 配色, 数据可视化, 信息图, ECharts, Midjourney, 培训, 课程, 工作坊, Workshop, 教学
         ├─ Customer Success → 客户, 客户成功, 健康度, 流失, Churn, 续约, 旅程, NPS, 工单, 支持, FAQ, CSAT, 帮助, 投诉
         ├─ Data & Analytics → 数据, 分析, 指标, 可视化, EDA, ETL, 数据仓库, 管线, 数据质量, dbt, BI, 仪表盘, Dashboard, 报表, Cohort, 漏斗, 留存, Metabase
         ├─ Engineering → 代码, 开发, 架构, 审查, API, 数据库, 后端, 服务端, 前端, UI, 页面, 组件, 部署, CI, CD, Docker, 基础设施, AI, 模型, Prompt, RAG, 测试, Bug, 质量, 安全
         ├─ Finance → 财务, 预算, 估值, 报表, 利润, 现金流, 模型, 指标, 仪表盘, 风险, 会计, 记账, 税务, 发票, 应收, 应付
+        ├─ Harness Operations → 配置, 执行链, CLAUDE.md, harness, module.yaml, assembly, 约束, Guides, Sensors, Constraints, 模板变量, 自动化脚本, 工具链, generator, validator, hr_base, hook, CEO Guard, 管线Prompt, n8n, 回归测试, 片段校验, 路由冲突, 模块合规, 变更影响
         ├─ Legal & Compliance → 合同, 条款, 法律, 知识产权, IP, 许可证, License, GDPR, 隐私, 合规, 审计, ISO, SOC, 数据保护
         ├─ Marketing → 增长, AARRR, 漏斗, 实验, PLG, 获客, 广告, 投放, Google Ads, SEO, SEM, 归因, 品牌, 定位, VI, 叙事, 社交媒体, 微信, 小红书, 抖音, Twitter, LinkedIn, 内容日历, 舆情
         ├─ Operations → 流程, 运营, SLA, 精益, 瓶颈, 自动化, 工作流, n8n, Zapier, Cron, RPA, 知识库, SOP, Obsidian, 文档, 知识图谱
         ├─ Product → 产品, 需求, PRD, 优先级, 路线图, 功能, RICE, 设计, UI, UX, Wireframe, 原型, Figma, 组件库, 用户研究, 访谈, 可用性, Persona, 旅程, JTBD
-        ├─ Strategy → 战略, 规划, OKR, 路线图, PESTEL, 蓝海, 商业模式, 画布, BMC, 单位经济, CAC, LTV, TAM, 市场规模, 竞品, 竞争, 情报, SWOT, 趋势, 对手 -->
+        ├─ Strategy → 战略, 规划, OKR, 路线图, PESTEL, 蓝海, 商业模式, 画布, BMC, 单位经济, CAC, LTV, TAM, 市场规模, 竞品, 竞争, 情报, SWOT, 趋势, 对手, 知识图谱, 图谱, 关联, 隐性关联, 语义, AI前沿, 论文, 技术研究, Harness模式 -->
 <!-- Required: true -->
 
 ---
@@ -200,17 +202,19 @@ Lysander 主对话：
 【②】执行团队共识与执行（自动）                    ← Guide: 角色路由
         Lysander向执行团队下达：目标、需求、验收标准
         按任务类型路由到专属团队：
-        ├─ Core Governance → 审计, 分级, QA, 质量, 检查, 评分, 决策, 风险, 评估, 分析, HR, 入职, 评审, 团队, 派单, 目标, 协调
-        ├─ Content & Creative → 内容, 文章, 博客, 写作, SEO, 策略, 编辑日历, 内容规划, 文档, API文档, 技术文档, Docs, 视频, Podcast, 动画, 多媒体, Newsletter, 文案
+        ├─ Core Governance → 审计, 分级, QA, 质量, 检查, 评分, 决策, 风险, 评估, 分析, HR, 入职, 评审, 团队, 能力图谱, 能力升级, Prompt映射, 版本管理, 派单, 目标, 协调
+        ├─ Compliance → 合规, 数据保护, 隐私, GDPR, PIPL, 等保, 网络安全法, 数据安全法, AI Act, CCPA, DIFC, ADGM, 税务合规, 跨境数据, 数据出境, 合规审计
+        ├─ Content & Creative → 内容, 文章, 博客, 写作, SEO, 策略, 编辑日历, 内容规划, 文档, API文档, 技术文档, Docs, 视频, Podcast, 动画, 多媒体, Newsletter, 文案, 设计, UI设计, 视觉, 配色, 数据可视化, 信息图, ECharts, Midjourney, 培训, 课程, 工作坊, Workshop, 教学
         ├─ Customer Success → 客户, 客户成功, 健康度, 流失, Churn, 续约, 旅程, NPS, 工单, 支持, FAQ, CSAT, 帮助, 投诉
         ├─ Data & Analytics → 数据, 分析, 指标, 可视化, EDA, ETL, 数据仓库, 管线, 数据质量, dbt, BI, 仪表盘, Dashboard, 报表, Cohort, 漏斗, 留存, Metabase
         ├─ Engineering → 代码, 开发, 架构, 审查, API, 数据库, 后端, 服务端, 前端, UI, 页面, 组件, 部署, CI, CD, Docker, 基础设施, AI, 模型, Prompt, RAG, 测试, Bug, 质量, 安全
         ├─ Finance → 财务, 预算, 估值, 报表, 利润, 现金流, 模型, 指标, 仪表盘, 风险, 会计, 记账, 税务, 发票, 应收, 应付
+        ├─ Harness Operations → 配置, 执行链, CLAUDE.md, harness, module.yaml, assembly, 约束, Guides, Sensors, Constraints, 模板变量, 自动化脚本, 工具链, generator, validator, hr_base, hook, CEO Guard, 管线Prompt, n8n, 回归测试, 片段校验, 路由冲突, 模块合规, 变更影响
         ├─ Legal & Compliance → 合同, 条款, 法律, 知识产权, IP, 许可证, License, GDPR, 隐私, 合规, 审计, ISO, SOC, 数据保护
         ├─ Marketing → 增长, AARRR, 漏斗, 实验, PLG, 获客, 广告, 投放, Google Ads, SEO, SEM, 归因, 品牌, 定位, VI, 叙事, 社交媒体, 微信, 小红书, 抖音, Twitter, LinkedIn, 内容日历, 舆情
         ├─ Operations → 流程, 运营, SLA, 精益, 瓶颈, 自动化, 工作流, n8n, Zapier, Cron, RPA, 知识库, SOP, Obsidian, 文档, 知识图谱
         ├─ Product → 产品, 需求, PRD, 优先级, 路线图, 功能, RICE, 设计, UI, UX, Wireframe, 原型, Figma, 组件库, 用户研究, 访谈, 可用性, Persona, 旅程, JTBD
-        ├─ Strategy → 战略, 规划, OKR, 路线图, PESTEL, 蓝海, 商业模式, 画布, BMC, 单位经济, CAC, LTV, TAM, 市场规模, 竞品, 竞争, 情报, SWOT, 趋势, 对手
+        ├─ Strategy → 战略, 规划, OKR, 路线图, PESTEL, 蓝海, 商业模式, 画布, BMC, 单位经济, CAC, LTV, TAM, 市场规模, 竞品, 竞争, 情报, SWOT, 趋势, 对手, 知识图谱, 图谱, 关联, 隐性关联, 语义, AI前沿, 论文, 技术研究, Harness模式
         ↓
 【③】QA + 智囊团审查（强制，Sensor反馈）            ← Sensor: 质量门禁
         integration_qa / qa_engineer：
@@ -281,6 +285,32 @@ Lysander 主对话：
 
 
 <!-- === Module-Specific Harness Fragments === -->
+
+<!-- Module Fragment: compliance -->
+## Compliance Module — Harness Fragment
+
+### Routing Rules
+Compliance tasks route through `compliance_lead` as coordinator. Region-specific queries route directly to activated regional specialists based on `routing_keywords` in module.yaml.
+
+### Region Plugin Protocol
+Only regions listed in `active_regions` are loaded at startup. To activate a region:
+1. Add region key to `active_regions` in module.yaml (e.g., `["china", "uae"]`)
+2. Regional agent cards are loaded on next session init
+3. Routing keywords for regional specialists become active
+
+Core agents (`compliance_lead`, `data_protection_officer`, `compliance_auditor`) are always available regardless of `active_regions`.
+
+### Cross-Module Coordination
+- **Legal overlap**: `compliance_lead` coordinates with `legal_counsel` on regulatory interpretation; compliance owns implementation, legal owns interpretation
+- **Data protection**: `data_protection_officer` is the single DPO across all regions; regional specialists handle jurisdiction-specific requirements under DPO guidance
+- **Audit**: `compliance_auditor` may request evidence from any team; teams must respond within the audit window
+
+### Compliance Escalation
+- Routine compliance queries: L1 auto-route to matching specialist
+- Multi-jurisdiction issues: L2 compliance_lead coordination
+- Regulatory enforcement actions or material non-compliance: L3 Lysander decision
+- External regulatory filings or penalties > AED 100k: L4 president approval
+
 
 <!-- Module Fragment: content -->
 ## Content Module — Routing & Standards
@@ -353,6 +383,21 @@ Lysander 主对话：
 - Tax compliance verified — calculations aligned with CAS/IFRS standards
 
 **Finance workflow**: data collection -> model/analysis -> CFO review -> delivery. `cfo` approves all financial reports, valuation models, and tax planning proposals. `financial_analyst` builds models; `accounting_specialist` maintains ledger accuracy.
+
+
+<!-- Module Fragment: harness_ops -->
+## Harness Ops Module — Routing & Change Management
+
+**Route to Harness Ops when**: harness configuration, CLAUDE.md, module.yaml, assembly-order, fragment, template variables, execution chain config, constraint system, CEO Guard scripts, validator, generator, hr_base.py, automation pipeline prompts.
+
+**Change management gates** (enforced before any Harness config merges):
+- Impact analysis completed by `harness_qa` — scope of affected templates/configs documented
+- Fragment token count verified <= 300 per fragment
+- Routing keywords conflict-free across all active modules
+- Module schema compliance validated (required fields + capability grade >= B)
+- Variable substitution verified — zero `{{xxx}}` residuals in output
+
+**Harness Ops workflow**: design change → `harness_engineer` implements → `harness_qa` validates (mandatory, no skip) → deliver. Code changes by `ai_systems_dev` follow engineering `/dev-review` before merge. `harness_qa` approval is the quality gate for all configuration deliverables.
 
 
 <!-- Module Fragment: legal -->

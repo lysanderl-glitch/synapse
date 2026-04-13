@@ -1,0 +1,126 @@
+# Synapse Compliance Module v1.0.0
+# Global compliance management with regional plugin architecture
+
+module:
+  id: "compliance"
+  name: "合规部"
+  name_en: "Compliance"
+  version: "1.0.0"
+  category: support
+  description: "全球合规管理 — 核心通用能力 + 按法域配置的地区专家。通过 active_regions 控制加载范围"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["legal"]
+
+  # 核心Agent（必选）
+  agents:
+    - specialist_id: "compliance_lead"
+      role: "合规总监"
+      role_en: "Compliance Lead"
+      card_path: "agents/compliance_lead.md"
+      required: true
+      description: "全球合规框架设计、ISO 37301、跨法域协调、合规风险矩阵"
+    - specialist_id: "data_protection_officer"
+      role: "数据保护官"
+      role_en: "Data Protection Officer"
+      card_path: "agents/data_protection_officer.md"
+      required: true
+      description: "通用数据保护、DPIA评估、Privacy by Design、数据出境架构"
+    - specialist_id: "compliance_auditor"
+      role: "合规审计专员"
+      role_en: "Compliance Auditor"
+      card_path: "agents/compliance_auditor.md"
+      required: true
+      description: "合规差距分析、审计执行、整改跟踪、合规评分"
+
+  # 地区插件（按需激活）
+  regions:
+    china:
+      name: "中国大陆合规"
+      agents:
+        - specialist_id: "china_data_compliance"
+          role: "中国数据合规专家"
+          role_en: "China Data Compliance Specialist"
+          card_path: "regions/china/china_data_compliance.md"
+          description: "PIPL/网络安全法/数据安全法/等保2.0/生成式AI管理办法"
+        - specialist_id: "china_business_compliance"
+          role: "中国工商税务合规专家"
+          role_en: "China Business Compliance Specialist"
+          card_path: "regions/china/china_business_compliance.md"
+          description: "工商注册/税务申报/社保公积金/发票管理"
+    uae:
+      name: "阿联酋合规"
+      agents:
+        - specialist_id: "uae_compliance"
+          role: "UAE合规专家"
+          role_en: "UAE Compliance Specialist"
+          card_path: "regions/uae/uae_compliance.md"
+          description: "联邦PDPL/DIFC数据保护法/ADGM法规/自由区商业许可/VAT/公司税"
+    eu:
+      name: "欧盟合规"
+      agents:
+        - specialist_id: "gdpr_specialist"
+          role: "GDPR专家"
+          role_en: "GDPR Specialist"
+          card_path: "regions/eu/gdpr_specialist.md"
+          description: "GDPR全面合规、DPIA、SCC/BCR跨境传输、DPO职能"
+        - specialist_id: "ai_act_specialist"
+          role: "AI法案专家"
+          role_en: "AI Act Specialist"
+          card_path: "regions/eu/ai_act_specialist.md"
+          description: "EU AI Act风险分类、合规评估、高风险AI系统要求"
+    us:
+      name: "美国合规"
+      agents:
+        - specialist_id: "us_federal_compliance"
+          role: "美国联邦合规专家"
+          role_en: "US Federal Compliance Specialist"
+          card_path: "regions/us/us_federal_compliance.md"
+          description: "SEC/FTC/HIPAA/COPPA联邦合规、SOX上市公司合规"
+        - specialist_id: "us_state_privacy"
+          role: "美国州隐私法专家"
+          role_en: "US State Privacy Specialist"
+          card_path: "regions/us/us_state_privacy.md"
+          description: "CCPA/CPRA + 20+州隐私法矩阵管理"
+    uk:
+      name: "英国合规"
+      agents:
+        - specialist_id: "uk_data_compliance"
+          role: "英国数据合规专家"
+          role_en: "UK Data Compliance Specialist"
+          card_path: "regions/uk/uk_data_compliance.md"
+          description: "UK GDPR + Data Protection Act 2018"
+    apac:
+      name: "亚太合规"
+      agents:
+        - specialist_id: "apac_privacy_specialist"
+          role: "亚太隐私合规专家"
+          role_en: "APAC Privacy Specialist"
+          card_path: "regions/apac/apac_privacy_specialist.md"
+          description: "日本APPI/新加坡PDPA/澳大利亚Privacy Act/香港PDPO"
+
+  # 默认激活的地区（用户可修改）
+  active_regions: []
+
+  routing_keywords:
+    合规: ["compliance_lead"]
+    数据保护: ["data_protection_officer"]
+    隐私: ["data_protection_officer"]
+    GDPR: ["gdpr_specialist"]
+    PIPL: ["china_data_compliance"]
+    等保: ["china_data_compliance"]
+    网络安全法: ["china_data_compliance"]
+    数据安全法: ["china_data_compliance"]
+    "AI Act": ["ai_act_specialist"]
+    CCPA: ["us_state_privacy"]
+    DIFC: ["uae_compliance"]
+    ADGM: ["uae_compliance"]
+    税务合规: ["china_business_compliance"]
+    跨境数据: ["compliance_lead"]
+    数据出境: ["compliance_lead"]
+    合规审计: ["compliance_auditor"]
+
+  skills: []
+
+  harness_fragment: "harness/fragment.md"

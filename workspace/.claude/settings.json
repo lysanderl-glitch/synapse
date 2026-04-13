@@ -13,11 +13,13 @@
     "ceo_name": "Lysander",
     "modules_enabled": [
       "core",
+      "compliance",
       "content",
       "customer_success",
       "data",
       "engineering",
       "finance",
+      "harness_ops",
       "legal",
       "marketing",
       "operations",

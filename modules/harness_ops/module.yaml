@@ -1,0 +1,67 @@
+# Synapse Harness Operations Module v1.0.0
+# Harness configuration maintenance, toolchain development, and quality assurance
+
+module:
+  id: "harness_ops"
+  name: "驾驭运维部"
+  name_en: "Harness Operations"
+  version: "1.0.0"
+  category: support
+  description: "Synapse Harness 体系的配置维护、代码开发、质量保障 — 让体系具备自我维护和进化能力"
+
+  dependencies:
+    required: ["core"]
+    recommended: ["engineering"]
+
+  agents:
+    - specialist_id: "harness_engineer"
+      role: "Harness配置工程师"
+      role_en: "Harness Configuration Engineer"
+      card_path: "agents/harness_engineer.md"
+      required: true
+      description: "执行链/决策链/约束系统配置维护，module.yaml Schema 验证，assembly-order 编排"
+
+    - specialist_id: "ai_systems_dev"
+      role: "AI系统开发工程师"
+      role_en: "AI Systems Developer"
+      card_path: "agents/ai_systems_dev.md"
+      required: true
+      description: "Synapse 工具链开发，Agent 卡片解析引擎，自动化管线 Prompt，CEO Guard 脚本"
+
+    - specialist_id: "harness_qa"
+      role: "Harness质量工程师"
+      role_en: "Harness Quality Engineer"
+      card_path: "agents/harness_qa.md"
+      required: true
+      description: "CLAUDE.md 完整性回归测试，路由冲突检测，模块合规校验，变更影响分析"
+
+  routing_keywords:
+    配置: ["harness_engineer"]
+    执行链: ["harness_engineer"]
+    CLAUDE.md: ["harness_engineer"]
+    harness: ["harness_engineer"]
+    module.yaml: ["harness_engineer"]
+    assembly: ["harness_engineer"]
+    约束: ["harness_engineer"]
+    Guides: ["harness_engineer"]
+    Sensors: ["harness_engineer"]
+    Constraints: ["harness_engineer"]
+    模板变量: ["harness_engineer"]
+    自动化脚本: ["ai_systems_dev"]
+    工具链: ["ai_systems_dev"]
+    generator: ["ai_systems_dev"]
+    validator: ["ai_systems_dev"]
+    hr_base: ["ai_systems_dev"]
+    hook: ["ai_systems_dev"]
+    CEO Guard: ["ai_systems_dev"]
+    管线Prompt: ["ai_systems_dev"]
+    n8n: ["ai_systems_dev"]
+    回归测试: ["harness_qa"]
+    片段校验: ["harness_qa"]
+    路由冲突: ["harness_qa"]
+    模块合规: ["harness_qa"]
+    变更影响: ["harness_qa"]
+
+  skills: []
+
+  harness_fragment: "harness/fragment.md"

@@ -34,6 +34,20 @@ module:
       required: true
       description: "竞争对手画像、竞品功能矩阵、情报源管理、市场趋势预测"
 
+    - specialist_id: "relation_discovery"
+      role: "关系发现分析师"
+      role_en: "Relation Discovery Analyst"
+      card_path: "agents/relation_discovery.md"
+      required: false
+      description: "知识图谱构建、图推理与核心节点发现、跨领域隐性关联发现、语义网络分析"
+
+    - specialist_id: "ai_tech_researcher"
+      role: "AI技术研究员"
+      role_en: "AI Tech Researcher"
+      card_path: "agents/ai_tech_researcher.md"
+      required: false
+      description: "AI前沿追踪、实践价值评估、Harness模式提取、结构化情报卡片输出"
+
   routing_keywords:
     战略: ["chief_strategist"]
     规划: ["chief_strategist"]
@@ -53,8 +67,17 @@ module:
     竞争: ["competitive_intelligence"]
     情报: ["competitive_intelligence"]
     SWOT: ["competitive_intelligence"]
-    趋势: ["competitive_intelligence"]
+    趋势: ["competitive_intelligence", "ai_tech_researcher"]
     对手: ["competitive_intelligence"]
+    知识图谱: ["relation_discovery"]
+    图谱: ["relation_discovery"]
+    关联: ["relation_discovery"]
+    隐性关联: ["relation_discovery"]
+    语义: ["relation_discovery"]
+    AI前沿: ["ai_tech_researcher"]
+    论文: ["ai_tech_researcher"]
+    技术研究: ["ai_tech_researcher"]
+    Harness模式: ["ai_tech_researcher"]
 
   skills: []
 

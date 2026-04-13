@@ -2,7 +2,7 @@ organization:
   ceo_name: Lysander
   president_name: YourName
   org_name: YourOrg
-  total_agents: 38
+  total_agents: 49
   teams:
   - id: core
     name: 核心治理层
@@ -28,6 +28,26 @@ organization:
       role: HR总监
       role_en: HR Director
       required: true
+    - specialist_id: capability_architect
+      role: 能力架构师
+      role_en: Capability Architect
+      required: true
+  - id: compliance
+    name: 合规部
+    name_en: Compliance
+    agents:
+    - specialist_id: compliance_lead
+      role: 合规总监
+      role_en: Compliance Lead
+      required: true
+    - specialist_id: data_protection_officer
+      role: 数据保护官
+      role_en: Data Protection Officer
+      required: true
+    - specialist_id: compliance_auditor
+      role: 合规审计专员
+      role_en: Compliance Auditor
+      required: true
   - id: content
     name: 内容创作部
     name_en: Content & Creative
@@ -47,6 +67,14 @@ organization:
     - specialist_id: multimedia_producer
       role: 多媒体制作人
       role_en: Multimedia Producer
+      required: false
+    - specialist_id: visual_designer
+      role: 视觉设计师
+      role_en: Visual Designer
+      required: false
+    - specialist_id: training_designer
+      role: 培训设计师
+      role_en: Training Designer
       required: false
   - id: customer_success
     name: 客户服务部
@@ -119,6 +147,22 @@ organization:
     - specialist_id: accounting_specialist
       role: 会计专员
       role_en: Accounting Specialist
+      required: true
+  - id: harness_ops
+    name: 驾驭运维部
+    name_en: Harness Operations
+    agents:
+    - specialist_id: harness_engineer
+      role: Harness配置工程师
+      role_en: Harness Configuration Engineer
+      required: true
+    - specialist_id: ai_systems_dev
+      role: AI系统开发工程师
+      role_en: AI Systems Developer
+      required: true
+    - specialist_id: harness_qa
+      role: Harness质量工程师
+      role_en: Harness Quality Engineer
       required: true
   - id: legal
     name: 法务合规部
@@ -200,6 +244,14 @@ organization:
       role: 竞争情报分析师
       role_en: Competitive Intelligence Analyst
       required: true
+    - specialist_id: relation_discovery
+      role: 关系发现分析师
+      role_en: Relation Discovery Analyst
+      required: false
+    - specialist_id: ai_tech_researcher
+      role: AI技术研究员
+      role_en: AI Tech Researcher
+      required: false
   routing:
     审计:
     - core.execution_auditor
@@ -236,12 +288,60 @@ organization:
     - core.decision_advisor
     团队:
     - core.hr_director
+    能力图谱:
+    - core.capability_architect
+    能力升级:
+    - core.capability_architect
+    Prompt映射:
+    - core.capability_architect
+    版本管理:
+    - core.capability_architect
+    - core.hr_director
     派单:
     - core.ceo
     目标:
     - core.ceo
     协调:
     - core.ceo
+    合规:
+    - compliance.compliance_lead
+    - legal.compliance_officer
+    数据保护:
+    - compliance.data_protection_officer
+    - legal.compliance_officer
+    - legal.legal_counsel
+    隐私:
+    - compliance.data_protection_officer
+    - legal.legal_counsel
+    - legal.compliance_officer
+    GDPR:
+    - compliance.gdpr_specialist
+    - legal.legal_counsel
+    - legal.compliance_officer
+    PIPL:
+    - compliance.china_data_compliance
+    等保:
+    - compliance.china_data_compliance
+    网络安全法:
+    - compliance.china_data_compliance
+    数据安全法:
+    - compliance.china_data_compliance
+    AI Act:
+    - compliance.ai_act_specialist
+    CCPA:
+    - compliance.us_state_privacy
+    DIFC:
+    - compliance.uae_compliance
+    ADGM:
+    - compliance.uae_compliance
+    税务合规:
+    - compliance.china_business_compliance
+    跨境数据:
+    - compliance.compliance_lead
+    数据出境:
+    - compliance.compliance_lead
+    合规审计:
+    - compliance.compliance_auditor
     内容:
     - content.content_strategist
     - content.content_writer
@@ -281,6 +381,33 @@ organization:
     - content.content_writer
     文案:
     - content.content_writer
+    设计:
+    - content.visual_designer
+    - product.product_designer
+    UI设计:
+    - content.visual_designer
+    视觉:
+    - content.visual_designer
+    配色:
+    - content.visual_designer
+    数据可视化:
+    - content.visual_designer
+    信息图:
+    - content.visual_designer
+    ECharts:
+    - content.visual_designer
+    Midjourney:
+    - content.visual_designer
+    培训:
+    - content.training_designer
+    课程:
+    - content.training_designer
+    工作坊:
+    - content.training_designer
+    Workshop:
+    - content.training_designer
+    教学:
+    - content.training_designer
     客户:
     - customer_success.cs_manager
     - customer_success.support_specialist
@@ -429,6 +556,57 @@ organization:
     - finance.accounting_specialist
     应付:
     - finance.accounting_specialist
+    配置:
+    - harness_ops.harness_engineer
+    执行链:
+    - harness_ops.harness_engineer
+    CLAUDE.md:
+    - harness_ops.harness_engineer
+    harness:
+    - harness_ops.harness_engineer
+    module.yaml:
+    - harness_ops.harness_engineer
+    assembly:
+    - harness_ops.harness_engineer
+    约束:
+    - harness_ops.harness_engineer
+    Guides:
+    - harness_ops.harness_engineer
+    Sensors:
+    - harness_ops.harness_engineer
+    Constraints:
+    - harness_ops.harness_engineer
+    模板变量:
+    - harness_ops.harness_engineer
+    自动化脚本:
+    - harness_ops.ai_systems_dev
+    工具链:
+    - harness_ops.ai_systems_dev
+    generator:
+    - harness_ops.ai_systems_dev
+    validator:
+    - harness_ops.ai_systems_dev
+    hr_base:
+    - harness_ops.ai_systems_dev
+    hook:
+    - harness_ops.ai_systems_dev
+    CEO Guard:
+    - harness_ops.ai_systems_dev
+    管线Prompt:
+    - harness_ops.ai_systems_dev
+    n8n:
+    - harness_ops.ai_systems_dev
+    - operations.automation_engineer
+    回归测试:
+    - harness_ops.harness_qa
+    片段校验:
+    - harness_ops.harness_qa
+    路由冲突:
+    - harness_ops.harness_qa
+    模块合规:
+    - harness_ops.harness_qa
+    变更影响:
+    - harness_ops.harness_qa
     合同:
     - legal.legal_counsel
     条款:
@@ -443,21 +621,10 @@ organization:
     - legal.legal_counsel
     License:
     - legal.legal_counsel
-    GDPR:
-    - legal.legal_counsel
-    - legal.compliance_officer
-    隐私:
-    - legal.legal_counsel
-    - legal.compliance_officer
-    合规:
-    - legal.compliance_officer
     ISO:
     - legal.compliance_officer
     SOC:
     - legal.compliance_officer
-    数据保护:
-    - legal.compliance_officer
-    - legal.legal_counsel
     增长:
     - marketing.growth_lead
     AARRR:
@@ -516,8 +683,6 @@ organization:
     - operations.automation_engineer
     工作流:
     - operations.automation_engineer
-    n8n:
-    - operations.automation_engineer
     Zapier:
     - operations.automation_engineer
     Cron:
@@ -532,6 +697,7 @@ organization:
     - operations.knowledge_engineer
     知识图谱:
     - operations.knowledge_engineer
+    - strategy.relation_discovery
     产品:
     - product.product_manager
     需求:
@@ -547,8 +713,6 @@ organization:
     - product.product_manager
     RICE:
     - product.product_manager
-    设计:
-    - product.product_designer
     UX:
     - product.product_designer
     Wireframe:
@@ -605,5 +769,22 @@ organization:
     - strategy.competitive_intelligence
     趋势:
     - strategy.competitive_intelligence
+    - strategy.ai_tech_researcher
     对手:
     - strategy.competitive_intelligence
+    图谱:
+    - strategy.relation_discovery
+    关联:
+    - strategy.relation_discovery
+    隐性关联:
+    - strategy.relation_discovery
+    语义:
+    - strategy.relation_discovery
+    AI前沿:
+    - strategy.ai_tech_researcher
+    论文:
+    - strategy.ai_tech_researcher
+    技术研究:
+    - strategy.ai_tech_researcher
+    Harness模式:
+    - strategy.ai_tech_researcher
