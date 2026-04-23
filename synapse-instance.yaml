@@ -1,0 +1,44 @@
+# Synapse Instance Manifest
+# Copy this file to your instance root when deploying a new instance
+# and fill in the values below.
+
+instance:
+  name: "my-instance"          # e.g., daily, academy, client-acme
+  purpose: "描述此实例的用途"
+  owner: "用户名"
+  created: "YYYY-MM-DD"
+
+framework:
+  synapse_core_version: "2.1.0"
+  last_synced: "YYYY-MM-DD"
+  auto_update: true             # Set false for locked instances (e.g., academy)
+
+layers:
+  # Line markers help the generator know what to replace during updates
+  identity_end_marker: "<!-- END LAYER 1 -->"
+  core_harness_start: "<!-- LAYER 2"
+  core_harness_end: "<!-- END LAYER 2 -->"
+
+modules:
+  included:
+    - core
+    - harness-ops       # Required, cannot be disabled
+    - strategy
+    - engineering
+    - content
+    # Uncomment to add more modules:
+    # - product
+    # - legal
+    # - finance
+    # - data
+    # - customer-success
+    # - marketing
+    # - operations
+    # - compliance
+
+protection:
+  locked_files: []     # Files that auto-update should NOT touch
+  # Example for frozen instances (e.g., academy):
+  # locked_files:
+  #   - "agent-butler/config/organization.yaml"
+  #   - "CLAUDE.md"

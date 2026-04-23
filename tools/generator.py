@@ -335,8 +335,37 @@ class SynapseGenerator:
             # Ensure the id is set
             if isinstance(mod, dict) and "id" not in mod:
                 mod["id"] = mid
+            if isinstance(mod, dict):
+                self._apply_regions(mod, mid)
             modules.append(mod)
         return modules
+
+    def _apply_regions(self, mod: dict, module_id: str) -> None:
+        regions = mod.get("regions") or {}
+        active = mod.get("active_regions") or []
+        if not isinstance(regions, dict) or not isinstance(active, list) or not active:
+            return
+        agents = list(mod.get("agents") or [])
+        seen = set()
+        for a in agents:
+            if isinstance(a, dict) and a.get("specialist_id"):
+                seen.add(a.get("specialist_id"))
+            elif isinstance(a, str) and a:
+                seen.add(a)
+        for region_key in active:
+            region = regions.get(region_key) or {}
+            region_agents = region.get("agents") or []
+            if not isinstance(region_agents, list):
+                continue
+            for ra in region_agents:
+                if not isinstance(ra, dict):
+                    continue
+                sid = str(ra.get("specialist_id", "")).strip()
+                if not sid or sid in seen:
+                    continue
+                agents.append(ra)
+                seen.add(sid)
+        mod["agents"] = agents
 
     def resolve_dependencies(self, modules: list[dict]) -> list[dict]:
         """
@@ -539,13 +568,16 @@ class SynapseGenerator:
             teams.append(team_entry)
 
             # Merge routing keywords
+            agent_ids_in_module = {a.get("specialist_id", "") for a in agent_list if a.get("specialist_id")}
+
             keywords = mod.get("routing_keywords", {}) or {}
             if isinstance(keywords, dict):
                 for kw, agent_ids in keywords.items():
-                    if isinstance(agent_ids, list):
-                        targets = [f"{mod_id}.{aid}" for aid in agent_ids]
-                    else:
-                        targets = [f"{mod_id}.{agent_ids}"]
+                    agent_id_list = agent_ids if isinstance(agent_ids, list) else [agent_ids]
+                    filtered = [aid for aid in agent_id_list if aid in agent_ids_in_module]
+                    targets = [f"{mod_id}.{aid}" for aid in filtered]
+                    if not targets:
+                        continue
                     if kw in all_routing:
                         all_routing[kw].extend(targets)
                     else:

@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synapse — AI 协作运营体系</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #05070f;
+      --surface: #0b0f1e;
+      --surface2: #111828;
+      --border: rgba(99,179,237,.12);
+      --accent: #63b3ed;
+      --accent2: #a78bfa;
+      --accent3: #34d399;
+      --accent4: #f59e0b;
+      --accent5: #f87171;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --heading: #f8fafc;
+      --glow: rgba(99,179,237,.18);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Utility ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(99,179,237,.1);
+      color: var(--accent);
+      border: 1px solid rgba(99,179,237,.2);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #63b3ed 0%, #a78bfa 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(5,7,15,.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo svg { width: 32px; height: 32px; }
+    .nav-logo span { font-size: 18px; font-weight: 700; color: var(--heading); }
+    .nav-logo span em { font-style: normal; color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99,179,237,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 80%, rgba(167,139,250,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 70%, rgba(52,211,153,.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(99,179,237,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,179,237,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px;
+      background: rgba(99,179,237,.08);
+      border: 1px solid rgba(99,179,237,.2);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent3);
+      box-shadow: 0 0 8px var(--accent3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      max-width: 640px;
+      margin: 24px auto 48px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      box-shadow: 0 0 40px rgba(59,130,246,.3);
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(59,130,246,.4); }
+    .btn-ghost {
+      padding: 14px 32px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #63b3ed, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* ── Section base ── */
+    section { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .section-header p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto; }
+
+    /* ── Architecture ── */
+    .arch { background: var(--surface); }
+    .arch-diagram {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr 60px 1fr;
+      align-items: center;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .arch-layer {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      transition: border-color .3s;
+    }
+    .arch-layer:hover { border-color: var(--accent); }
+    .arch-layer-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .arch-layer-title { font-size: 16px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+    .arch-layer-en { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+    .arch-layer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .arch-layer.highlight { border-color: rgba(99,179,237,.4); background: rgba(99,179,237,.05); }
+    .arch-arrow {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 20px;
+    }
+    .arch-synapse-label {
+      text-align: center;
+      font-size: 11px;
+      color: var(--accent);
+      margin-top: 8px;
+      letter-spacing: .08em;
+    }
+    .arch-arrow-wrap { display: flex; flex-direction: column; align-items: center; }
+
+    /* ── Modules grid ── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .module-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color .3s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: var(--module-color, linear-gradient(90deg, #63b3ed, #a78bfa));
+    }
+    .module-card:hover { border-color: rgba(99,179,237,.3); transform: translateY(-4px); }
+    .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .module-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      background: rgba(99,179,237,.1);
+      flex-shrink: 0;
+    }
+    .module-title { font-size: 16px; font-weight: 700; color: var(--heading); }
+    .module-en { font-size: 12px; color: var(--muted); }
+    .module-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .module-agents {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .agent-chip {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+    }
+    .module-core { --module-color: linear-gradient(90deg, #3b82f6, #8b5cf6); }
+    .module-core .module-icon { background: rgba(59,130,246,.12); }
+    .module-harness { --module-color: linear-gradient(90deg, #a78bfa, #ec4899); }
+    .module-harness .module-icon { background: rgba(167,139,250,.12); }
+    .module-strategy { --module-color: linear-gradient(90deg, #f59e0b, #ef4444); }
+    .module-strategy .module-icon { background: rgba(245,158,11,.12); }
+    .module-engineering { --module-color: linear-gradient(90deg, #34d399, #3b82f6); }
+    .module-engineering .module-icon { background: rgba(52,211,153,.12); }
+    .module-content { --module-color: linear-gradient(90deg, #f472b6, #a78bfa); }
+    .module-content .module-icon { background: rgba(244,114,182,.12); }
+    .module-marketing { --module-color: linear-gradient(90deg, #fb923c, #f59e0b); }
+    .module-marketing .module-icon { background: rgba(251,146,60,.12); }
+    .module-compliance { --module-color: linear-gradient(90deg, #10b981, #06b6d4); }
+    .module-compliance .module-icon { background: rgba(16,185,129,.12); }
+    .module-ops { --module-color: linear-gradient(90deg, #8b5cf6, #3b82f6); }
+    .module-ops .module-icon { background: rgba(139,92,246,.12); }
+    .module-more { --module-color: linear-gradient(90deg, #475569, #64748b); }
+    .module-more .module-icon { background: rgba(71,85,105,.12); }
+
+    /* ── Decision System ── */
+    .decision { background: var(--surface); }
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) { .decision-grid { grid-template-columns: 1fr 1fr; } }
+    .decision-card {
+      border-radius: 16px;
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .decision-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 80px;
+      background: var(--card-glow);
+      opacity: .3;
+      filter: blur(20px);
+    }
+    .d-l1 { background: rgba(52,211,153,.05); border-color: rgba(52,211,153,.2); --card-glow: radial-gradient(#34d399, transparent); }
+    .d-l2 { background: rgba(99,179,237,.05); border-color: rgba(99,179,237,.2); --card-glow: radial-gradient(#63b3ed, transparent); }
+    .d-l3 { background: rgba(167,139,250,.05); border-color: rgba(167,139,250,.2); --card-glow: radial-gradient(#a78bfa, transparent); }
+    .d-l4 { background: rgba(245,158,11,.05); border-color: rgba(245,158,11,.2); --card-glow: radial-gradient(#f59e0b, transparent); }
+    .decision-level {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .d-l1 .decision-level { color: var(--accent3); }
+    .d-l2 .decision-level { color: var(--accent); }
+    .d-l3 .decision-level { color: var(--accent2); }
+    .d-l4 .decision-level { color: var(--accent4); }
+    .decision-name { font-size: 18px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+    .decision-by { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .decision-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Automation ── */
+    .automation-timeline {
+      max-width: 720px; margin: 0 auto;
+      position: relative;
+    }
+    .automation-timeline::before {
+      content: '';
+      position: absolute;
+      left: 60px; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border), var(--border), transparent);
+    }
+    .timeline-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      margin-bottom: 40px; position: relative;
+    }
+    .timeline-time {
+      width: 72px; flex-shrink: 0;
+      text-align: right;
+      font-size: 13px; font-weight: 600;
+      color: var(--accent);
+      padding-top: 4px;
+    }
+    .timeline-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0; margin-top: 6px;
+      box-shadow: 0 0 12px var(--accent);
+      position: relative; z-index: 1;
+    }
+    .timeline-content { flex: 1; }
+    .timeline-title { font-size: 16px; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+    .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Features ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color .3s;
+    }
+    .feature-card:hover { border-color: rgba(99,179,237,.3); }
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .feature-title { font-size: 16px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+    .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ── Harness Engineering ── */
+    .harness-section { background: var(--surface); }
+    .harness-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 900px) { .harness-cards { grid-template-columns: 1fr; } }
+    .harness-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .harness-card-title { font-size: 15px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+    .harness-card-subtitle { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent2); margin-bottom: 12px; }
+    .harness-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Presets ── */
+    .presets-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) { .presets-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .presets-grid { grid-template-columns: 1fr 1fr; } }
+    .preset-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: border-color .3s, transform .2s;
+      cursor: pointer;
+    }
+    .preset-card:hover { border-color: rgba(99,179,237,.3); transform: translateY(-2px); }
+    .preset-icon { font-size: 28px; margin-bottom: 10px; }
+    .preset-name { font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+    .preset-desc { font-size: 11px; color: var(--muted); }
+
+    /* ── Compliance Regions ── */
+    .regions-grid {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    }
+    .region-chip {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px; color: var(--text);
+      transition: border-color .3s;
+    }
+    .region-chip:hover { border-color: var(--accent3); }
+    .region-flag { font-size: 18px; }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center;
+      padding: 120px 32px;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(99,179,237,.08) 0%, transparent 70%);
+    }
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -.02em;
+      margin-bottom: 24px;
+    }
+    .cta p { font-size: 17px; color: var(--muted); max-width: 500px; margin: 0 auto 48px; }
+    .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo span { font-size: 14px; font-weight: 700; color: var(--heading); }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-version {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(99,179,237,.08);
+      border: 1px solid rgba(99,179,237,.15);
+      color: var(--accent);
+    }
+
+    /* ── Code block ── */
+    .code-block {
+      background: #0d1117;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 24px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      color: #c9d1d9;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+    .code-block .kw { color: #ff7b72; }
+    .code-block .st { color: #a5d6ff; }
+    .code-block .cm { color: #8b949e; }
+    .code-block .fn { color: #d2a8ff; }
+    .code-block .nm { color: #ffa657; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .arch-diagram {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+      }
+      .arch-arrow { transform: rotate(90deg); }
+      .decision-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 28px; }
+      .decision-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Glow pill ── */
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--accent3);
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(52,211,153,.08);
+      border: 1px solid rgba(52,211,153,.2);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="15" stroke="#63b3ed" stroke-width="1.5"/>
+      <circle cx="16" cy="8" r="3" fill="#63b3ed"/>
+      <circle cx="8" cy="22" r="3" fill="#a78bfa"/>
+      <circle cx="24" cy="22" r="3" fill="#34d399"/>
+      <line x1="16" y1="11" x2="8" y2="19" stroke="#63b3ed" stroke-width="1.2" stroke-opacity=".6"/>
+      <line x1="16" y1="11" x2="24" y2="19" stroke="#a78bfa" stroke-width="1.2" stroke-opacity=".6"/>
+      <line x1="11" y1="22" x2="21" y2="22" stroke="#34d399" stroke-width="1.2" stroke-opacity=".6"/>
+    </svg>
+    <span>Syn<em>apse</em></span>
+  </div>
+  <div class="nav-links">
+    <a href="#architecture">架构</a>
+    <a href="#modules">模块</a>
+    <a href="#decisions">决策</a>
+    <a href="#automation">自动化</a>
+  </div>
+  <div class="nav-cta">开始部署</div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Synapse Core v2.1 · Janus Digital
+    </div>
+    <h1 class="gradient-text">AI 协作<br/>运营体系</h1>
+    <p class="hero-sub">
+      知识 ←突触→ 决策 ←突触→ 执行。<br/>
+      一套模块化 AI 团队框架，让 Claude 在你的组织中具备
+      专业分工、自动化流程与完整决策链。
+    </p>
+    <div class="hero-actions">
+      <div class="btn-primary">查看模块架构</div>
+      <div class="btn-ghost">阅读文档</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">13</div>
+        <div class="hero-stat-label">功能模块</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50+</div>
+        <div class="hero-stat-label">专业 AI 成员</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">决策层级</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">全球合规法域</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">部署预设</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT IS SYNAPSE ══ -->
+<section id="architecture">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">核心理念</div>
+      <h2>Synapse 是什么</h2>
+      <p>突触（Synapse）是神经元之间传递信号的关键节点。<br/>我们用同样的逻辑连接三个层：知识、决策、执行。</p>
+    </div>
+
+    <div class="arch-diagram">
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🧠</div>
+        <div class="arch-layer-title">知识层</div>
+        <div class="arch-layer-en">OBS · Obsidian</div>
+        <div class="arch-layer-desc">第二大脑，长期记忆存储。团队知识、项目状态、情报日报均沉淀于此。</div>
+      </div>
+      <div class="arch-arrow-wrap">
+        <div class="arch-arrow">⟷</div>
+        <div class="arch-synapse-label">突触</div>
+      </div>
+      <div class="arch-layer highlight">
+        <div class="arch-layer-icon">⚙️</div>
+        <div class="arch-layer-title">控制层</div>
+        <div class="arch-layer-en">Harness Engineering</div>
+        <div class="arch-layer-desc">规则、约束、流程的定义层。Guides（前馈）+ Sensors（反馈）+ Constraints（约束）。</div>
+      </div>
+      <div class="arch-arrow-wrap">
+        <div class="arch-arrow">⟷</div>
+        <div class="arch-synapse-label">突触</div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🤖</div>
+        <div class="arch-layer-title">执行层</div>
+        <div class="arch-layer-en">Multi-Agent Team</div>
+        <div class="arch-layer-desc">50+ 专业 AI 成员，按职能分工，接收 CEO 派单，独立上下文执行。</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; text-align: center;">
+      <p style="font-size: 13px; color: var(--muted);">Harness Engineering 核心公式</p>
+      <p style="font-size: 1.5rem; font-weight: 700; color: var(--heading); margin-top: 12px;">
+        Agent = Model + <span class="gradient-text">Harness</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HARNESS ENGINEERING ══ -->
+<section class="harness-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Harness Engineering</div>
+      <h2>控制层设计</h2>
+      <p>三类控制机制让 AI 行为可预期、可验证、可演进</p>
+    </div>
+
+    <div class="harness-cards">
+      <div class="harness-card">
+        <div class="harness-card-subtitle">Guides · 前馈控制</div>
+        <div class="harness-card-title">行为约束系统</div>
+        <div class="harness-card-desc">
+          定义 AI 的角色锚定、目标对齐、任务分类逻辑。
+          CEO Guard 硬约束确保执行链不被绕过。
+          P0 约束优先级高于所有其他规则。
+        </div>
+      </div>
+      <div class="harness-card">
+        <div class="harness-card-subtitle">Workflow · 结构化流程</div>
+        <div class="harness-card-title">标准执行链 v2.0</div>
+        <div class="harness-card-desc">
+          开场 → 目标接收 → S/M/L 分级 → 强制派单 →
+          子 Agent 执行 → QA 审查 → 交付。
+          每个环节可追溯，不可跳过。
+        </div>
+      </div>
+      <div class="harness-card">
+        <div class="harness-card-subtitle">Sensors · 反馈控制</div>
+        <div class="harness-card-title">质量门禁</div>
+        <div class="harness-card-desc">
+          qa_auto_review() 评分 ≥ 4.2/6.0 才能交付。
+          integration_qa 执行 YAML/代码校验。
+          execution_auditor 审计执行链完整性。
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div class="code-block">
+<span class="cm"># 强制执行链（任何级别均不可跳过）</span>
+<span class="kw">执行链</span>:
+  <span class="nm">step_1</span>: <span class="st">"Lysander 身份确认（每次必须）"</span>
+  <span class="nm">step_2</span>: <span class="st">"目标接收 → execution_auditor 分级 S/M/L"</span>
+  <span class="nm">step_3</span>: <span class="st">"输出团队派单表（强制，无豁免）"</span>
+  <span class="nm">step_4</span>: <span class="st">"调用 Agent 工具 → 子 Agent 独立执行"</span>
+  <span class="nm">step_5</span>: <span class="fn">qa_auto_review</span>() <span class="cm">≥ 4.2 通过</span>
+  <span class="nm">step_6</span>: <span class="st">"结果交付总裁"</span>
+
+<span class="cm"># CEO 工具白名单（主对话只允许以下）</span>
+<span class="kw">allowed_tools</span>: [<span class="st">Read</span>, <span class="st">Skill</span>, <span class="st">Agent</span>, <span class="st">Glob</span>, <span class="st">Grep</span>]
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODULES ══ -->
+<section id="modules">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">模块系统</div>
+      <h2>13 个功能模块</h2>
+      <p>按需组合，覆盖从战略到执行的全部职能。核心模块强制启用，其余按需激活。</p>
+    </div>
+
+    <div class="modules-grid">
+
+      <!-- Core -->
+      <div class="module-card module-core">
+        <div class="module-header">
+          <div class="module-icon">🏛️</div>
+          <div>
+            <div class="module-title">核心治理层</div>
+            <div class="module-en">Core Governance · 强制启用</div>
+          </div>
+        </div>
+        <div class="module-desc">CEO 执行层、决策框架、质量门禁、HR 治理。所有 Synapse 实例的基础骨架，不可禁用。</div>
+        <div class="module-agents">
+          <span class="agent-chip">CEO Lysander</span>
+          <span class="agent-chip">execution_auditor</span>
+          <span class="agent-chip">decision_advisor</span>
+          <span class="agent-chip">integration_qa</span>
+          <span class="agent-chip">hr_director</span>
+          <span class="agent-chip">capability_architect</span>
+        </div>
+      </div>
+
+      <!-- Harness Ops -->
+      <div class="module-card module-harness">
+        <div class="module-header">
+          <div class="module-icon">⚙️</div>
+          <div>
+            <div class="module-title">驾驭运维部</div>
+            <div class="module-en">Harness Operations · 强制启用</div>
+          </div>
+        </div>
+        <div class="module-desc">Synapse 体系的自我维护与进化能力。配置工程、工具链开发、版本管理、Gap 分析。</div>
+        <div class="module-agents">
+          <span class="agent-chip">harness_engineer</span>
+          <span class="agent-chip">ai_systems_dev</span>
+          <span class="agent-chip">harness_qa</span>
+          <span class="agent-chip">evolution_engine</span>
+        </div>
+      </div>
+
+      <!-- Strategy -->
+      <div class="module-card module-strategy">
+        <div class="module-header">
+          <div class="module-icon">🎯</div>
+          <div>
+            <div class="module-title">战略管理部</div>
+            <div class="module-en">Strategy</div>
+          </div>
+        </div>
+        <div class="module-desc">战略规划、竞争情报、商业模式设计、OKR 对齐、AI 前沿追踪。蓝海策略到市场规模测算全覆盖。</div>
+        <div class="module-agents">
+          <span class="agent-chip">chief_strategist</span>
+          <span class="agent-chip">business_model_analyst</span>
+          <span class="agent-chip">competitive_intelligence</span>
+          <span class="agent-chip">relation_discovery</span>
+          <span class="agent-chip">ai_tech_researcher</span>
+        </div>
+      </div>
+
+      <!-- Engineering -->
+      <div class="module-card module-engineering">
+        <div class="module-header">
+          <div class="module-icon">💻</div>
+          <div>
+            <div class="module-title">研发技术部</div>
+            <div class="module-en">Engineering</div>
+          </div>
+        </div>
+        <div class="module-desc">全栈开发、架构设计、DevOps、AI/ML 工程。后端安全自审（SQL 注入/N+1/TOCTOU）+ CI/CD 全流程。</div>
+        <div class="module-agents">
+          <span class="agent-chip">tech_lead</span>
+          <span class="agent-chip">backend_engineer</span>
+          <span class="agent-chip">frontend_engineer</span>
+          <span class="agent-chip">devops_engineer</span>
+          <span class="agent-chip">ai_ml_engineer</span>
+          <span class="agent-chip">qa_engineer</span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="module-card module-content">
+        <div class="module-header">
+          <div class="module-icon">✍️</div>
+          <div>
+            <div class="module-title">内容创作部</div>
+            <div class="module-en">Content & Creative</div>
+          </div>
+        </div>
+        <div class="module-desc">内容矩阵规划、SEO 长文创作、技术文档工程（Diataxis）、多媒体制作、AI 辅助视觉、培训课程设计。</div>
+        <div class="module-agents">
+          <span class="agent-chip">content_strategist</span>
+          <span class="agent-chip">content_writer</span>
+          <span class="agent-chip">technical_writer</span>
+          <span class="agent-chip">visual_designer</span>
+          <span class="agent-chip">training_designer</span>
+          <span class="agent-chip">ai_visual_creator</span>
+          <span class="agent-chip">publishing_ops</span>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="module-card module-marketing">
+        <div class="module-header">
+          <div class="module-icon">📈</div>
+          <div>
+            <div class="module-title">市场营销部</div>
+            <div class="module-en">Marketing</div>
+          </div>
+        </div>
+        <div class="module-desc">AARRR 增长漏斗、数字广告投放、品牌定位、社交媒体运营、销售赋能物料（MEDDIC/ROI 计算器）。</div>
+        <div class="module-agents">
+          <span class="agent-chip">growth_lead</span>
+          <span class="agent-chip">digital_marketer</span>
+          <span class="agent-chip">brand_strategist</span>
+          <span class="agent-chip">social_media_manager</span>
+          <span class="agent-chip">sales_enablement</span>
+        </div>
+      </div>
+
+      <!-- Compliance -->
+      <div class="module-card module-compliance">
+        <div class="module-header">
+          <div class="module-icon">🌐</div>
+          <div>
+            <div class="module-title">合规部</div>
+            <div class="module-en">Compliance · 多法域</div>
+          </div>
+        </div>
+        <div class="module-desc">全球合规框架 + 按需激活的地区专家。通用 DPO、审计专员为基础，地区专家按 active_regions 配置。</div>
+        <div class="module-agents">
+          <span class="agent-chip">compliance_lead</span>
+          <span class="agent-chip">data_protection_officer</span>
+          <span class="agent-chip">compliance_auditor</span>
+          <span class="agent-chip">GDPR 专家</span>
+          <span class="agent-chip">AI Act 专家</span>
+          <span class="agent-chip">UAE 合规</span>
+          <span class="agent-chip">+更多地区</span>
+        </div>
+      </div>
+
+      <!-- Operations -->
+      <div class="module-card module-ops">
+        <div class="module-header">
+          <div class="module-icon">🔄</div>
+          <div>
+            <div class="module-title">运营管理部</div>
+            <div class="module-en">Operations</div>
+          </div>
+        </div>
+        <div class="module-desc">端到端流程优化、跨系统工作流自动化（n8n/Zapier/RPA）、知识库架构、SOP 版本管理。</div>
+        <div class="module-agents">
+          <span class="agent-chip">ops_manager</span>
+          <span class="agent-chip">automation_engineer</span>
+          <span class="agent-chip">knowledge_engineer</span>
+        </div>
+      </div>
+
+      <!-- More Modules -->
+      <div class="module-card module-more">
+        <div class="module-header">
+          <div class="module-icon">＋</div>
+          <div>
+            <div class="module-title">更多模块</div>
+            <div class="module-en">按需启用</div>
+          </div>
+        </div>
+        <div class="module-desc">根据业务阶段选择性激活，避免臃肿。</div>
+        <div class="module-agents" style="margin-top: 16px;">
+          <span class="agent-chip">📦 产品管理部</span>
+          <span class="agent-chip">⚖️ 法务部</span>
+          <span class="agent-chip">💰 财务部</span>
+          <span class="agent-chip">📊 数据部</span>
+          <span class="agent-chip">🤝 客户成功部</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DECISION SYSTEM ══ -->
+<section id="decisions" class="decision">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">决策体系</div>
+      <h2>四级决策框架</h2>
+      <p>专业问题留在专家层，只有真正的战略级决策才触达总裁。</p>
+    </div>
+
+    <div class="decision-grid">
+      <div class="decision-card d-l1">
+        <div class="decision-level">L1 · 自动执行</div>
+        <div class="decision-name">系统自动</div>
+        <div class="decision-by">决策者：规则引擎</div>
+        <div class="decision-desc">例行操作、标准流程、信息查询。直接执行，记录日志，不打扰任何人。</div>
+      </div>
+      <div class="decision-card d-l2">
+        <div class="decision-level">L2 · 专家评审</div>
+        <div class="decision-name">智囊团分析</div>
+        <div class="decision-by">决策者：领域专家</div>
+        <div class="decision-desc">专业问题先由领域专家分析，形成多维建议方案后提交决策。</div>
+      </div>
+      <div class="decision-card d-l3">
+        <div class="decision-level">L3 · 管理决策</div>
+        <div class="decision-name">Lysander CEO</div>
+        <div class="decision-by">决策者：AI CEO</div>
+        <div class="decision-desc">基于专家建议做最终管理决策。跨团队协调、资源分配、方案取舍。不上报总裁。</div>
+      </div>
+      <div class="decision-card d-l4">
+        <div class="decision-level">L4 · 总裁决策</div>
+        <div class="decision-name">总裁刘子杨</div>
+        <div class="decision-by">决策者：最高决策者</div>
+        <div class="decision-desc">仅限：外部合同签署 · 预算 >100 万 · 公司存续级不可逆决策。</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; text-align: center; padding: 24px; background: var(--surface2); border-radius: 12px; border: 1px solid var(--border);">
+      <p style="font-size: 14px; color: var(--muted); max-width: 640px; margin: 0 auto; line-height: 1.7;">
+        <strong style="color: var(--heading);">核心原则：</strong>
+        总裁只参与两个阶段——<strong style="color: var(--accent);">提出目标</strong> 和 <strong style="color: var(--accent);">最终验收</strong>。
+        中间所有过程由 Lysander CEO 全权负责，包括方案设计、决策、执行、审查。
+        <br/><span style="color: var(--accent3);">专业的事交给专家，不上报让总裁猜。</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HR GOVERNANCE ══ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Agent HR 管理制度</div>
+      <h2>严格的人才质量标准</h2>
+      <p>每一位 AI 团队成员都需经过审批，能力描述必须达到可验证的方法论级别。</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto;">
+      <div style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🟢</div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--accent3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em;">A 级 · 优秀</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">"基于 pytest + Playwright 的端到端测试框架搭建与维护"</div>
+      </div>
+      <div style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🟡</div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--accent4); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em;">B 级 · 合格</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">"SWOT 分析、PEST 分析、波特五力模型应用"</div>
+      </div>
+      <div style="text-align: center; padding: 32px 24px; background: var(--surface); border: 1px solid rgba(248,113,113,.2); border-radius: 16px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🔴</div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--accent5); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em;">C 级 · 自动拒绝</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">"项目管理"、"知识沉淀"（无方法论，禁止出现）</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap;">
+      <div class="pill">✓ 新 Agent 须提交 hr_director 入职审批</div>
+      <div class="pill">✓ 重叠度 &gt;30% 不予批准（Jaccard 检测）</div>
+      <div class="pill">✓ 默认 probation 状态，评审通过后升 active</div>
+      <div class="pill">✓ 每周自动运行 audit_all_agents()</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AUTOMATION ══ -->
+<section id="automation" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">自动化编排</div>
+      <h2>无需总裁在线的全天候运转</h2>
+      <p>三个定时 Agent 按 Dubai 时区编排，情报→行动→通知形成完整闭环。</p>
+    </div>
+
+    <div class="automation-timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">06:00</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">🔄 任务自动恢复 Agent</div>
+          <div class="timeline-desc">读取 active_tasks.yaml，恢复阻塞已解除的任务，续接跨会话未完成工作，生成任务状态摘要。</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">08:00</div>
+        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 12px var(--accent2);"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">📡 情报日报 Agent</div>
+          <div class="timeline-desc">搜索 AI 前沿动态，ai_tech_researcher 筛选实践价值内容，生成结构化情报日报 → HTML → git push 自动发布。</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:00</div>
+        <div class="timeline-dot" style="background: var(--accent3); box-shadow: 0 0 12px var(--accent3);"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">⚡ 情报行动 Agent</div>
+          <div class="timeline-desc">提取日报中的可执行建议，4 位专家评估优先级，Harness Ops 团队执行批准项，生成行动成果报告 → HTML → git push。</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">完成</div>
+        <div class="timeline-dot" style="background: var(--accent4); box-shadow: 0 0 12px var(--accent4);"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">💬 Slack 通知总裁</div>
+          <div class="timeline-desc">自动推送当日情报摘要与行动完成情况，总裁随时查看，无需参与中间过程。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">核心能力</div>
+      <h2>让 AI 团队真正可靠运转</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(99,179,237,.1);">🔗</div>
+        <div class="feature-title">跨会话状态持久化</div>
+        <div class="feature-desc">active_tasks.yaml 记录执行链环节与阻塞项，新会话自动读取恢复，任务不因换日或换会话中断。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(167,139,250,.1);">🛡️</div>
+        <div class="feature-title">CEO Guard 防护</div>
+        <div class="feature-desc">PreToolUse hook 注入审计提醒，阻止 CEO 在主对话直接调用执行工具，强制执行派单流程。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(52,211,153,.1);">📦</div>
+        <div class="feature-title">模块化组合部署</div>
+        <div class="feature-desc">13 个模块按需激活，synapse-instance.yaml 控制加载范围，支持 5 种标准预设一键部署。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(245,158,11,.1);">🔄</div>
+        <div class="feature-title">一句话升级</div>
+        <div class="feature-desc">说"升级 Synapse"自动拉取最新版本，保留个人化配置，QA 验证完整性，提示重启即可生效。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(248,113,113,.1);">📊</div>
+        <div class="feature-title">能力 Gap 矩阵分析</div>
+        <div class="feature-desc">evolution_engine 定期运行 P0/P1/P2 三级 Gap 分析，自动识别能力缺口并触发新 Agent 入职流程。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(6,182,212,.1);">🌍</div>
+        <div class="feature-title">全球合规法域覆盖</div>
+        <div class="feature-desc">GDPR / EU AI Act / PIPL / UAE PDPL / CCPA / UK GDPR / APAC 隐私法，按 active_regions 按需激活。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRESETS ══ -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">部署预设</div>
+      <h2>5 种标准配置，开箱即用</h2>
+      <p>根据组织规模和业务阶段选择预设，避免过度配置。</p>
+    </div>
+    <div class="presets-grid">
+      <div class="preset-card">
+        <div class="preset-icon">🚀</div>
+        <div class="preset-name">Startup</div>
+        <div class="preset-desc">创业期精简配置<br/>Core + Strategy + Engineering</div>
+      </div>
+      <div class="preset-card">
+        <div class="preset-icon">🏢</div>
+        <div class="preset-name">SMB</div>
+        <div class="preset-desc">成长期全面配置<br/>+ Content + Marketing + Ops</div>
+      </div>
+      <div class="preset-card">
+        <div class="preset-icon">💻</div>
+        <div class="preset-name">Tech Team</div>
+        <div class="preset-desc">技术团队专注配置<br/>+ Engineering + Data + DevOps</div>
+      </div>
+      <div class="preset-card">
+        <div class="preset-icon">✍️</div>
+        <div class="preset-name">Content Creator</div>
+        <div class="preset-desc">内容创作者配置<br/>+ Content + Marketing + Strategy</div>
+      </div>
+      <div class="preset-card">
+        <div class="preset-icon">🏦</div>
+        <div class="preset-name">Enterprise</div>
+        <div class="preset-desc">企业全量配置<br/>全部 13 个模块激活</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPLIANCE REGIONS ══ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">全球合规覆盖</div>
+      <h2>法域专家按需激活</h2>
+      <p>合规部采用"通用核心 + 地区专家"架构，active_regions 精确控制加载范围。</p>
+    </div>
+    <div class="regions-grid">
+      <div class="region-chip"><span class="region-flag">🇪🇺</span> GDPR · EU AI Act</div>
+      <div class="region-chip"><span class="region-flag">🇨🇳</span> PIPL · 网络安全法 · 等保2.0</div>
+      <div class="region-chip"><span class="region-flag">🇦🇪</span> UAE PDPL · DIFC · ADGM</div>
+      <div class="region-chip"><span class="region-flag">🇺🇸</span> CCPA · HIPAA · SOX · 20+州法</div>
+      <div class="region-chip"><span class="region-flag">🇬🇧</span> UK GDPR · DPA 2018</div>
+      <div class="region-chip"><span class="region-flag">🌏</span> APAC · APPI · PDPA · Privacy Act</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta">
+  <div class="container">
+    <div class="tag" style="margin-bottom: 24px;">Synapse Core v2.1.0</div>
+    <h2>让你的 AI 团队<br/>真正运转起来</h2>
+    <p>从单一对话框到完整的 AI 运营体系，<br/>Synapse 是知识、决策、执行三层的连接枢纽。</p>
+    <div class="cta-actions">
+      <div class="btn-primary">开始部署 →</div>
+      <div class="btn-ghost">查看 CHANGELOG</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap;">
+    <div class="footer-logo">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" stroke="#63b3ed" stroke-width="1.2"/>
+        <circle cx="12" cy="6" r="2" fill="#63b3ed"/>
+        <circle cx="6" cy="17" r="2" fill="#a78bfa"/>
+        <circle cx="18" cy="17" r="2" fill="#34d399"/>
+        <line x1="12" y1="8" x2="6" y2="15" stroke="#63b3ed" stroke-width="1" stroke-opacity=".5"/>
+        <line x1="12" y1="8" x2="18" y2="15" stroke="#a78bfa" stroke-width="1" stroke-opacity=".5"/>
+        <line x1="8" y1="17" x2="16" y2="17" stroke="#34d399" stroke-width="1" stroke-opacity=".5"/>
+      </svg>
+      <span>Synapse</span>
+    </div>
+    <span class="footer-copy">© 2026 Janus Digital · Lysander AI 协作运营体系</span>
+  </div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <span class="footer-version">v2.1.0</span>
+    <span style="font-size: 12px; color: var(--muted);">2026-04-17</span>
+  </div>
+</footer>
+
+</body>
+</html>

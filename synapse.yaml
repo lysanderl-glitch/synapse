@@ -1,27 +1,61 @@
 # Synapse Configuration
-# Edit this file to customize your AI team setup
+# ─────────────────────────────────────────────────────────────────
+# Quick start: fill in the three fields below, then run `synapse init`
+# to assemble your CLAUDE.md. That's it.
+# ─────────────────────────────────────────────────────────────────
 
 organization:
-  ceo_name: "Lysander"          # Your AI CEO's name
-  president_name: "YourName"     # Your name (the human operator)
-  org_name: "YourOrg"           # Your company/team name
+  ceo_name: "YourCEO"           # Your AI CEO's name (e.g. "Aria", "Max")
+  president_name: "YourName"    # Your name — the human operator / president
+  org_name: "YourOrg"          # Your company or team name (e.g. "Acme Inc")
 
-# Select which modules to enable
-# Available: strategy, engineering, product, marketing, finance,
-#            operations, customer_success, legal, data, content
+# ─────────────────────────────────────────────────────────────────
+# Select which department modules to enable.
+# Each module adds a set of specialist agents to your team.
+#
+# Available modules:
+#   strategy          — Think tank, advisory, decision support
+#   engineering       — R&D, software development, systems
+#   harness_ops       — Harness engineering, execution chain, compliance
+#   product           — Product management, roadmap, specs
+#   content           — Content creation, article generation, media
+#   growth            — Marketing, growth hacking, SEO
+#   operations        — PMO, delivery, IoT, operations management
+#   obs               — Knowledge base (Obsidian), OBS management
+#   data              — Data analysis, reporting, BI
+#   finance           — Financial planning, budgeting
+#   legal             — Compliance, contracts, legal review
+#   customer_success  — Support, onboarding, customer health
+# ─────────────────────────────────────────────────────────────────
 modules:
   - strategy          # Think tank & advisory
   - engineering       # R&D team
+  - harness_ops       # Execution chain & compliance
 
+# ─────────────────────────────────────────────────────────────────
 # Optional features
+# ─────────────────────────────────────────────────────────────────
 features:
   spe: false          # Synapse Personal Engine (personal task management)
-  automation: false   # Automated scheduling (requires external triggers)
+  automation: false   # Automated daily pipeline (requires n8n / external triggers)
+  obs: false          # Obsidian second-brain integration
 
-# Preset override (if set, overrides modules list above)
-# preset: startup     # Options: startup, smb, tech_team, content_creator, enterprise
+# ─────────────────────────────────────────────────────────────────
+# Preset override — if set, overrides the modules list above.
+# Presets are pre-configured module bundles for common team shapes.
+#
+# Options:
+#   startup           — strategy + engineering + growth (lean team)
+#   smb               — strategy + operations + content + finance
+#   tech_team         — engineering + harness_ops + data + product
+#   content_creator   — content + growth + obs
+#   enterprise        — all modules enabled
+# ─────────────────────────────────────────────────────────────────
+# preset: startup
 
-# Advanced settings
+# ─────────────────────────────────────────────────────────────────
+# Advanced settings — usually no need to change these
+# ─────────────────────────────────────────────────────────────────
 settings:
   upgrade_url: "https://lysander.bond/synapse/version.json"
-  team_count: auto    # "auto" = calculated from enabled modules
+  team_count: auto    # "auto" = calculated from enabled modules at init time

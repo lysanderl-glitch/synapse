@@ -13,28 +13,12 @@
     "ceo_name": "Lysander",
     "modules_enabled": [
       "core",
-      "compliance",
-      "content",
-      "customer_success",
-      "data",
-      "engineering",
-      "finance",
-      "harness_ops",
-      "legal",
-      "marketing",
-      "operations",
-      "product",
-      "strategy"
+      "compliance"
     ],
     "skills_registered": [
       "dispatch",
       "synapse",
-      "qa-gate",
-      "daily-blog",
-      "dev-plan",
-      "dev-review",
-      "dev-qa",
-      "dev-ship"
+      "qa-gate"
     ],
     "features": {
       "spe": false,

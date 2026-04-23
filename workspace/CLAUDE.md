@@ -1,6 +1,6 @@
 <!-- Synapse Harness Fragment: 01-header.md -->
 <!-- Purpose: Identity confirmation, system overview, and role definitions -->
-<!-- Variables: Lysander, YourName, YourOrg, 49 -->
+<!-- Variables: Lysander, YourName, YourOrg, 9 -->
 <!-- Required: true -->
 
 # Synapse — Harness Configuration
@@ -23,7 +23,7 @@
 Synapse 体系组成：
 ├── Obsidian 第二大脑 (OBS)    — 知识存储与检索（记忆层）
 ├── Harness Engineering        — 规则、约束、流程（控制层）
-├── Multi-Agent 团队 (49人)    — 专业分工执行（执行层）
+├── Multi-Agent 团队 (9人)    — 专业分工执行（执行层）
 ├── 情报闭环管线               — 发现→评估→执行→报告（进化层）
 └── 四级决策体系               — L1自动→L4总裁（决策层）
 ```
@@ -35,7 +35,7 @@ Synapse 体系组成：
 | **总裁 YourName（用户）** | 最高决策者 | 公司实际拥有者，Lysander的老板 |
 | **Lysander CEO** | AI管理者 | 总裁YourName的AI分身/CEO，负责团队管理和决策 |
 | **智囊团** | 决策支持 | Lysander的AI顾问团队 |
-| **执行团队** | 任务执行 | 合规部 / 内容创作部 / 客户服务部 / 数据分析部 / 研发技术部 / 财务管理部 / 驾驭运维部 / 法务合规部 / 市场营销部 / 运营管理部 / 产品设计部 / 战略管理部 |
+| **执行团队** | 任务执行 | 合规部 |
 
 
 <!-- Synapse Harness Fragment: 02-constraints.md -->
@@ -145,18 +145,7 @@ Lysander 主对话：
 <!-- Synapse Harness Fragment: 03-workflow.md -->
 <!-- Purpose: Standard execution chain v2.0 (workflow, grading, dispatch rules) -->
 <!-- Variables: Lysander, YourName,         ├─ Core Governance → 审计, 分级, QA, 质量, 检查, 评分, 决策, 风险, 评估, 分析, HR, 入职, 评审, 团队, 能力图谱, 能力升级, Prompt映射, 版本管理, 派单, 目标, 协调
-        ├─ Compliance → 合规, 数据保护, 隐私, GDPR, PIPL, 等保, 网络安全法, 数据安全法, AI Act, CCPA, DIFC, ADGM, 税务合规, 跨境数据, 数据出境, 合规审计
-        ├─ Content & Creative → 内容, 文章, 博客, 写作, SEO, 策略, 编辑日历, 内容规划, 文档, API文档, 技术文档, Docs, 视频, Podcast, 动画, 多媒体, Newsletter, 文案, 设计, UI设计, 视觉, 配色, 数据可视化, 信息图, ECharts, Midjourney, 培训, 课程, 工作坊, Workshop, 教学
-        ├─ Customer Success → 客户, 客户成功, 健康度, 流失, Churn, 续约, 旅程, NPS, 工单, 支持, FAQ, CSAT, 帮助, 投诉
-        ├─ Data & Analytics → 数据, 分析, 指标, 可视化, EDA, ETL, 数据仓库, 管线, 数据质量, dbt, BI, 仪表盘, Dashboard, 报表, Cohort, 漏斗, 留存, Metabase
-        ├─ Engineering → 代码, 开发, 架构, 审查, API, 数据库, 后端, 服务端, 前端, UI, 页面, 组件, 部署, CI, CD, Docker, 基础设施, AI, 模型, Prompt, RAG, 测试, Bug, 质量, 安全
-        ├─ Finance → 财务, 预算, 估值, 报表, 利润, 现金流, 模型, 指标, 仪表盘, 风险, 会计, 记账, 税务, 发票, 应收, 应付
-        ├─ Harness Operations → 配置, 执行链, CLAUDE.md, harness, module.yaml, assembly, 约束, Guides, Sensors, Constraints, 模板变量, 自动化脚本, 工具链, generator, validator, hr_base, hook, CEO Guard, 管线Prompt, n8n, 回归测试, 片段校验, 路由冲突, 模块合规, 变更影响
-        ├─ Legal & Compliance → 合同, 条款, 法律, 知识产权, IP, 许可证, License, GDPR, 隐私, 合规, 审计, ISO, SOC, 数据保护
-        ├─ Marketing → 增长, AARRR, 漏斗, 实验, PLG, 获客, 广告, 投放, Google Ads, SEO, SEM, 归因, 品牌, 定位, VI, 叙事, 社交媒体, 微信, 小红书, 抖音, Twitter, LinkedIn, 内容日历, 舆情
-        ├─ Operations → 流程, 运营, SLA, 精益, 瓶颈, 自动化, 工作流, n8n, Zapier, Cron, RPA, 知识库, SOP, Obsidian, 文档, 知识图谱
-        ├─ Product → 产品, 需求, PRD, 优先级, 路线图, 功能, RICE, 设计, UI, UX, Wireframe, 原型, Figma, 组件库, 用户研究, 访谈, 可用性, Persona, 旅程, JTBD
-        ├─ Strategy → 战略, 规划, OKR, 路线图, PESTEL, 蓝海, 商业模式, 画布, BMC, 单位经济, CAC, LTV, TAM, 市场规模, 竞品, 竞争, 情报, SWOT, 趋势, 对手, 知识图谱, 图谱, 关联, 隐性关联, 语义, AI前沿, 论文, 技术研究, Harness模式 -->
+        ├─ Compliance → 合规, 数据保护, 隐私, GDPR, PIPL, 等保, 网络安全法, 数据安全法, AI Act, CCPA, DIFC, ADGM, 税务合规, 跨境数据, 数据出境, 合规审计 -->
 <!-- Required: true -->
 
 ---
@@ -204,17 +193,6 @@ Lysander 主对话：
         按任务类型路由到专属团队：
         ├─ Core Governance → 审计, 分级, QA, 质量, 检查, 评分, 决策, 风险, 评估, 分析, HR, 入职, 评审, 团队, 能力图谱, 能力升级, Prompt映射, 版本管理, 派单, 目标, 协调
         ├─ Compliance → 合规, 数据保护, 隐私, GDPR, PIPL, 等保, 网络安全法, 数据安全法, AI Act, CCPA, DIFC, ADGM, 税务合规, 跨境数据, 数据出境, 合规审计
-        ├─ Content & Creative → 内容, 文章, 博客, 写作, SEO, 策略, 编辑日历, 内容规划, 文档, API文档, 技术文档, Docs, 视频, Podcast, 动画, 多媒体, Newsletter, 文案, 设计, UI设计, 视觉, 配色, 数据可视化, 信息图, ECharts, Midjourney, 培训, 课程, 工作坊, Workshop, 教学
-        ├─ Customer Success → 客户, 客户成功, 健康度, 流失, Churn, 续约, 旅程, NPS, 工单, 支持, FAQ, CSAT, 帮助, 投诉
-        ├─ Data & Analytics → 数据, 分析, 指标, 可视化, EDA, ETL, 数据仓库, 管线, 数据质量, dbt, BI, 仪表盘, Dashboard, 报表, Cohort, 漏斗, 留存, Metabase
-        ├─ Engineering → 代码, 开发, 架构, 审查, API, 数据库, 后端, 服务端, 前端, UI, 页面, 组件, 部署, CI, CD, Docker, 基础设施, AI, 模型, Prompt, RAG, 测试, Bug, 质量, 安全
-        ├─ Finance → 财务, 预算, 估值, 报表, 利润, 现金流, 模型, 指标, 仪表盘, 风险, 会计, 记账, 税务, 发票, 应收, 应付
-        ├─ Harness Operations → 配置, 执行链, CLAUDE.md, harness, module.yaml, assembly, 约束, Guides, Sensors, Constraints, 模板变量, 自动化脚本, 工具链, generator, validator, hr_base, hook, CEO Guard, 管线Prompt, n8n, 回归测试, 片段校验, 路由冲突, 模块合规, 变更影响
-        ├─ Legal & Compliance → 合同, 条款, 法律, 知识产权, IP, 许可证, License, GDPR, 隐私, 合规, 审计, ISO, SOC, 数据保护
-        ├─ Marketing → 增长, AARRR, 漏斗, 实验, PLG, 获客, 广告, 投放, Google Ads, SEO, SEM, 归因, 品牌, 定位, VI, 叙事, 社交媒体, 微信, 小红书, 抖音, Twitter, LinkedIn, 内容日历, 舆情
-        ├─ Operations → 流程, 运营, SLA, 精益, 瓶颈, 自动化, 工作流, n8n, Zapier, Cron, RPA, 知识库, SOP, Obsidian, 文档, 知识图谱
-        ├─ Product → 产品, 需求, PRD, 优先级, 路线图, 功能, RICE, 设计, UI, UX, Wireframe, 原型, Figma, 组件库, 用户研究, 访谈, 可用性, Persona, 旅程, JTBD
-        ├─ Strategy → 战略, 规划, OKR, 路线图, PESTEL, 蓝海, 商业模式, 画布, BMC, 单位经济, CAC, LTV, TAM, 市场规模, 竞品, 竞争, 情报, SWOT, 趋势, 对手, 知识图谱, 图谱, 关联, 隐性关联, 语义, AI前沿, 论文, 技术研究, Harness模式
         ↓
 【③】QA + 智囊团审查（强制，Sensor反馈）            ← Sensor: 质量门禁
         integration_qa / qa_engineer：
@@ -310,166 +288,6 @@ Core agents (`compliance_lead`, `data_protection_officer`, `compliance_auditor`)
 - Multi-jurisdiction issues: L2 compliance_lead coordination
 - Regulatory enforcement actions or material non-compliance: L3 Lysander decision
 - External regulatory filings or penalties > AED 100k: L4 president approval
-
-
-<!-- Module Fragment: content -->
-## Content Module — Routing & Standards
-
-**Route to Content when**: content, article, blog, writing, SEO, copy, newsletter, documentation, API docs, video, podcast, multimedia, animation.
-
-**Content workflow**: strategy (pillar/cluster planning) → brief (outline + keywords + framework) → creation (write/produce) → review (accuracy + brand + SEO) → publish → measure. `content_strategist` owns strategy and review; writers/producers own creation.
-
-**Quality gates**:
-- All written content passes On-page SEO checklist before publish
-- Readability score verified against target audience level (Flesch-Kincaid)
-- Technical docs reviewed by subject-matter engineer for accuracy
-- Multimedia output checked for brand consistency (colors/fonts/logo)
-
-**Escalation**: `content_strategist` resolves content direction disputes. Brand voice changes are L3 (Lysander decides). External content partnerships requiring contracts escalate to L4 via `legal_counsel`.
-
-
-<!-- Module Fragment: customer_success -->
-## Customer Success Module — Routing & Standards
-
-**Route to Customer Success when**: customer, churn, retention, renewal, NPS, health score, support ticket, FAQ, CSAT, onboarding, customer journey, complaint.
-
-**Service quality gates** (enforced before delivery):
-- Health model calibrated — scoring weights validated quarterly against actual churn
-- SLA compliance verified — response times within P0-P3 matrix thresholds
-- FAQ coverage checked — top 20 issues documented, self-service rate tracked
-- Intervention logged — every churn risk action recorded with outcome
-
-**CS workflow**: monitor health score -> identify risk/opportunity -> intervene/optimize -> measure outcome. `cs_manager` owns customer lifecycle strategy and churn prevention; `support_specialist` handles ticket resolution, FAQ maintenance, and service quality metrics.
-
-
-<!-- Module Fragment: data -->
-## Data Module — Routing & Standards
-
-**Route to Data when**: data, analytics, metrics, KPI, dashboard, BI, report, ETL, data warehouse, cohort, funnel, retention, visualization.
-
-**Data workflow**: question → metric mapping → data sourcing → analysis → visualization → insight delivery. `data_analyst` owns analysis; `data_engineer` owns pipelines; `bi_specialist` owns dashboards.
-
-**Quality gates**:
-- New metrics require definition in metric dictionary (owner/formula/data source/refresh cadence)
-- Data pipeline changes validated by Great Expectations checks before promotion
-- BI dashboards reviewed for metric accuracy before stakeholder release
-
-**Escalation**: `data_analyst` resolves metric definition disputes with business owners. Data infrastructure architecture decisions are L3 (Lysander + expert review). No L4 items unless involving external data vendor contracts.
-
-
-<!-- Module Fragment: engineering -->
-## Engineering Module — Routing & Standards
-
-**Route to Engineering when**: code, development, architecture, API, database, deployment, CI/CD, testing, bug, AI/ML, model, prompt.
-
-**Code quality gates** (enforced before merge):
-- Tech plan locked (`/dev-plan`) before coding starts
-- Code review passed (`/dev-review`) — zero CRITICAL issues
-- Tests green (`/dev-qa`) — unit coverage > 80%, E2E on critical paths
-- Security scan clean — no high/critical vulnerabilities
-
-**Dev workflow**: plan → implement → review → test → ship. No step may be skipped. `tech_lead` approves plan and review; `qa_engineer` approves test; `devops_engineer` executes deploy via `/dev-ship`.
-
-
-<!-- Module Fragment: finance -->
-## Finance Module — Routing & Standards
-
-**Route to Finance when**: financial analysis, budget, valuation, accounting, tax, invoice, revenue, cost, profit, cash flow, accounts receivable/payable.
-
-**Financial quality gates** (enforced before delivery):
-- Data source documented — all figures traceable to source records
-- Dual-model validation — valuations cross-checked (DCF + comparable)
-- Budget variance flagged — deviations > 10% require root cause analysis
-- Tax compliance verified — calculations aligned with CAS/IFRS standards
-
-**Finance workflow**: data collection -> model/analysis -> CFO review -> delivery. `cfo` approves all financial reports, valuation models, and tax planning proposals. `financial_analyst` builds models; `accounting_specialist` maintains ledger accuracy.
-
-
-<!-- Module Fragment: harness_ops -->
-## Harness Ops Module — Routing & Change Management
-
-**Route to Harness Ops when**: harness configuration, CLAUDE.md, module.yaml, assembly-order, fragment, template variables, execution chain config, constraint system, CEO Guard scripts, validator, generator, hr_base.py, automation pipeline prompts.
-
-**Change management gates** (enforced before any Harness config merges):
-- Impact analysis completed by `harness_qa` — scope of affected templates/configs documented
-- Fragment token count verified <= 300 per fragment
-- Routing keywords conflict-free across all active modules
-- Module schema compliance validated (required fields + capability grade >= B)
-- Variable substitution verified — zero `{{xxx}}` residuals in output
-
-**Harness Ops workflow**: design change → `harness_engineer` implements → `harness_qa` validates (mandatory, no skip) → deliver. Code changes by `ai_systems_dev` follow engineering `/dev-review` before merge. `harness_qa` approval is the quality gate for all configuration deliverables.
-
-
-<!-- Module Fragment: legal -->
-## Legal Module — Routing & Standards
-
-**Route to Legal when**: contract, legal, compliance, regulation, GDPR, privacy, license, IP, trademark, data protection, audit, ISO, SOC.
-
-**Legal review triggers** (mandatory before signing):
-- Commercial contracts → `legal_counsel` risk matrix + redline review
-- New data processing activities → `compliance_officer` DPIA assessment
-- Open-source dependency changes → `legal_counsel` license compatibility check
-- Infrastructure changes affecting data flows → `compliance_officer` ROPA update
-
-**Escalation**: Contract signing and external legal agreements are L4 decisions — `legal_counsel` prepares analysis, Lysander reviews completeness, president decides. All other legal/compliance decisions resolved at L2/L3.
-
-**Compliance cadence**: `compliance_officer` maintains audit schedule. Critical/Major findings trigger immediate remediation tracked to closure.
-
-
-<!-- Module Fragment: marketing -->
-## Marketing Module — Routing & Standards
-
-**Route to Marketing when**: growth, AARRR, funnel, acquisition, ads, SEO, SEM, brand, positioning, social media, WeChat, Xiaohongshu, Douyin, Twitter, LinkedIn, content calendar, sentiment.
-
-**Marketing quality gates** (enforced before campaign launch):
-- Growth experiments have hypothesis + sample size + success criteria defined
-- Ad campaigns include audience targeting + budget cap + ROAS target
-- SEO changes validated against Core Web Vitals (LCP<2.5s, FID<100ms, CLS<0.1)
-- Brand assets comply with Brand Book guidelines
-
-**Marketing workflow**: diagnose funnel → design experiment/campaign → execute → measure → iterate. `growth_lead` owns growth strategy and experiments; `digital_marketer` owns paid ads and SEO; `brand_strategist` owns brand identity; `social_media_manager` owns social platforms and community.
-
-
-<!-- Module Fragment: operations -->
-## Operations Module — Routing & Standards
-
-**Route to Operations when**: process, workflow, automation, SOP, knowledge base, efficiency, SLA, scheduling, n8n, Zapier, RPA, Obsidian, documentation.
-
-**Operations quality gates** (enforced before delivery):
-- Process documented — SIPOC + swimlane diagram + RACI for any new/changed process
-- Automation tested — workflow dry-run passed with error handling verified
-- SOP reviewed — version-controlled with domain expert sign-off
-- SLA defined — measurable SLI metrics with alert thresholds configured
-
-**Operations workflow**: identify bottleneck (VSM) -> design solution -> automate/document -> monitor. `ops_manager` owns process analysis and SLA; `automation_engineer` implements workflows; `knowledge_engineer` captures and structures knowledge.
-
-
-<!-- Module Fragment: product -->
-## Product Module — Routing & Standards
-
-**Route to Product when**: product, requirement, PRD, feature, priority, roadmap, design, UI, UX, wireframe, prototype, Figma, user research, interview, usability, persona, journey map, JTBD.
-
-**Product quality gates** (enforced before development handoff):
-- Requirements scored via RICE and mapped via User Story Mapping
-- PRD includes acceptance criteria in Given-When-Then BDD format
-- Design reviewed against Nielsen 10 heuristics (zero severity-4 issues)
-- User research findings cited with sample size and confidence level
-
-**Product workflow**: research → define → design → validate → handoff. `product_manager` owns requirements and roadmap; `product_designer` owns visual and interaction design; `user_researcher` owns evidence and validation.
-
-
-<!-- Module Fragment: strategy -->
-## Strategy Module — Routing & Standards
-
-**Route to Strategy when**: strategy, planning, OKR, competitive analysis, SWOT, PESTEL, business model, BMC, market sizing, TAM, trend, intelligence.
-
-**Decision support standards** (enforced for all strategic outputs):
-- PESTEL scan includes all six dimensions + three-scenario planning
-- Competitive analysis uses SWOT+TOWS with Admiralty Code source grading
-- Market sizing requires top-down and bottom-up dual validation
-- OKR alignment verified: Company → Department → Team three-level linkage
-
-**Strategy workflow**: scan environment → analyze competition → design model → validate assumptions → align OKR → build roadmap. `chief_strategist` owns strategic direction; `business_model_analyst` validates feasibility; `competitive_intelligence` provides market evidence.
 
 
 

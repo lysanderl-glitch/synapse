@@ -258,10 +258,38 @@ def validate_module(module_id: str, result: ValidationResult | None = None) -> V
     # --- Routing keywords ---
     keywords = mod.get("routing_keywords", {})
     if isinstance(keywords, dict):
+        effective_agents = list(agents or [])
+        regions = mod.get("regions", {})
+        active_regions = mod.get("active_regions", [])
+
+        if regions and not isinstance(regions, dict):
+            result.warning(path_str, "regions should be a mapping")
+            regions = {}
+
+        if active_regions and not isinstance(active_regions, list):
+            result.warning(path_str, "active_regions should be a list")
+            active_regions = []
+
+        for rk in (active_regions or []):
+            if rk not in (regions or {}):
+                result.warning(path_str, f"active_regions includes unknown region '{rk}'")
+                continue
+            region = (regions or {}).get(rk, {}) or {}
+            region_agents = region.get("agents", []) or []
+            if not isinstance(region_agents, list):
+                continue
+            effective_agents.extend(region_agents)
+
         agent_ids_in_module = set()
-        for a in (agents or []):
+        for a in (effective_agents or []):
             if isinstance(a, dict):
                 agent_ids_in_module.add(a.get("specialist_id", ""))
+                card_path_val = a.get("card_path", "")
+                sid = a.get("specialist_id", "")
+                if card_path_val:
+                    full_card = MODULES_DIR / module_id / card_path_val
+                    if not full_card.exists():
+                        result.error(path_str, f"Agent '{sid}' card not found: {card_path_val}")
             elif isinstance(a, str):
                 agent_ids_in_module.add(a)
 
@@ -578,7 +606,16 @@ def validate_global_agent_uniqueness(result: ValidationResult | None = None) -> 
             continue
 
         mod_id = mod.get("id", mod_dir.name)
-        agents = mod.get("agents", [])
+        agents = list(mod.get("agents", []) or [])
+
+        regions = mod.get("regions", {}) or {}
+        active_regions = mod.get("active_regions", []) or []
+        if isinstance(regions, dict) and isinstance(active_regions, list):
+            for rk in active_regions:
+                region = regions.get(rk) or {}
+                region_agents = region.get("agents", []) or []
+                if isinstance(region_agents, list):
+                    agents.extend(region_agents)
         if not isinstance(agents, list):
             continue
 

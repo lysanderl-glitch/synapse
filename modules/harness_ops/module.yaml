@@ -35,7 +35,21 @@ module:
       required: true
       description: "CLAUDE.md 完整性回归测试，路由冲突检测，模块合规校验，变更影响分析"
 
+    - specialist_id: "evolution_engine"
+      role: "体系进化引擎"
+      role_en: "Evolution Engine"
+      card_path: "agents/evolution_engine.md"
+      required: false
+      description: "体系版本管理（SemVer），能力 Gap 分析（P0/P1/P2 矩阵），版本迁移工程，AI Agent 设计模式追踪"
+
+
   routing_keywords:
+    版本管理: ["evolution_engine"]
+    Gap分析: ["evolution_engine"]
+    能力缺口: ["evolution_engine"]
+    CHANGELOG: ["evolution_engine"]
+    版本迁移: ["evolution_engine"]
+    体系升级: ["evolution_engine"]
     配置: ["harness_engineer"]
     执行链: ["harness_engineer"]
     CLAUDE.md: ["harness_engineer"]

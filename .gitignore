@@ -1,1 +1,7 @@
+workspace/
 __pycache__/
+*.local
+.env
+node_modules/
+dist/
+*.pyc
