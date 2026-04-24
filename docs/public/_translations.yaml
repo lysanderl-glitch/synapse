@@ -1,0 +1,112 @@
+# Synapse Translation Tracking (_translations.yaml)
+# Source commits and translation status for every bilingual content pair.
+# Read by scripts/translation_status.py; manually updated on each translation.
+
+version: 1.0
+last_updated: 2026-04-24
+
+# Forge 7 P0 pages (consumed from lysander-bond repo, not synapse-core)
+forge_pages:
+  - id: forge-index
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/index.astro
+      commit: 25e2969  # commit that purged Chinese pollution, treated as canonical EN
+      updated_at: 2026-04-24
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/index.astro
+        commit_based_on: 25e2969
+        translated_at: 2026-04-24
+        translator: content_strategist
+        status: published
+
+  - id: forge-capabilities
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/capabilities.astro
+      commit: 6843a47  # MVP initial commit
+      updated_at: 2026-04-23
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/capabilities.astro
+        commit_based_on: c53ed5b  # bilingual add commit
+        translated_at: 2026-04-23
+        translator: content_strategist
+        status: published
+
+  - id: forge-how-it-works
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/how-it-works.astro
+      commit: 6843a47
+      updated_at: 2026-04-23
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/how-it-works.astro
+        commit_based_on: c53ed5b
+        translated_at: 2026-04-23
+        translator: content_strategist
+        status: published
+
+  - id: forge-team
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/team.astro
+      commit: 6843a47
+      updated_at: 2026-04-23
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/team.astro
+        commit_based_on: c53ed5b
+        translated_at: 2026-04-23
+        translator: content_strategist
+        status: published
+
+  - id: forge-intelligence
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/intelligence.astro
+      commit: 6843a47
+      updated_at: 2026-04-23
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/intelligence.astro
+        commit_based_on: c53ed5b
+        translated_at: 2026-04-23
+        translator: content_strategist
+        status: published
+
+  - id: forge-pricing
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/pricing.astro
+      commit: 6843a47
+      updated_at: 2026-04-23
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/pricing.astro
+        commit_based_on: c53ed5b
+        translated_at: 2026-04-23
+        translator: content_strategist
+        status: published
+
+  - id: forge-get-started
+    source:
+      lang: en
+      path: lysander-bond:src/pages/synapse/get-started.astro
+      commit: 78ddeba  # ai-team-system -> synapse link fix
+      updated_at: 2026-04-24
+    translations:
+      - lang: zh
+        path: lysander-bond:src/pages/synapse/zh/get-started.astro
+        commit_based_on: 78ddeba
+        translated_at: 2026-04-24
+        translator: content_strategist
+        status: published
+
+# Status legend:
+#   published     -- published, in sync with source
+#   out-of-sync   -- source updated, translation lagging
+#   in-progress   -- translation in progress
+#   review        -- pending review

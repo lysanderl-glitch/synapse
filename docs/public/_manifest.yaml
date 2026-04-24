@@ -44,6 +44,30 @@ exports:
     audience: [content_strategist, knowledge_engineer, technical_builder]
     stability: stable
 
+  - id: colleague-guide
+    source: docs/public/methodology/colleague-guide.md
+    type: core
+    audience: [team_partner, technical_builder]
+    stability: stable
+
+  - id: synapse-proposal-v3
+    source: docs/public/methodology/proposal.md
+    type: core
+    audience: [technical_builder, enterprise_decider]
+    stability: stable
+
+  - id: harness-engineering-methodology
+    source: docs/public/methodology/harness-engineering.md
+    type: core
+    audience: [all]
+    stability: stable
+
+  - id: onboarding-steps
+    source: docs/public/onboarding-steps.yaml
+    type: reference
+    audience: [all]
+    stability: stable
+
   # Glossary (bilingual terminology)
   - id: glossary
     source: docs/public/glossary/glossary.yaml
@@ -51,8 +75,13 @@ exports:
     audience: [content_strategist, knowledge_engineer]
     stability: stable
 
+  # Translation tracking (bilingual content pairs)
+  - id: translation-tracking
+    source: docs/public/_translations.yaml
+    type: reference
+    audience: [content_strategist, knowledge_engineer]
+    stability: stable
+
 # Pending to migrate into public in Stage 2:
-# - onboarding-steps (source of truth for Forge get-started & Academy onboarding course)
-# - harness-methodology (source of truth for /synapse/how-it-works & harness-101 course)
 # - multi-agent-architecture
 # - intelligence-pipeline-spec
