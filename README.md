@@ -50,6 +50,12 @@ modules:
   # ... add more as needed
 ```
 
+## Public API Surface
+
+The `docs/public/` directory defines the stability contract. Files listed in `docs/public/_manifest.yaml` follow SemVer; other files are internal implementation and may change without notice.
+
+Downstream consumers (Synapse Forge, Academy, external integrations) should only reference files in the manifest.
+
 ## Status
 
 Beta release (v3.0.0-beta). Core architecture is stable and battle-tested in production. Module library is actively expanding. Breaking changes to harness fragment schemas will be versioned.

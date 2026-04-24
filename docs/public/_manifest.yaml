@@ -1,0 +1,58 @@
+# synapse Public API Manifest
+# Contract: files listed here have stability guarantees.
+# Files NOT listed are internal implementation, may change without notice.
+
+version: 1.0
+last_updated: 2026-04-24
+maintainer: knowledge_engineer
+
+stability_policy:
+  - Files in this manifest follow SemVer.
+  - Breaking changes trigger a major version bump and CHANGELOG entry.
+  - Removal requires deprecation notice for at least one minor version.
+
+exports:
+  # Foundational documents (high-level, stable)
+  - id: synapse-readme
+    source: README.md
+    type: core
+    audience: [team_partner, technical_builder, enterprise_decider]
+    stability: stable
+
+  - id: synapse-setup
+    source: SYNAPSE_SETUP.md
+    type: reference
+    audience: [team_partner, technical_builder]
+    stability: stable
+
+  - id: synapse-version
+    source: VERSION
+    type: living
+    audience: [all]
+    stability: stable
+
+  - id: synapse-changelog
+    source: CHANGELOG.md
+    type: living
+    audience: [all]
+    stability: stable
+
+  # Methodology (added as synapse-core docs/public/ gets populated in Stage 2)
+  - id: content-frontmatter-spec
+    source: docs/public/methodology/content-frontmatter-spec.md
+    type: core
+    audience: [content_strategist, knowledge_engineer, technical_builder]
+    stability: stable
+
+  # Glossary (bilingual terminology)
+  - id: glossary
+    source: docs/public/glossary/glossary.yaml
+    type: reference
+    audience: [content_strategist, knowledge_engineer]
+    stability: stable
+
+# Pending to migrate into public in Stage 2:
+# - onboarding-steps (source of truth for Forge get-started & Academy onboarding course)
+# - harness-methodology (source of truth for /synapse/how-it-works & harness-101 course)
+# - multi-agent-architecture
+# - intelligence-pipeline-spec
