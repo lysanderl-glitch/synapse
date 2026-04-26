@@ -14,6 +14,10 @@ audience: [technical_builder, enterprise_decider]
 stale_after: 2026-10-24
 ---
 
+> 📊 **Note on numbers in this document**: This proposal describes the v3.0 design target as "11 modules + 46 core agents". The actual implementation has evolved beyond that target — see [`docs/public/synapse-stats.yaml`](../synapse-stats.yaml) for canonical current numbers (currently 53 unique agents across 13 modules). This document preserves the original design narrative as a historical snapshot; consult `synapse-stats.yaml` for the live, authoritative counts. Per the [fact-SSOT meta-rule](./fact-ssot-rule.md), all downstream consumers (lysander-bond, blogs, reports) must read from `synapse-stats.yaml` rather than copy numbers from this document.
+
+---
+
 # Synapse v3.0 — Canonical System Design Proposal
 
 **Status**: Pending President Approval

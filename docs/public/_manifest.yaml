@@ -82,6 +82,21 @@ exports:
     audience: [content_strategist, knowledge_engineer]
     stability: stable
 
+  # SSOT for fact-type numbers (auto-generated, see scripts/generate-stats.mjs)
+  - id: synapse-stats
+    source: docs/public/synapse-stats.yaml
+    type: reference
+    audience: [all]
+    stability: stable
+    description: SSOT for fact-type numbers (agent count, module count, etc)
+
+  # Fact-SSOT meta-rule (governance for fact numbers across all repos)
+  - id: fact-ssot-rule
+    source: docs/public/methodology/fact-ssot-rule.md
+    type: core
+    audience: [all]
+    stability: stable
+
 # Pending to migrate into public in Stage 2:
 # - multi-agent-architecture
 # - intelligence-pipeline-spec
